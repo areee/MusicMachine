@@ -25,9 +25,6 @@ Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata musiik
 - vie musiikkitiedostoksi (MIDI- tai MP3-tiedostoksi)
 
 ## Toiminnot musiikin miksaajille:
-- soittolistojen luominen
-- musiikkitiedostojen (esim. MP3-tiedostojen) lisääminen soittolistalle
-- musiikkitiedostojen poisto soittolistalta
-- avaa musiikkitiedosto
+- avaa musiikkitiedosto (esim. MP3-tiedosto)
 - lyhennä musiikkitiedostoa kappaleen alusta ja/tai lopusta
-- yhdistä kaksi soittolistalla olevaa musiikkitiedostoa yhdeksi musiikkitiedostoksi
+- yhdistä kaksi musiikkitiedostoa yhdeksi kestoltaan pitkäksi musiikkitiedostoksi
