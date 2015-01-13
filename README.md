@@ -1,1 +1,1 @@
-# musicMachine
+# MusicMachine
