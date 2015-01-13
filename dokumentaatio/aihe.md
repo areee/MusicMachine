@@ -1,18 +1,33 @@
 # Aihemäärittely
 
-## Aihe: musiikkiohjelmisto
-Aion toteuttaa ohjelman, joka osaa toistaa musiikkia käyttäjän antamasta sijainnista ja jolla voi myös mahdollisesti luoda omaa musiikkia. Tavoitteenani on siis aikaansaada jonkinlainen laajennettavissa oleva, musiikkiin keskittyvä "media player", jolla pystyy musiikin toiston lisäksi luomaan jollakin tavalla (esim. sekvensseri-tyyppisesti) omaa musiikkia.
+## Aihe: musiikin toisto- ja miksausohjelma
+Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata musiikkia. Tavoitteenani on siis aikaansaada jonkinlainen laajennettavissa oleva, musiikkiin keskittyvä VLC media player- ja Audacity-ohjelmistojen risteytys, jolla pystyy musiikin toiston lisäksi luomaan tai miksaamaan esim. sekvensseri-tyyppisesti omaa musiikkia.
 
 ## Käyttäjät: kaikki musiikista kiinnostuneet ihmiset
-- musiikin "toistajat"
-- musiikin "luojat"
+- musiikin kuuntelijat
+- musiikin säveltäjille
+- musiikin miksaajille
 
-## Toiminnot musiikin toistajille:
-- musiikkitiedoston (esim. .mp3, .m4a, .wav) avaaminen ohjelmaan
-- avatun tiedoston toistaminen
-- avatun tiedoston sulkeminen
+## Toiminnot musiikin kuuntelijoille:
+- soittolistojen luominen
+- musiikkitiedostojen (esim. MP3-tiedostojen) lisääminen soittolistalle
+- musiikkitiedostojen poisto soittolistalta
+- musiikin toistaminen
+- musiikin pistäminen tauolle
+	- musiikki jatkuu siitä, mihin jäätiin, kun painetaan toista-painiketta
+- musiikin kelaaminen
+- toistonopeuden muuttaminen
 
-## Toiminnot musiikin luojille:
-- luo musiikkia
-- tallenna musiikkiprojekti
-- vie musiikkitiedostoksi (MIDI-tiedostoksi ja mahdollisesti myös MP3-tiedostoksi)
+## Toiminnot musiikin säveltäjille:
+- luo musiikkia (esim. GarageBand-tyylisesti piirtämällä palkkeja aikajanalle)
+- tallenna keskeneräinen musiikkiprojekti
+- jatka musiikkiprojektia siitä, mihin viimeksi jäätiin
+- vie musiikkitiedostoksi (MIDI- tai MP3-tiedostoksi)
+
+## Toiminnot musiikin miksaajille:
+- soittolistojen luominen
+- musiikkitiedostojen (esim. MP3-tiedostojen) lisääminen soittolistalle
+- musiikkitiedostojen poisto soittolistalta
+- avaa musiikkitiedosto (esim. MP3-tiedosto)
+- lyhennä musiikkitiedostoja kappaleen alusta ja/tai lopusta
+- yhdistä kaksi soittolistalla olevaa musiikkitiedostoa yhdeksi musiikkitiedostoksi
