@@ -1,12 +1,12 @@
 # Aihemäärittely
 
 ## Aihe: musiikin toisto- ja miksausohjelma
-Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata musiikkia. Tavoitteenani on siis aikaansaada jonkinlainen laajennettavissa oleva, musiikkiin keskittyvä VLC media player- ja Audacity-ohjelmien risteytys, jolla pystyy musiikin toiston lisäksi luomaan tai miksaamaan esim. sekvensseri-tyyppisesti omaa musiikkia.
+Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata musiikkia. Tavoitteenani on siis aikaansaada jonkinlainen laajennettavissa oleva, musiikkiin keskittyvä VLC media player- ja Audacity-ohjelmien risteytys, jolla pystyy musiikin toiston lisäksi luomaan ja miksaamaan esim. sekvensseri-tyyppisesti omaa musiikkia.
 
 ## Käyttäjät: kaikki musiikista kiinnostuneet ihmiset
 - musiikin kuuntelijat
-- musiikin säveltäjille
-- musiikin miksaajille
+- musiikin säveltäjät
+- musiikin miksaajat
 
 ## Toiminnot musiikin kuuntelijoille:
 - soittolistojen luominen
@@ -28,6 +28,6 @@ Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata musiik
 - soittolistojen luominen
 - musiikkitiedostojen (esim. MP3-tiedostojen) lisääminen soittolistalle
 - musiikkitiedostojen poisto soittolistalta
-- avaa musiikkitiedosto (esim. MP3-tiedosto)
-- lyhennä musiikkitiedostoja kappaleen alusta ja/tai lopusta
+- avaa musiikkitiedosto
+- lyhennä musiikkitiedostoa kappaleen alusta ja/tai lopusta
 - yhdistä kaksi soittolistalla olevaa musiikkitiedostoa yhdeksi musiikkitiedostoksi
