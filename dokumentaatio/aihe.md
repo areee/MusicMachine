@@ -1,6 +1,6 @@
 # Aihemäärittely
 
-## Aihe: musiikin toisto-ohjelmisto
+## Aihe: musiikkiohjelmisto
 Aion toteuttaa ohjelman, joka osaa toistaa musiikkia käyttäjän antamasta sijainnista ja jolla voi myös mahdollisesti luoda omaa musiikkia. Tavoitteenani on siis aikaansaada jonkinlainen laajennettavissa oleva, musiikkiin keskittyvä "media player", jolla pystyy musiikin toiston lisäksi luomaan jollakin tavalla (esim. sekvensseri-tyyppisesti) omaa musiikkia.
 
 ## Käyttäjät: kaikki musiikista kiinnostuneet ihmiset
