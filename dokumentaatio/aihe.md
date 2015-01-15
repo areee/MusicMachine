@@ -3,7 +3,8 @@
 ## Aihe: musiikin toisto-ohjelma
 Aion toteuttaa ohjelman, joka osaa toistaa musiikkia. Tavoitteenani on siis aikaansaada jonkinlainen laajennettavissa oleva, musiikkiin keskittyvä "media player"-ohjelma.
 
-## Käyttäjät: kaikki musiikin kuuntelijat
+## Käyttäjät:
+- kaikki musiikin kuuntelijat
 
 ## Toiminnot musiikin kuuntelijoille:
 - soittolistojen luominen
