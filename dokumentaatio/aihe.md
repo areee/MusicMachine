@@ -1,12 +1,13 @@
 # Aihemäärittely
 
-## Aihe: musiikin toisto-ohjelma
-Aion toteuttaa ohjelman, joka osaa toistaa musiikkia. Tavoitteenani on siis aikaansaada jonkinlainen laajennettavissa oleva, musiikkiin keskittyvä "media player"-ohjelma.
+## Aihe: musiikin toisto- ja miksausohjelma
+Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata sitä. Tavoitteenani on siis aikaansaada jonkinlainen laajennettavissa oleva, musiikkiin keskittyvä "media player"-ohjelma, jota esim. DJ voi käyttää keikoillaan.
 
 ## Käyttäjät:
 - kaikki musiikin kuuntelijat
+- musiikin miksaajat
 
-## Toiminnot musiikin kuuntelijoille:
+## Toiminnot:
 - soittolistojen luominen
 - musiikkitiedostojen (esim. MP3-tiedostojen) lisääminen soittolistalle
 - musiikkitiedostojen poisto soittolistalta
@@ -14,4 +15,4 @@ Aion toteuttaa ohjelman, joka osaa toistaa musiikkia. Tavoitteenani on siis aika
 - musiikin pistäminen tauolle
 	- musiikki jatkuu siitä, mihin jäätiin, kun painetaan toista-painiketta
 - musiikin kelaaminen
-- toistonopeuden muuttaminen
+- musiikkikappaleen pituuden muokkaaminen
