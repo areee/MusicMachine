@@ -11,3 +11,7 @@
 ## Perjantai 16.1.2015
 - Käytetty aika: 5 min
 - Ajankäytön kohde: aihemäärittelyä laajennettu hieman
+
+## Maanantai 19.1.2015
+- Käytetty aika: 1 h 10 min
+- Ajankäytön kohde: aloitettu koodaaminen eli lisätty Main.java, luotu ja lisätty 1. versio määrittelyvaiheen luokkakaaviosta
