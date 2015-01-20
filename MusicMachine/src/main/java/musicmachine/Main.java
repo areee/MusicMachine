@@ -1,4 +1,6 @@
-package musicmachine.musicmachine;
+package musicmachine;
+
+
 
 public class Main {
 
