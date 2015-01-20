@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner lukija = new Scanner(System.in);
 
-        Sovelluslogiikka.kaynnista(lukija);
+        new Sovelluslogiikka().kaynnista(lukija);
     }
 
 }
