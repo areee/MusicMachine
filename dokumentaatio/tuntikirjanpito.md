@@ -17,5 +17,10 @@
 - Ajankäytön kohde: aloitettu koodaaminen eli lisätty Main.java, luotu ja lisätty 1. versio määrittelyvaiheen luokkakaaviosta
 
 ## Tiistai 20.1.2015
-- Käytetty aika: 3 h 0 min
-- Ajankäytön kohde: lisäilty uusia luokkia (GraafinenKayttoliittyma, TekstiKayttoliittyma, Sovelluslogiikka, Musiikkitiedosto) ja muokattu niitä, päivitetty luokkakaaviota, luotu sovelluslogiikkaan pohja JUnit-testeille, testailtu mp3-tiedostojen toistamista
+- Käytetty aika: 3 h 45 min
+- Ajankäytön kohde:
+	- lisäilty uusia luokkia (GraafinenKayttoliittyma, TekstiKayttoliittyma, Sovelluslogiikka, Musiikkitiedosto) ja muokattu niitä
+	- päivitetty luokkakaaviota
+	- luotu sovelluslogiikkaan pohja JUnit-testeille
+	- testailtu mp3-tiedostojen toistamista
+	- luotu wav-tiedostoja tukeva 1. versio musiikkisoittimesta
