@@ -12,8 +12,8 @@ import static org.junit.Assert.*;
 
 public class SovelluslogiikkaTest {
 
-    Scanner lukija;
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+//    Scanner lukija;
+//    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     public SovelluslogiikkaTest() {
     }
@@ -28,8 +28,8 @@ public class SovelluslogiikkaTest {
 
     @Before
     public void setUp() {
-        lukija = new Scanner(System.in);
-        System.setOut(new PrintStream(outContent));
+//        lukija = new Scanner(System.in);
+//        System.setOut(new PrintStream(outContent));
     }
 
     @After

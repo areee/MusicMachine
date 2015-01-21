@@ -1,7 +1,5 @@
 package musicmachine.logic;
 
-import java.io.File;
-
 public class Musiikkitiedosto {
 
     private String tiedosto;

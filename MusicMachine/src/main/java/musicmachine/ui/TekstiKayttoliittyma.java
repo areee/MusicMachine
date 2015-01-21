@@ -13,7 +13,8 @@ public class TekstiKayttoliittyma {
 
     public void valitseMusiikkitiedosto() {
         System.out.println("Valitse toistettava musiikkitiedosto");
-        System.out.println("Ohje: anna tiedostonimi muodossa \"\"");
+        System.out.println("Ohje: anna tiedostonimi muodossa "
+                + "\"/Users/ylhaart/Music/Disney_Classics_asennusmusa.wav\"");
     }
 
     public void toistaMusiikkia() {

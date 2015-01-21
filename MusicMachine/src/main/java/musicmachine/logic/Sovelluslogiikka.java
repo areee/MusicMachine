@@ -20,12 +20,15 @@ public class Sovelluslogiikka {
             annaKomento(lukija);
             switch (komento) {
                 case "1":
-                    tekstiKayttoliittyma.valitseMusiikkitiedosto();
-//                  annaKomento(lukija);
-                    Musiikkitiedosto tiedosto = new Musiikkitiedosto("/Users/ylhaart/Music/Disney_Classics_asennusmusa.wav"); // komento
-                    input = new FileInputStream(tiedosto.getTiedosto());
-
-                    audioStream = new AudioStream(input);
+                    try {
+                        tekstiKayttoliittyma.valitseMusiikkitiedosto();
+                        annaKomento(lukija);
+                        Musiikkitiedosto tiedosto = new Musiikkitiedosto(komento);
+                        input = new FileInputStream(tiedosto.getTiedosto());
+                        audioStream = new AudioStream(input);
+                    } catch (Exception e) {
+                        System.out.println("Virheellinen tiedostopolku!\n" + e.getLocalizedMessage());
+                    }
 
                     break;
                 case "2":
@@ -36,6 +39,7 @@ public class Sovelluslogiikka {
                     tekstiKayttoliittyma.asetaMusiikkiTauolle();
                     AudioPlayer.player.stop(audioStream);
                     break;
+
                 case "x":
                     tekstiKayttoliittyma.suljeOhjelma();
                     AudioPlayer.player.stop(audioStream);
