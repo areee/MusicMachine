@@ -38,7 +38,9 @@
 	- säädetty parempi reagointi virheelliseen tiedostopolkuun (=poikkeus)
 
 ## Torstai 22.1.2015
-- Käytetty aika: 2 h 15 min
+- Käytetty aika: 4 h 15 min
 - Ajankäytön kohde:
 	- luokkakaavio päivitetty
 	- paranneltu tekstikäyttöliittymän + sovelluslogiikan koodia, jotta voidaan lisätä lisää JUnit-testejä
+	- lisätty JUnit-testejä: testejä kasassa 10
+	- luotu ja lisätty graafisen käyttöliittymän suunnitelma

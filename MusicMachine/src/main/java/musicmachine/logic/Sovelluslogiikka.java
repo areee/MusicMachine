@@ -11,57 +11,58 @@ public class Sovelluslogiikka {
     private InputStream input;
     private AudioStream audioStream;
     private boolean tiedostoAsetettu;
+    private Musiikkitiedosto musiikkitiedosto;
+    private TekstiKayttoliittyma tekstiKali;
 
     public void kaynnista(Scanner lukija) throws Exception {
-        TekstiKayttoliittyma tekstiKali = new TekstiKayttoliittyma();
+        tekstiKali = new TekstiKayttoliittyma();
         tiedostoAsetettu = false;
+        musiikkitiedosto = new Musiikkitiedosto();
 
         OUTER:
         while (true) {
-            valikko(tekstiKali, lukija);
+            valikko(lukija);
 
             switch (komento) {
                 case "1":
                     try {
-                        valitseMusiikkitiedosto(tekstiKali, lukija);
+                        valitseMusiikkitiedosto(lukija);
                     } catch (Exception e) {
                         virheTiedostopolussa(e);
                     }
                     break;
                 case "2":
                     if (tiedostoAsetettu) {
-                        toistaMusiikkia(tekstiKali);
+                        toistaMusiikkia();
                     } else {
-                        tiedostonToistoEpaonnistui(tekstiKali);
+                        tiedostonToistoEpaonnistui();
                     }
                     break;
                 case "3":
                     if (tiedostoAsetettu) {
-                        asetaMusiikkiTauolle(tekstiKali);
+                        asetaMusiikkiTauolle();
                     } else {
-                        tiedostonToistoEpaonnistui(tekstiKali);
+                        tiedostonToistoEpaonnistui();
                     }
-
                     break;
 
                 case "4":
                     if (tiedostoAsetettu) {
-                        lopetaToisto(tekstiKali);
+                        lopetaToisto();
                     } else {
-                        tiedostonToistoEpaonnistui(tekstiKali);
+                        tiedostonToistoEpaonnistui();
                     }
-
                     break;
 
                 case "x":
-                    suljeOhjelma(tekstiKali);
+                    suljeOhjelma();
                     break OUTER;
             }
         }
 
     }
 
-    private void tiedostonToistoEpaonnistui(TekstiKayttoliittyma tekstiKali) {
+    private void tiedostonToistoEpaonnistui() {
         System.out.println(tekstiKali.tiedostoaEiVoidaToistaa());
     }
 
@@ -70,40 +71,39 @@ public class Sovelluslogiikka {
                 + e.getLocalizedMessage());
     }
 
-    private void valikko(TekstiKayttoliittyma tekstiKali,
-            Scanner lukija) {
+    private void valikko(Scanner lukija) {
         System.out.println(tekstiKali.valikko());
         annaKomento(lukija);
     }
 
-    private void valitseMusiikkitiedosto(TekstiKayttoliittyma tekstiKali,
-            Scanner lukija) throws FileNotFoundException, IOException {
+    private void valitseMusiikkitiedosto(Scanner lukija)
+            throws FileNotFoundException, IOException {
         System.out.println(tekstiKali.valitseMusiikkitiedosto());
         annaKomento(lukija);
-        Musiikkitiedosto tiedosto = new Musiikkitiedosto(komento);
+        musiikkitiedosto.setTiedosto(komento);
 
-        input = new FileInputStream(tiedosto.getTiedosto());
+        input = new FileInputStream(musiikkitiedosto.getTiedosto());
         audioStream = new AudioStream(input);
         System.out.println("Tiedoston kesto: " + tiedostonKesto() + " s");
         tiedostoAsetettu = true;
     }
 
-    private void suljeOhjelma(TekstiKayttoliittyma tekstiKali) throws IOException {
+    private void suljeOhjelma() throws IOException {
         System.out.println(tekstiKali.suljeOhjelma());
         suljeTiedosto();
     }
 
-    private void lopetaToisto(TekstiKayttoliittyma tekstiKali) throws IOException {
+    private void lopetaToisto() throws IOException {
         System.out.println(tekstiKali.lopetaToisto());
         suljeTiedosto();
     }
 
-    private void asetaMusiikkiTauolle(TekstiKayttoliittyma tekstiKali) {
+    private void asetaMusiikkiTauolle() {
         System.out.println(tekstiKali.asetaMusiikkiTauolle());
         AudioPlayer.player.stop(audioStream);
     }
 
-    private void toistaMusiikkia(TekstiKayttoliittyma tekstiKali) {
+    private void toistaMusiikkia() {
         System.out.println(tekstiKali.toistaMusiikkia());
         AudioPlayer.player.start(audioStream);
     }
@@ -111,6 +111,7 @@ public class Sovelluslogiikka {
     private void suljeTiedosto() throws IOException {
         AudioPlayer.player.stop(audioStream);
         audioStream.close();
+        musiikkitiedosto.nollaaMusiikkitiedosto();
         tiedostoAsetettu = false;
     }
 

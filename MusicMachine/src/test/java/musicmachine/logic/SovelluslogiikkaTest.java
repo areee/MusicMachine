@@ -12,7 +12,6 @@ import static org.junit.Assert.*;
 
 public class SovelluslogiikkaTest {
 
-
     public SovelluslogiikkaTest() {
     }
 
@@ -32,4 +31,5 @@ public class SovelluslogiikkaTest {
     public void tearDown() {
     }
 
+    // ei toistaiseksi vielä testejä
 }

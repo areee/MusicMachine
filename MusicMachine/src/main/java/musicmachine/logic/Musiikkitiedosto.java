@@ -8,6 +8,10 @@ public class Musiikkitiedosto {
         this.tiedosto = tiedosto;
     }
 
+    Musiikkitiedosto() {
+        this.tiedosto = null;
+    }
+
     public String getTiedosto() {
         return tiedosto;
     }
