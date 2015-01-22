@@ -8,7 +8,8 @@ public class TekstiKayttoliittyma {
                 + "  1) Valitse toistettava musiikkitiedosto \n"
                 + "  2) Toista \n"
                 + "  3) Tauko \n"
-                + "  x) Lopeta \n");
+                + "  4) Lopeta toisto \n"
+                + "  x) Lopeta ohjelma\n");
     }
 
     public void valitseMusiikkitiedosto() {
@@ -22,6 +23,10 @@ public class TekstiKayttoliittyma {
     }
     public void asetaMusiikkiTauolle(){
         System.out.println("Tauko \n");
+    }
+    
+    public void lopetaToisto(){
+        System.out.println("Toisto lopetettu.\n");
     }
     
     public void suljeOhjelma(){
