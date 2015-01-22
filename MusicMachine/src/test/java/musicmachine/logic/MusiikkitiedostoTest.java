@@ -35,11 +35,17 @@ public class MusiikkitiedostoTest {
     public void getTiedostoToimii() {
         assertEquals("aaa", musiikkitiedosto.getTiedosto());
     }
-    
+
     @Test
     public void setTiedostoToimii() {
         musiikkitiedosto.setTiedosto("bbb");
         assertEquals("bbb", musiikkitiedosto.getTiedosto());
     }
-    
+
+    @Test
+    public void nollaaTiedostoToimii() {
+        musiikkitiedosto.nollaaMusiikkitiedosto();
+        assertEquals(null, musiikkitiedosto.getTiedosto());
+    }
+
 }

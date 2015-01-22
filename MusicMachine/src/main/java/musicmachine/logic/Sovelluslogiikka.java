@@ -3,7 +3,6 @@ package musicmachine.logic;
 import java.util.Scanner;
 import musicmachine.ui.TekstiKayttoliittyma;
 import java.io.*;
-import javafx.scene.media.MediaPlayer;
 import sun.audio.*;
 
 public class Sovelluslogiikka {
@@ -11,67 +10,117 @@ public class Sovelluslogiikka {
     private String komento;
     private InputStream input;
     private AudioStream audioStream;
-
-    private MediaPlayer mediaPlayer = null;
-    private boolean isPaused = false;
-    private boolean isStop = true;
-
-    String filePath = null;
-    String productName = null;
-    long durationInMillis = -1;
+    private boolean tiedostoAsetettu;
 
     public void kaynnista(Scanner lukija) throws Exception {
-        TekstiKayttoliittyma tekstiKayttoliittyma = new TekstiKayttoliittyma();
-        
+        TekstiKayttoliittyma tekstiKali = new TekstiKayttoliittyma();
+        tiedostoAsetettu = false;
+
         OUTER:
         while (true) {
-            tekstiKayttoliittyma.komennot();
-            annaKomento(lukija);
+            valikko(tekstiKali, lukija);
+
             switch (komento) {
                 case "1":
                     try {
-                        tekstiKayttoliittyma.valitseMusiikkitiedosto();
-                        annaKomento(lukija);
-                        Musiikkitiedosto tiedosto = new Musiikkitiedosto(komento);
-                        input = new FileInputStream(tiedosto.getTiedosto());
-                        audioStream = new AudioStream(input);
-                        System.out.println(audioStream.getLength() / 85000);
+                        valitseMusiikkitiedosto(tekstiKali, lukija);
                     } catch (Exception e) {
-                        System.out.println("Virheellinen tiedostopolku!\n" + e.getLocalizedMessage());
+                        virheTiedostopolussa(e);
+                    }
+                    break;
+                case "2":
+                    if (tiedostoAsetettu) {
+                        toistaMusiikkia(tekstiKali);
+                    } else {
+                        tiedostonToistoEpaonnistui(tekstiKali);
+                    }
+                    break;
+                case "3":
+                    if (tiedostoAsetettu) {
+                        asetaMusiikkiTauolle(tekstiKali);
+                    } else {
+                        tiedostonToistoEpaonnistui(tekstiKali);
                     }
 
                     break;
-                case "2":
-                    tekstiKayttoliittyma.toistaMusiikkia();
-                    AudioPlayer.player.start(audioStream);
-                    break;
-                case "3":
-                    tekstiKayttoliittyma.asetaMusiikkiTauolle();
-                    AudioPlayer.player.stop(audioStream);
-                    break;
 
                 case "4":
-                    tekstiKayttoliittyma.lopetaToisto();
-                    suljeTiedosto();
+                    if (tiedostoAsetettu) {
+                        lopetaToisto(tekstiKali);
+                    } else {
+                        tiedostonToistoEpaonnistui(tekstiKali);
+                    }
+
                     break;
 
                 case "x":
-                    tekstiKayttoliittyma.suljeOhjelma();
-                    suljeTiedosto();
+                    suljeOhjelma(tekstiKali);
                     break OUTER;
             }
         }
 
     }
 
+    private void tiedostonToistoEpaonnistui(TekstiKayttoliittyma tekstiKali) {
+        System.out.println(tekstiKali.tiedostoaEiVoidaToistaa());
+    }
+
+    private void virheTiedostopolussa(Exception e) {
+        System.out.println("Virheellinen tiedostopolku!\n"
+                + e.getLocalizedMessage());
+    }
+
+    private void valikko(TekstiKayttoliittyma tekstiKali,
+            Scanner lukija) {
+        System.out.println(tekstiKali.valikko());
+        annaKomento(lukija);
+    }
+
+    private void valitseMusiikkitiedosto(TekstiKayttoliittyma tekstiKali,
+            Scanner lukija) throws FileNotFoundException, IOException {
+        System.out.println(tekstiKali.valitseMusiikkitiedosto());
+        annaKomento(lukija);
+        Musiikkitiedosto tiedosto = new Musiikkitiedosto(komento);
+
+        input = new FileInputStream(tiedosto.getTiedosto());
+        audioStream = new AudioStream(input);
+        System.out.println("Tiedoston kesto: " + tiedostonKesto() + " s");
+        tiedostoAsetettu = true;
+    }
+
+    private void suljeOhjelma(TekstiKayttoliittyma tekstiKali) throws IOException {
+        System.out.println(tekstiKali.suljeOhjelma());
+        suljeTiedosto();
+    }
+
+    private void lopetaToisto(TekstiKayttoliittyma tekstiKali) throws IOException {
+        System.out.println(tekstiKali.lopetaToisto());
+        suljeTiedosto();
+    }
+
+    private void asetaMusiikkiTauolle(TekstiKayttoliittyma tekstiKali) {
+        System.out.println(tekstiKali.asetaMusiikkiTauolle());
+        AudioPlayer.player.stop(audioStream);
+    }
+
+    private void toistaMusiikkia(TekstiKayttoliittyma tekstiKali) {
+        System.out.println(tekstiKali.toistaMusiikkia());
+        AudioPlayer.player.start(audioStream);
+    }
+
     private void suljeTiedosto() throws IOException {
         AudioPlayer.player.stop(audioStream);
         audioStream.close();
+        tiedostoAsetettu = false;
     }
 
     private void annaKomento(Scanner lukija) {
         System.out.print("> ");
         komento = lukija.nextLine();
+    }
+
+    private int tiedostonKesto() {
+        return audioStream.getLength() / 85000;
     }
 
 }

@@ -16,4 +16,8 @@ public class Musiikkitiedosto {
         this.tiedosto = tiedosto;
     }
 
+    public void nollaaMusiikkitiedosto() {
+        this.tiedosto = null;
+    }
+
 }

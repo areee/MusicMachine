@@ -1,8 +1,5 @@
-package musicmachine.logic;
+package musicmachine.ui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,10 +7,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class SovelluslogiikkaTest {
+public class TekstiKayttoliittymaTest {
 
-
-    public SovelluslogiikkaTest() {
+    public TekstiKayttoliittymaTest() {
     }
 
     @BeforeClass
@@ -32,4 +28,7 @@ public class SovelluslogiikkaTest {
     public void tearDown() {
     }
 
+    @Test
+    public void hello() {
+    }
 }
