@@ -36,3 +36,9 @@
 - Ajankäytön kohde:
 	- muutama yksinkertainen JUnit-testi lisätty
 	- säädetty parempi reagointi virheelliseen tiedostopolkuun (=poikkeus)
+
+## Torstai 22.1.2015
+- Käytetty aika: 2 h 15 min
+- Ajankäytön kohde:
+	- luokkakaavio päivitetty
+	- paranneltu tekstikäyttöliittymän + sovelluslogiikan koodia, jotta voidaan lisätä lisää JUnit-testejä
