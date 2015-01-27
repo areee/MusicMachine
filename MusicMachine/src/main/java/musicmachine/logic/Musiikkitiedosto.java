@@ -8,10 +8,6 @@ public class Musiikkitiedosto {
         this.tiedosto = tiedosto;
     }
 
-    Musiikkitiedosto() {
-        this.tiedosto = null;
-    }
-
     public String getTiedosto() {
         return tiedosto;
     }
@@ -20,8 +16,9 @@ public class Musiikkitiedosto {
         this.tiedosto = tiedosto;
     }
 
-    public void nollaaMusiikkitiedosto() {
-        this.tiedosto = null;
+    @Override
+    public String toString() {
+        return this.tiedosto;
     }
 
 }

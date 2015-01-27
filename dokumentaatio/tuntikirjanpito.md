@@ -44,3 +44,8 @@
 	- paranneltu tekstikäyttöliittymän + sovelluslogiikan koodia, jotta voidaan lisätä lisää JUnit-testejä
 	- lisätty JUnit-testejä: testejä kasassa 10
 	- luotu ja lisätty graafisen käyttöliittymän suunnitelma
+
+## Tiistai 27.1.2015
+- Käytetty aika: 1h 45 min
+- Ajankäytön kohde:
+	- fiksattu tekstikäyttöliittymää koodiltaan toimivammaksi
