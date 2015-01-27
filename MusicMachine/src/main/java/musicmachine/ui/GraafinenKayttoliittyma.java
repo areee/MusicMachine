@@ -1,5 +1,13 @@
 package musicmachine.ui;
 
-public class GraafinenKayttoliittyma {
-    
+import java.io.IOException;
+import java.util.Scanner;
+
+public class GraafinenKayttoliittyma implements Kayttoliittyma {
+
+    @Override
+    public void kaynnista(Scanner lukija) throws IOException {
+        // tänne tulee graafinen käyttölittymä
+    }
+
 }

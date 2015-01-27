@@ -8,26 +8,27 @@ import musicmachine.logic.Musiikkitiedosto;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
-public class TekstiKayttoliittyma {
+public class TekstiKayttoliittyma implements Kayttoliittyma {
 
     private Musiikkitiedosto musiikkitiedosto;
     private InputStream input;
     private AudioStream audioStream;
     private boolean tiedostoAsetettu;
 
-    public void kaynnistaTekstiKali(Scanner lukija) throws IOException {
-
+    @Override
+    public void kaynnista(Scanner lukija) throws IOException {
         OUTER:
         while (true) {
             System.out.println(valikko());
             String komento = annaKomento(lukija);
+
             switch (komento) {
                 case "1":
-
                     while (true) {
-                        System.out.println(valitseMusiikkitiedosto());
+                        System.out.println("\n" + valitseMusiikkitiedosto());
                         komento = annaKomento(lukija);
-                        if (komento.equals("?")) {
+                        // joko kysymysmerkki tai tyhjä rivinvaihto tulostaa ohjeen:
+                        if (komento.equals("?") || komento.equals("")) {
                             System.out.println(ohje());
                         } else {
                             System.out.println("");
@@ -36,7 +37,7 @@ public class TekstiKayttoliittyma {
                     }
                     try {
                         musiikkitiedosto = new Musiikkitiedosto(komento);
-                        input = new FileInputStream(musiikkitiedosto.getTiedosto());
+                        input = new FileInputStream(musiikkitiedosto.getTiedostopolku());
                         audioStream = new AudioStream(input);
                         tiedostoAsetettu = true;
                     } catch (Exception e) {
@@ -46,10 +47,10 @@ public class TekstiKayttoliittyma {
                     break;
                 case "2":
                     if (tiedostoAsetettu) {
-                        System.out.println(toistaMusiikkia());
+                        System.out.println(toistaMusiikkia() + "\n");
                         AudioPlayer.player.start(audioStream);
                     } else {
-                        System.out.println(tiedostoaEiVoidaToistaa());
+                        tiedostonToistoEpaonnistui();
                     }
 
                     break;
@@ -58,14 +59,14 @@ public class TekstiKayttoliittyma {
                         System.out.println(asetaMusiikkiTauolle());
                         AudioPlayer.player.stop(audioStream);
                     } else {
-                        System.out.println(tiedostoaEiVoidaToistaa());
+                        tiedostonToistoEpaonnistui();
                     }
                     break;
                 case "4":
                     if (tiedostoAsetettu) {
                         System.out.println(tiedostonTiedot());
                     } else {
-                        System.out.println(tiedostoaEiVoidaToistaa());
+                        tiedostonToistoEpaonnistui();
                     }
                     break;
                 case "5":
@@ -75,7 +76,7 @@ public class TekstiKayttoliittyma {
                         audioStream.close();
                         tiedostoAsetettu = false;
                     } else {
-                        System.out.println(tiedostoaEiVoidaToistaa());
+                        tiedostonToistoEpaonnistui();
                     }
                     break;
                 case "6":
@@ -83,7 +84,10 @@ public class TekstiKayttoliittyma {
                     break OUTER;
             }
         }
+    }
 
+    private void tiedostonToistoEpaonnistui() {
+        System.out.println(tiedostoaEiVoidaToistaa() + "\n");
     }
 
     private String annaKomento(Scanner lukija) {
@@ -124,17 +128,17 @@ public class TekstiKayttoliittyma {
     }
 
     public String valitseMusiikkitiedosto() {
-        return komennot(1) + "\n(valitse \"?\", jos haluat ohjeen):\n";
+        return komennot(1) + "\n(valitse \"?\", jos haluat ohjeen):";
     }
 
     public String ohje() {
         return "Anna tiedostonimi muodossa\n"
                 + "\"/Users/ylhaart/Music/Elastinen_Eteen ja ylos.wav\"\n"
-                + "tai \"/Users/ylhaart/Music/Rally_3D_title_music.mid\"\n";
+                + "tai \"/Users/ylhaart/Music/Rally_3D_title_music.mid\"";
     }
 
     public String tiedostoaEiVoidaToistaa() {
-        return "Virhe! Et ole valinnut musiikkitiedostoa toistettavaksi.\n";
+        return "Virhe! Et ole valinnut musiikkitiedostoa toistettavaksi.";
     }
 
     public String toistaMusiikkia() {
@@ -142,7 +146,7 @@ public class TekstiKayttoliittyma {
     }
 
     public String asetaMusiikkiTauolle() {
-        return "Tauko";
+        return "Tauko\n";
     }
 
     public String lopetaToisto() {
@@ -155,7 +159,6 @@ public class TekstiKayttoliittyma {
     }
 
     public String tiedostonTiedot() {
-        return "Nimi: " + musiikkitiedosto.getTiedosto() + "\n Kesto: " + audioStream.getLength();
+        return "Nimi: " + musiikkitiedosto.getTiedostopolku() + "\nKesto: " + audioStream.getLength() + "\n"; // / 85000
     }
-
 }

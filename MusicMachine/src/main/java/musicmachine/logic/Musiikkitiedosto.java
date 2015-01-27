@@ -2,23 +2,32 @@ package musicmachine.logic;
 
 public class Musiikkitiedosto {
 
-    private String tiedosto;
+    private String tiedostopolku;
+    private int kesto;
 
     public Musiikkitiedosto(String tiedosto) {
-        this.tiedosto = tiedosto;
+        this.tiedostopolku = tiedosto;
     }
 
-    public String getTiedosto() {
-        return tiedosto;
+    public String getTiedostopolku() {
+        return tiedostopolku;
     }
 
-    public void setTiedosto(String tiedosto) {
-        this.tiedosto = tiedosto;
+    public void setTiedostopolku(String tiedosto) {
+        this.tiedostopolku = tiedosto;
     }
 
     @Override
     public String toString() {
-        return this.tiedosto;
+        return this.tiedostopolku;
+    }
+
+    public int getKesto() {
+        return kesto;
+    }
+
+    public void setKesto(int kesto) {
+        this.kesto = kesto;
     }
 
 }

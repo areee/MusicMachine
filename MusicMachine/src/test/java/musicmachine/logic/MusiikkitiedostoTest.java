@@ -33,19 +33,19 @@ public class MusiikkitiedostoTest {
 
     @Test
     public void getTiedostoToimii() {
-        assertEquals("aaa", musiikkitiedosto.getTiedosto());
+        assertEquals("aaa", musiikkitiedosto.getTiedostopolku());
     }
 
     @Test
     public void setTiedostoToimii() {
-        musiikkitiedosto.setTiedosto("bbb");
-        assertEquals("bbb", musiikkitiedosto.getTiedosto());
+        musiikkitiedosto.setTiedostopolku("bbb");
+        assertEquals("bbb", musiikkitiedosto.getTiedostopolku());
     }
 
     @Test
     public void nollaaTiedostoToimii() {
         musiikkitiedosto.nollaaMusiikkitiedosto();
-        assertEquals(null, musiikkitiedosto.getTiedosto());
+        assertEquals(null, musiikkitiedosto.getTiedostopolku());
     }
 
 }

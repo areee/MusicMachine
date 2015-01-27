@@ -46,6 +46,8 @@
 	- luotu ja lisätty graafisen käyttöliittymän suunnitelma
 
 ## Tiistai 27.1.2015
-- Käytetty aika: 1h 45 min
+- Käytetty aika: 2h 45 min
 - Ajankäytön kohde:
 	- fiksattu tekstikäyttöliittymää koodiltaan toimivammaksi
+	- tyhjennetty sovelluslogiikka luokkien "uudelleenjärjestelyä" varten
+	- päivitetty luokkakaaviota
