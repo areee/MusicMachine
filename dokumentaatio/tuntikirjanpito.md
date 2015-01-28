@@ -51,3 +51,8 @@
 	- fiksattu tekstikäyttöliittymää koodiltaan toimivammaksi
 	- tyhjennetty sovelluslogiikka luokkien "uudelleenjärjestelyä" varten
 	- päivitetty luokkakaaviota
+
+## Keskiviikko 28.1.2015
+- Käytetty aika: 10 min
+- Ajankäytön kohde:
+	- tekstikäyttöliittymän Scanner-lukija omaan luokkaansa

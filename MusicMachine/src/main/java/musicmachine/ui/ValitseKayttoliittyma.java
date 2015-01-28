@@ -2,6 +2,7 @@ package musicmachine.ui;
 
 import java.io.IOException;
 import java.util.Scanner;
+import musicmachine.logic.Lukija;
 
 public class ValitseKayttoliittyma {
 
@@ -12,7 +13,7 @@ public class ValitseKayttoliittyma {
                     + "2) Tekstipohjainen käyttöliittymä\n"
                     + "x) Lopeta");
 
-            String komento = annaKomento(lukija);
+            String komento = new Lukija().annaKomento(lukija);
             if (komento.equals("1")) {
                 new GraafinenKayttoliittyma().kaynnista(lukija);
                 break;
@@ -25,8 +26,8 @@ public class ValitseKayttoliittyma {
         }
     }
 
-    private String annaKomento(Scanner lukija) {
-        System.out.print("> ");
-        return lukija.nextLine();
-    }
+//    private String annaKomento(Scanner lukija) {
+//        System.out.print("> ");
+//        return lukija.nextLine();
+//    }
 }
