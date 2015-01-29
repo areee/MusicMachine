@@ -1,7 +1,5 @@
 package musicmachine.logic;
 
-import java.util.Scanner;
-import musicmachine.ui.TekstiKayttoliittyma;
 import java.io.*;
 import sun.audio.*;
 

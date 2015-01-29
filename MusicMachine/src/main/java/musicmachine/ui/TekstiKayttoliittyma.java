@@ -1,20 +1,12 @@
 package musicmachine.ui;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Scanner;
 import musicmachine.logic.Lukija;
-import musicmachine.logic.Musiikkitiedosto;
 import musicmachine.logic.Sovelluslogiikka;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 
 public class TekstiKayttoliittyma implements Kayttoliittyma {
 
-//    private Musiikkitiedosto musiikkitiedosto;
-//    private InputStream input;
-//    private AudioStream audioStream;
     private boolean tiedostoAsetettu;
     private Lukija lukija;
     private Sovelluslogiikka sovelluslogiikka;
