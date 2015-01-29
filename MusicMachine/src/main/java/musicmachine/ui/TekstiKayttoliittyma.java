@@ -4,30 +4,41 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
+import musicmachine.logic.Lukija;
 import musicmachine.logic.Musiikkitiedosto;
+import musicmachine.logic.Sovelluslogiikka;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
 public class TekstiKayttoliittyma implements Kayttoliittyma {
 
-    private Musiikkitiedosto musiikkitiedosto;
-    private InputStream input;
-    private AudioStream audioStream;
+//    private Musiikkitiedosto musiikkitiedosto;
+//    private InputStream input;
+//    private AudioStream audioStream;
     private boolean tiedostoAsetettu;
+    private Lukija lukija;
+    private Sovelluslogiikka sovelluslogiikka;
+
+    public TekstiKayttoliittyma() {
+        this.lukija = new Lukija();
+        this.sovelluslogiikka = new Sovelluslogiikka();
+    }
 
     @Override
     public void kaynnista(Scanner lukija) throws IOException {
+
         OUTER:
         while (true) {
             System.out.println(valikko());
-            String komento = annaKomento(lukija);
+            String komento = this.lukija.annaKomento(lukija);
 
             switch (komento) {
                 case "1":
                     while (true) {
                         System.out.println("\n" + valitseMusiikkitiedosto());
-                        komento = annaKomento(lukija);
-                        // joko kysymysmerkki tai tyhjä rivinvaihto tulostaa ohjeen:
+                        komento = this.lukija.annaKomento(lukija);
+
+                        // jos komento joko kysymysmerkki tai tyhjä rivinvaihto, tulosta ohje:
                         if (komento.equals("?") || komento.equals("")) {
                             System.out.println(ohje());
                         } else {
@@ -35,10 +46,9 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
                             break;
                         }
                     }
+
                     try {
-                        musiikkitiedosto = new Musiikkitiedosto(komento);
-                        input = new FileInputStream(musiikkitiedosto.getTiedostopolku());
-                        audioStream = new AudioStream(input);
+                        sovelluslogiikka.valitseTiedosto(komento);
                         tiedostoAsetettu = true;
                     } catch (Exception e) {
                         System.out.println(virheellinenTiedosto(e));
@@ -48,7 +58,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
                 case "2":
                     if (tiedostoAsetettu) {
                         System.out.println(toistaMusiikkia() + "\n");
-                        AudioPlayer.player.start(audioStream);
+                        sovelluslogiikka.toista();
                     } else {
                         tiedostonToistoEpaonnistui();
                     }
@@ -57,7 +67,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
                 case "3":
                     if (tiedostoAsetettu) {
                         System.out.println(asetaMusiikkiTauolle());
-                        AudioPlayer.player.stop(audioStream);
+                        sovelluslogiikka.tauko();
                     } else {
                         tiedostonToistoEpaonnistui();
                     }
@@ -72,8 +82,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
                 case "5":
                     if (tiedostoAsetettu) {
                         System.out.println(lopetaToisto());
-                        AudioPlayer.player.stop(audioStream);
-                        audioStream.close();
+                        sovelluslogiikka.lopeta();
                         tiedostoAsetettu = false;
                     } else {
                         tiedostonToistoEpaonnistui();
@@ -159,6 +168,7 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
     }
 
     public String tiedostonTiedot() {
-        return "Nimi: " + musiikkitiedosto.getTiedostopolku() + "\nKesto: " + audioStream.getLength() + "\n"; // / 85000
+        return "Nimi: " + sovelluslogiikka.tiedostonimi()
+                + "\nKesto: " + sovelluslogiikka.kesto() + " ms(?)\n";
     }
 }

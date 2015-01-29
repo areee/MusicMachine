@@ -56,3 +56,9 @@
 - Käytetty aika: 10 min
 - Ajankäytön kohde:
 	- tekstikäyttöliittymän Scanner-lukija omaan luokkaansa
+
+## Torstai 29.1.2015
+- Käytetty aika: 40 min
+- Ajankäytön kohde:
+	- tekstikäyttöliittymä siirretty täysin käyttämään Scanner-lukija -luokkaa
+	- sovelluslogiikkaa muutettu: nyt pelkästään käsittelee musiikkitiedostoa tekstikäyttöliittymän tulostamisen sijaan 
