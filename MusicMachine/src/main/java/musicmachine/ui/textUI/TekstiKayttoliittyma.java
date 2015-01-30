@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import musicmachine.logic.Lukija;
 import musicmachine.logic.Sovelluslogiikka;
-import musicmachine.ui.graphicUI.Kayttoliittyma;
+import musicmachine.ui.Kayttoliittyma;
 
 public class TekstiKayttoliittyma implements Kayttoliittyma {
 

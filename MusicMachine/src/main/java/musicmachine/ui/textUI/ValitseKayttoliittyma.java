@@ -3,8 +3,8 @@ package musicmachine.ui.textUI;
 import java.io.IOException;
 import java.util.Scanner;
 import musicmachine.logic.Lukija;
-import musicmachine.ui.GraafinenKayttoliittyma;
-import musicmachine.ui.GraphicalUI;
+import musicmachine.ui.graphicUI.GraafinenKayttoliittyma;
+import musicmachine.ui.graphicUI.GraphicalUI;
 
 public class ValitseKayttoliittyma {
 

@@ -1,4 +1,4 @@
-package musicmachine.ui.graphicUI;
+package musicmachine.ui;
 
 import java.io.IOException;
 import java.util.Scanner;

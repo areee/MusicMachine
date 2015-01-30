@@ -1,8 +1,8 @@
-package musicmachine.ui;
+package musicmachine.ui.graphicUI;
 
-import musicmachine.ui.graphicUI.Kayttoliittyma;
 import java.io.IOException;
 import java.util.Scanner;
+import musicmachine.ui.Kayttoliittyma;
 
 public class GraafinenKayttoliittyma implements Kayttoliittyma {
 

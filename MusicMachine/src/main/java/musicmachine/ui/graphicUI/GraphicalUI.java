@@ -1,5 +1,5 @@
 
-package musicmachine.ui;
+package musicmachine.ui.graphicUI;
 
 
 public class GraphicalUI extends javax.swing.JFrame {
