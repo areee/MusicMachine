@@ -63,3 +63,10 @@
 	- tekstikäyttöliittymä siirretty täysin käyttämään Scanner-lukija -luokkaa
 	- sovelluslogiikkaa muutettu: nyt pelkästään käsittelee musiikkitiedostoa tekstikäyttöliittymän tulostamisen sijaan 
 	- siistitty koodia
+
+## Perjantai 30.1.2015
+- Käytetty aika: 30 min
+- Ajankäytön kohde:
+	- luotu graafinen käyttöliittymä
+	- päivitetty testejä
+	- luotu uusi pit-raportti

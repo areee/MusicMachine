@@ -1,7 +1,7 @@
 package musicmachine;
 
 import java.util.Scanner;
-import musicmachine.ui.ValitseKayttoliittyma;
+import musicmachine.ui.textUI.ValitseKayttoliittyma;
 
 public class Main {
 

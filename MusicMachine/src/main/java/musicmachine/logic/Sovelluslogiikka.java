@@ -9,7 +9,7 @@ public class Sovelluslogiikka {
     private InputStream input;
     private AudioStream audioStream;
 
-    public void valitseTiedosto(String komento) throws FileNotFoundException, IOException {
+    public void valitseTiedosto(String komento) throws IOException {
         musiikkitiedosto = new Musiikkitiedosto(komento);
         input = new FileInputStream(musiikkitiedosto.getTiedostopolku());
         audioStream = new AudioStream(input);

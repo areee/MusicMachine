@@ -1,8 +1,10 @@
-package musicmachine.ui;
+package musicmachine.ui.textUI;
 
 import java.io.IOException;
 import java.util.Scanner;
 import musicmachine.logic.Lukija;
+import musicmachine.ui.GraafinenKayttoliittyma;
+import musicmachine.ui.GraphicalUI;
 
 public class ValitseKayttoliittyma {
 
@@ -22,7 +24,8 @@ public class ValitseKayttoliittyma {
 
             String komento = this.lukija.annaKomento(lukija);
             if (komento.equals("1")) {
-                new GraafinenKayttoliittyma().kaynnista(lukija);
+                GraphicalUI graphicalUI = new GraphicalUI();
+                graphicalUI.setVisible(true);
                 break;
             } else if (komento.equals("2")) {
                 new TekstiKayttoliittyma().kaynnista(lukija);

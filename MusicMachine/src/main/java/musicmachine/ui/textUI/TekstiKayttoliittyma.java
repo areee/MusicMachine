@@ -1,9 +1,10 @@
-package musicmachine.ui;
+package musicmachine.ui.textUI;
 
 import java.io.IOException;
 import java.util.Scanner;
 import musicmachine.logic.Lukija;
 import musicmachine.logic.Sovelluslogiikka;
+import musicmachine.ui.graphicUI.Kayttoliittyma;
 
 public class TekstiKayttoliittyma implements Kayttoliittyma {
 
@@ -89,11 +90,6 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
 
     private void tiedostonToistoEpaonnistui() {
         System.out.println(tiedostoaEiVoidaToistaa() + "\n");
-    }
-
-    private String annaKomento(Scanner lukija) {
-        System.out.print("> ");
-        return lukija.nextLine();
     }
 
     public String valikko() {

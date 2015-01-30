@@ -1,5 +1,6 @@
 package musicmachine.ui;
 
+import musicmachine.ui.graphicUI.Kayttoliittyma;
 import java.io.IOException;
 import java.util.Scanner;
 
