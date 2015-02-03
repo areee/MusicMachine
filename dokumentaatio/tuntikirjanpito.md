@@ -70,3 +70,9 @@
 	- luotu graafinen käyttöliittymä
 	- päivitetty testejä
 	- luotu uusi pit-raportti
+
+## Tiistai 3.2.2015
+- Käytetty aika: 35 min
+- Ajankäytön kohde:
+	- projektin koodia siistitty
+	- graafinen käyttöliittymä -luokka uudelleennimetty + virheelliseen toimintaan reagoimista parannettu

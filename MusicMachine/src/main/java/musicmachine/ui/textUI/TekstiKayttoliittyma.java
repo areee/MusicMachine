@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import musicmachine.logic.Lukija;
 import musicmachine.logic.Sovelluslogiikka;
-import musicmachine.ui.Kayttoliittyma;
 
-public class TekstiKayttoliittyma implements Kayttoliittyma {
+public class TekstiKayttoliittyma {
 
     private boolean tiedostoAsetettu;
     private Lukija lukija;
@@ -17,7 +16,6 @@ public class TekstiKayttoliittyma implements Kayttoliittyma {
         this.sovelluslogiikka = new Sovelluslogiikka();
     }
 
-    @Override
     public void kaynnista(Scanner lukija) throws IOException {
 
         OUTER:
