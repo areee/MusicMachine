@@ -72,7 +72,7 @@
 	- luotu uusi pit-raportti
 
 ## Tiistai 3.2.2015
-- Käytetty aika: 35 min
+- Käytetty aika: 35 min (+ klo 22.30-)
 - Ajankäytön kohde:
 	- projektin koodia siistitty
 	- graafinen käyttöliittymä -luokka uudelleennimetty + virheelliseen toimintaan reagoimista parannettu

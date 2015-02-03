@@ -1,19 +1,22 @@
 package musicmachine.ui.graphicUI;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import musicmachine.logic.Sovelluslogiikka;
 
 public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     private final Sovelluslogiikka sovelluslogiikka;
-    private String valmis;
+    private final String valmis;
+    private final String virhe;
+    private boolean tiedostoAsetettu;
+    private final String epaonnistui;
 
     public GraafinenKayttoliittyma() {
         initComponents();
         sovelluslogiikka = new Sovelluslogiikka();
         valmis = "VALMIS";
+        virhe = "VIRHE!";
+        epaonnistui = "EPÄONNISTUI!";
     }
 
     /**
@@ -34,25 +37,30 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         jSlider1 = new javax.swing.JSlider();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MusicMachine");
 
-        jButton1.setText("Toista");
+        jButton1.setIcon(new javax.swing.ImageIcon("/Users/ylhaart/Google Drive/Aineopintojen harjoitustyö – Ohjelmointi/Play-painike.png")); // NOI18N
+        jButton1.setToolTipText("Toista");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Pysäytä");
+        jButton2.setIcon(new javax.swing.ImageIcon("/Users/ylhaart/Google Drive/Aineopintojen harjoitustyö – Ohjelmointi/Stop-painike.png")); // NOI18N
+        jButton2.setToolTipText("Pysäytä");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Tauko");
+        jButton3.setIcon(new javax.swing.ImageIcon("/Users/ylhaart/Google Drive/Aineopintojen harjoitustyö – Ohjelmointi/Pause-painike.png")); // NOI18N
+        jButton3.setToolTipText("Tauko");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -83,58 +91,68 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("VALMIS");
 
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(125, 125, 125))
-            .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(154, 154, 154))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jButton1))
+                        .addGap(129, 129, 129)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
                                 .addComponent(jButton4))
-                            .addComponent(jTextField1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)))
+                .addContainerGap(111, Short.MAX_VALUE))
+            .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -142,39 +160,54 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            sovelluslogiikka.lopeta();
-        } catch (IOException ex) {
-            jLabel3.setText("VIRHE, LOPETTAMINEN EI ONNISTUNUT!");
+        if (tiedostoAsetettu) {
+            try {
+                sovelluslogiikka.lopeta();
+                jLabel3.setText("PYSÄYTETTY");
+                tiedostoAsetettu = false;
+            } catch (IOException ex) {
+                jLabel3.setText(virhe);
 //            Logger.getLogger(GraafinenKayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            jLabel3.setText(epaonnistui);
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
             sovelluslogiikka.valitseTiedosto(jTextField1.getText());
+            tiedostoAsetettu = true;
             jLabel3.setText(valmis);
         } catch (IOException ex) {
-            jLabel3.setText("VIRHE, TIEDOSTOA EI LÖYTYNYT!");
+            jLabel3.setText(virhe);
 //            Logger.getLogger(GraafinenKayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        sovelluslogiikka.tauko();
+        if (tiedostoAsetettu) {
+            sovelluslogiikka.tauko();
+            jLabel3.setText("TAUKO");
+        } else {
+            jLabel3.setText(epaonnistui);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sovelluslogiikka.toista();
+        if (tiedostoAsetettu) {
+            sovelluslogiikka.toista();
+            jLabel3.setText("TOISTETAAN...");
+        } else {
+            jLabel3.setText(epaonnistui);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -202,6 +235,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new GraafinenKayttoliittyma().setVisible(true);
             }
@@ -216,6 +250,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JList jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
