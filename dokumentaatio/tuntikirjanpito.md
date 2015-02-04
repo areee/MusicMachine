@@ -76,3 +76,8 @@
 - Ajankäytön kohde:
 	- projektin koodia siistitty
 	- graafinen käyttöliittymä -luokka uudelleennimetty, virheelliseen toimintaan reagoimista parannettu + ulkoasua hienosäädetty
+
+## Keskiviikko 4.2.2015
+- Käytetty aika: 1h 20 min
+- Ajankäytön kohde:
+	- graafista käyttöliittymää hiottu: lisätty tiedoston avausikkuna
