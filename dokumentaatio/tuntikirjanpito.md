@@ -81,3 +81,8 @@
 - Käytetty aika: 1h 20 min
 - Ajankäytön kohde:
 	- graafista käyttöliittymää hiottu: lisätty tiedoston avausikkuna
+
+## Torstai 5.2.2015
+- Käytetty aika: 30 min
+- Ajankäytön kohde:
+	- tiedoston valintaikkuna -toiminnallisuus hiottu toimivaksi
