@@ -83,6 +83,8 @@
 	- graafista käyttöliittymää hiottu: lisätty tiedoston avausikkuna
 
 ## Torstai 5.2.2015
-- Käytetty aika: 30 min
+- Käytetty aika: 2h 58 min
 - Ajankäytön kohde:
 	- tiedoston valintaikkuna -toiminnallisuus hiottu toimivaksi
+	- luotu soittolista, joka toteutettu toimivaksi
+	- poistettu aseta-painike: toista painike hoitaa valitun tiedoston asettamisen toistettavaksi, samoin toistamisen
