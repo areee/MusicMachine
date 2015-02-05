@@ -1,4 +1,4 @@
-package musicmachine.ui;
+package musicmachine.ui.textUI;
 
 import musicmachine.ui.textUI.TekstiKayttoliittyma;
 import org.junit.After;

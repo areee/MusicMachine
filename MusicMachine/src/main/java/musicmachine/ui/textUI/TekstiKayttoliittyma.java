@@ -8,8 +8,8 @@ import musicmachine.logic.Sovelluslogiikka;
 public class TekstiKayttoliittyma {
 
     private boolean tiedostoAsetettu;
-    private Lukija lukija;
-    private Sovelluslogiikka sovelluslogiikka;
+    private final Lukija lukija;
+    private final Sovelluslogiikka sovelluslogiikka;
 
     public TekstiKayttoliittyma() {
         this.lukija = new Lukija();

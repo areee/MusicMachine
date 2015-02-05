@@ -36,4 +36,28 @@ public class Sovelluslogiikka {
         return audioStream.getLength(); // /85000 (?)
     }
 
+    public Musiikkitiedosto getMusiikkitiedosto() {
+        return musiikkitiedosto;
+    }
+
+    public void setMusiikkitiedosto(Musiikkitiedosto musiikkitiedosto) {
+        this.musiikkitiedosto = musiikkitiedosto;
+    }
+
+    public InputStream getInput() {
+        return input;
+    }
+
+    public void setInput(InputStream input) {
+        this.input = input;
+    }
+
+    public AudioStream getAudioStream() {
+        return audioStream;
+    }
+
+    public void setAudioStream(AudioStream audioStream) {
+        this.audioStream = audioStream;
+    }
+
 }

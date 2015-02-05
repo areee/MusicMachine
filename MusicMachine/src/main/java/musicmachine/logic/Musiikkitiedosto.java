@@ -7,6 +7,7 @@ public class Musiikkitiedosto {
 
     public Musiikkitiedosto(String tiedosto) {
         this.tiedostopolku = tiedosto;
+        this.kesto = 0;
     }
 
     public String getTiedostopolku() {
@@ -15,11 +16,6 @@ public class Musiikkitiedosto {
 
     public void setTiedostopolku(String tiedosto) {
         this.tiedostopolku = tiedosto;
-    }
-
-    @Override
-    public String toString() {
-        return this.tiedostopolku;
     }
 
     public int getKesto() {

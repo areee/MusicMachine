@@ -1,21 +1,23 @@
 package musicmachine.logic;
 
-import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.util.Scanner;
+import java.io.InputStream;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import sun.audio.AudioStream;
 
 public class SovelluslogiikkaTest {
-    
+
     private Sovelluslogiikka sovelluslogiikka;
+    private final String testipolku;
 
     public SovelluslogiikkaTest() {
+        testipolku = "/Users/ylhaart/Music/Rally_3D_title_music.mid";
     }
 
     @BeforeClass
@@ -27,8 +29,9 @@ public class SovelluslogiikkaTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         sovelluslogiikka = new Sovelluslogiikka();
+        sovelluslogiikka.valitseTiedosto(testipolku);
     }
 
     @After
@@ -36,18 +39,34 @@ public class SovelluslogiikkaTest {
     }
 
     @Test
-    public void saaTiedostonimen() throws IOException{
-        sovelluslogiikka.valitseTiedosto("/Users/ylhaart/Music/Rally_3D_title_music.mid");
-        
-        assertEquals("/Users/ylhaart/Music/Rally_3D_title_music.mid", sovelluslogiikka.tiedostonimi());
+    public void saaTiedostonimen() throws IOException {
+        assertEquals(testipolku, sovelluslogiikka.tiedostonimi());
+    }
+
+    @Test
+    public void testaaKesto() throws IOException {
+        assertEquals(15523200, sovelluslogiikka.kesto());
+    }
+
+    @Test
+    public void sovelluslogiikanMusiikkitiedostoToimii() throws IOException {
+        Musiikkitiedosto musiikkitiedosto = sovelluslogiikka.getMusiikkitiedosto();
+        assertEquals(testipolku, musiikkitiedosto.getTiedostopolku());
     }
     
     @Test
-    public void testaaKesto() throws IOException{
-        sovelluslogiikka.valitseTiedosto("/Users/ylhaart/Music/Rally_3D_title_music.mid");
+    public void audioStreamienLukuJaKirjoitusSamat() throws IOException {
+        AudioStream audioStream = new AudioStream(new FileInputStream(testipolku));
+        sovelluslogiikka.setAudioStream(audioStream);
         
-        assertEquals(15523200, sovelluslogiikka.kesto());
+        assertEquals(audioStream, sovelluslogiikka.getAudioStream());
     }
     
-    
+    @Test
+    public void fileInputStreamienLukuJaKirjoitusSamat() throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(testipolku);
+        sovelluslogiikka.setInput(fileInputStream);
+        
+        assertEquals(fileInputStream, sovelluslogiikka.getInput());
+    }
 }

@@ -32,8 +32,24 @@ public class MusiikkitiedostoTest {
     }
 
     @Test
-    public void tiedostonimiToimii(){
+    public void tiedostonimiToimii() {
         assertEquals("aaa", musiikkitiedosto.getTiedostopolku());
     }
 
+    @Test
+    public void kestoToimiiAsetettuna() {
+        musiikkitiedosto.setKesto(180);
+        assertEquals(180, musiikkitiedosto.getKesto());
+    }
+
+    @Test
+    public void tiedostonimenAsetusToimii() {
+        musiikkitiedosto.setTiedostopolku("bbb");
+        assertEquals("bbb", musiikkitiedosto.getTiedostopolku());
+    }
+
+    @Test
+    public void kestoToimiiOletuksella() {
+        assertEquals(0, musiikkitiedosto.getKesto());
+    }
 }
