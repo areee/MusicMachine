@@ -5,6 +5,10 @@ import java.util.Scanner;
 import musicmachine.logic.Lukija;
 import musicmachine.ui.graphicUI.GraafinenKayttoliittyma;
 
+/**
+ * Tekstikäyttöliittymä, jolla valitaan, halutaanko avata MusicMachinen
+ * graafinen vai tekstipohjainen käyttöliittymä.
+ */
 public class ValitseKayttoliittyma {
 
     private final Lukija lukija;
@@ -13,6 +17,12 @@ public class ValitseKayttoliittyma {
         this.lukija = new Lukija();
     }
 
+    /**
+     * Käynnistää käyttäjän valinnan mukaan joko tekstipohjaisen tai graafisen
+     * käyttöliittymän.
+     *
+     * @param lukija käyttäjän kirjoittamia valintoja seuraava skanneri
+     */
     public void kaynnista(Scanner lukija) throws IOException {
 
         OUTER:

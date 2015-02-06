@@ -7,6 +7,9 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import musicmachine.logic.Sovelluslogiikka;
 
+/**
+ * Luokka graafisen käyttöliittymän näyttämiseen
+ */
 public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     private final Sovelluslogiikka sovelluslogiikka;
@@ -16,7 +19,11 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private final DefaultListModel<String> listamalli;
     private boolean tiedostoaToistetaan;
     private boolean tiedostoValittu;
+    private int indeksi;
 
+    /**
+     * Määrittelee graafisen käyttöliittymän muuttujat
+     */
     public GraafinenKayttoliittyma() {
         initComponents();
         sovelluslogiikka = new Sovelluslogiikka();
@@ -27,6 +34,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tiedostoAsetettu = false;
         tiedostoaToistetaan = false;
         tiedostoValittu = false;
+        indeksi = -1;
     }
 
     @SuppressWarnings("unchecked")
@@ -171,10 +179,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private void pysaytaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pysaytaPainikeActionPerformed
         if (tiedostoAsetettu) {
             try {
-                sovelluslogiikka.lopeta();
-                tilaTeksti.setText("PYSÄYTETTY");
-                tiedostoAsetettu = false;
-                tiedostoaToistetaan = false;
+                lopetaToisto();
             } catch (IOException ex) {
                 tilaTeksti.setText(virhe + ex.getLocalizedMessage());
             }
@@ -183,28 +188,33 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pysaytaPainikeActionPerformed
 
+    private void lopetaToisto() throws IOException {
+        sovelluslogiikka.lopeta();
+        tilaTeksti.setText("PYSÄYTETTY");
+        tiedostoAsetettu = false;
+        tiedostoaToistetaan = false;
+    }
+
     private void taukoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taukoPainikeActionPerformed
         if (tiedostoAsetettu) {
-            sovelluslogiikka.tauko();
-            tilaTeksti.setText("TAUKO");
-            tiedostoaToistetaan = false;
+            asetaTauolle();
         } else {
             tilaTeksti.setText("TAUKO " + epaonnistui);
         }
     }//GEN-LAST:event_taukoPainikeActionPerformed
+
+    private void asetaTauolle() {
+        sovelluslogiikka.tauko();
+        tilaTeksti.setText("TAUKO");
+        tiedostoaToistetaan = false;
+    }
 
     private void toistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toistaPainikeActionPerformed
         if (tiedostoAsetettu) {
             toistaTiedostoa();
         } else if (!tiedostoaToistetaan && tiedostoValittu) {
             try {
-                // Asetetaan valittu tiedosto toistumaan:
-                int indeksi = soittolista.getSelectedIndex();
-                String tiedostopolku = listamalli.get(indeksi);
-
-                sovelluslogiikka.valitseTiedosto(tiedostopolku);
-                tiedostoAsetettu = true;
-
+                asetaTiedostoToistovalmiiksi();
                 toistaTiedostoa();
             } catch (IOException ex) {
                 tilaTeksti.setText(virhe + ex.getLocalizedMessage());
@@ -217,6 +227,15 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     }//GEN-LAST:event_toistaPainikeActionPerformed
 
+    private void asetaTiedostoToistovalmiiksi() throws IOException {
+        // Asetetaan valittu tiedosto toistumaan:
+        indeksi = valitunTiedostonIndeksi();
+        String tiedostopolku = listamalli.get(indeksi);
+
+        sovelluslogiikka.valitseTiedosto(tiedostopolku);
+        tiedostoAsetettu = true;
+    }
+
     private void toistaTiedostoa() {
         // Toistetaan asetettu tiedosto:
         sovelluslogiikka.toista();
@@ -226,46 +245,161 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     // Valitse tiedosto ja lisää se soittolistaan:
     private void valitseTiedostoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valitseTiedostoPainikeActionPerformed
-        FileNameExtensionFilter filtteri = new FileNameExtensionFilter(
-                "WAV- ja MIDI-tiedostot", "wav", "mid");
-        tiedostonValitsija.setFileFilter(filtteri);
-
-        int kayttajanPalautus = tiedostonValitsija.showOpenDialog(this);
-        if (kayttajanPalautus == JFileChooser.APPROVE_OPTION) {
-            File tiedosto = tiedostonValitsija.getSelectedFile();
-
-            listamalli.addElement(tiedosto.getAbsolutePath());
-
-            int indeksi = listamalli.getSize() - 1;
-            soittolista.setSelectedIndex(indeksi);
-            soittolista.ensureIndexIsVisible(indeksi);
-
-            tiedostoValittu = true;
-            tilaTeksti.setText("TIEDOSTO VALITTU");
+        asetaFiltteri();
+        int valinta = tiedostonValitsija.showOpenDialog(this);
+        if (valinta == JFileChooser.APPROVE_OPTION) {
+            lisaaTiedostoSoittolistalle();
         } else {
             tilaTeksti.setText("TIEDOSTON VALINTA KESKEYTETTY");
         }
     }//GEN-LAST:event_valitseTiedostoPainikeActionPerformed
 
+    private void lisaaTiedostoSoittolistalle() {
+        File tiedosto = tiedostonValitsija.getSelectedFile();
+        listamalli.addElement(tiedosto.getAbsolutePath());
+        asetaViimeisinTiedostoValituksi();
+        tiedostoValittu = true;
+        tilaTeksti.setText("TIEDOSTO VALITTU");
+    }
+
+    /**
+     * Metodi asettaa soittolistalla viimeisimpänä olevan musiikkitiedoston
+     * valituksi
+     *
+     * @param indeksi soittolistan monesko musiikkikappale
+     */
+    public void asetaViimeisinTiedostoValituksi() {
+        indeksi = listamalli.getSize() - 1;
+        valitseViimeisinTiedosto(indeksi);
+    }
+
+    private void asetaFiltteri() {
+        FileNameExtensionFilter filtteri = new FileNameExtensionFilter(
+                "WAV- ja MIDI-tiedostot", "wav", "mid");
+        tiedostonValitsija.setFileFilter(filtteri);
+    }
+
     private void poistaTiedostoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poistaTiedostoPainikeActionPerformed
         if (listamalli.isEmpty()) {
             tilaTeksti.setText(epaonnistui + " SOITTOLISTA ON TYHJÄ");
         } else {
-            int indeksi = soittolista.getSelectedIndex();
-            listamalli.remove(indeksi);
-            tilaTeksti.setText("TIEDOSTO POISTETTU SOITTOLISTALTA");
+            indeksi = poistaTiedostoSoittolistalta();
 
             // Valitsee edellisen rivin poiston jälkeen, jos soittolista ei tyhjä:
             int koko = listamalli.getSize();
             if (koko != 0) {
-                if (indeksi == koko) {
-                    indeksi--;
-                }
-                soittolista.setSelectedIndex(indeksi);
-                soittolista.ensureIndexIsVisible(indeksi);
+                indeksi = pienennaIndeksiaYhdella(koko);
+                valitseViimeisinTiedosto(indeksi);
             }
         }
     }//GEN-LAST:event_poistaTiedostoPainikeActionPerformed
+
+    /**
+     * Metodi pienentää soittolistan kappaleindeksiä yhdellä.
+     *
+     * @param indeksi soittolistan monesko musiikkikappale
+     * @return indeksin arvo
+     */
+    public int pienennaIndeksiaYhdella(int koko) {
+        if (indeksi == koko) {
+            indeksi--;
+        }
+        return indeksi;
+    }
+
+    private void valitseViimeisinTiedosto(int indeksi) {
+        soittolista.setSelectedIndex(indeksi);
+        soittolista.ensureIndexIsVisible(indeksi);
+    }
+
+    private int poistaTiedostoSoittolistalta() {
+        indeksi = valitunTiedostonIndeksi();
+        listamalli.remove(indeksi);
+        tilaTeksti.setText("TIEDOSTO POISTETTU SOITTOLISTALTA");
+        return indeksi;
+    }
+    // turhia gettereitä + settereitä?:
+
+    private int valitunTiedostonIndeksi() {
+        return soittolista.getSelectedIndex();
+    }
+
+    /**
+     * Metodi tarkistaa, onko tiedosto asetettu
+     *
+     * @param tiedostoAsetettu boolean-arvo
+     * @return onko tiedosto asetettu
+     */
+    public boolean isTiedostoAsetettu() {
+        return tiedostoAsetettu;
+    }
+
+    /**
+     * Metodi muuttaa tiedostoAsetettu-booleanarvon tilaa
+     *
+     * @param tiedostoAsetettu boolean-arvo
+     */
+    public void setTiedostoAsetettu(boolean tiedostoAsetettu) {
+        this.tiedostoAsetettu = tiedostoAsetettu;
+    }
+
+    /**
+     * Metodi tarkistaa, toistetaanko tiedostoa
+     *
+     * @param tiedostoaToistetaan boolean-arvo
+     * @return toistetaanko tiedostoa
+     */
+    public boolean isTiedostoaToistetaan() {
+        return tiedostoaToistetaan;
+    }
+
+    /**
+     * Metodi muuttaa tiedostoaToistetaan-booleanarvon tilaa
+     *
+     * @param tiedostoaToistetaan boolean-arvo
+     */
+    public void setTiedostoaToistetaan(boolean tiedostoaToistetaan) {
+        this.tiedostoaToistetaan = tiedostoaToistetaan;
+    }
+
+    /**
+     * Metodi tarkistaa, onko tiedosto valittu
+     *
+     * @param isTiedostoValittu boolean-arvo
+     * @return onko tiedosto valittu
+     */
+    public boolean isTiedostoValittu() {
+        return tiedostoValittu;
+    }
+
+    /**
+     * Metodi muuttaa tiedostoValittu-booleanarvon tilaa
+     *
+     * @param tiedostoValittu boolean-arvo
+     */
+    public void setTiedostoValittu(boolean tiedostoValittu) {
+        this.tiedostoValittu = tiedostoValittu;
+    }
+
+    /**
+     * Metodi palauttaa indeksin arvon
+     *
+     * @param indeksi int-arvo
+     * @return indeksin arvo
+     */
+    public int getIndeksi() {
+        return indeksi;
+    }
+
+    /**
+     * Metodi asettaa indeksin arvon
+     *
+     * @param indeksi int-arvo
+     * @return indeksin arvo
+     */
+    public void setIndeksi(int indeksi) {
+        this.indeksi = indeksi;
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

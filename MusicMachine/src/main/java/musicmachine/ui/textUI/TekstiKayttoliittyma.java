@@ -5,17 +5,29 @@ import java.util.Scanner;
 import musicmachine.logic.Lukija;
 import musicmachine.logic.Sovelluslogiikka;
 
+/**
+ * MusicMachinen tekstikäyttöliittymän ulkonäköön keskittyvä luokka.
+ */
 public class TekstiKayttoliittyma {
 
     private boolean tiedostoAsetettu;
     private final Lukija lukija;
     private final Sovelluslogiikka sovelluslogiikka;
 
+    /**
+     * Määrittelee tekstikäyttöliittymän muuttujat
+     */
     public TekstiKayttoliittyma() {
         this.lukija = new Lukija();
         this.sovelluslogiikka = new Sovelluslogiikka();
     }
 
+    /**
+     * Käynnistää tekstipohjaisen käyttöliittymän.
+     *
+     * @param lukija käyttäjän kirjoittamia valintoja seuraava skanneri
+     * @throws java.io.IOException
+     */
     public void kaynnista(Scanner lukija) throws IOException {
 
         OUTER:
@@ -90,6 +102,11 @@ public class TekstiKayttoliittyma {
         System.out.println(tiedostoaEiVoidaToistaa() + "\n");
     }
 
+    /**
+     * Metodi, joka tulostaa päävalikon.
+     *
+     * @return palautettavaTeksti
+     */
     public String valikko() {
         String nimi = "MusicMachine";
         String toiminnot = "Valitse toiminto:";
@@ -102,6 +119,12 @@ public class TekstiKayttoliittyma {
         return palautettavaTeksti;
     }
 
+    /**
+     * Metodi, joka tulostaa päävalikon komennot.
+     *
+     * @param mones monesko päävalikon kohde on kyseessä
+     * @return teksti päävalikon komento
+     */
     public String komennot(int mones) {
         if (mones == 1) {
             return "Valitse toistettava musiikkitiedosto";
@@ -118,41 +141,77 @@ public class TekstiKayttoliittyma {
         }
     }
 
+    /**
+     *
+     * @return teksti ohjelma sulkeutuu
+     */
     public String suljeOhjelma() {
         return "Ohjelma sulkeutuu.";
     }
 
+    /**
+     *
+     * @return teksti musiikkitiedoston valitseminen
+     */
     public String valitseMusiikkitiedosto() {
         return komennot(1) + "\n(valitse \"?\", jos haluat ohjeen):";
     }
 
+    /**
+     *
+     * @return teksti ohje musiikkitiedoston valitsemiseen
+     */
     public String ohje() {
         return "Anna tiedostonimi muodossa\n"
                 + "\"/Users/ylhaart/Music/Elastinen_Eteen ja ylos.wav\"\n"
                 + "tai \"/Users/ylhaart/Music/Rally_3D_title_music.mid\"";
     }
 
+    /**
+     *
+     * @return teksti musiikkitiedoston toistovirhe
+     */
     public String tiedostoaEiVoidaToistaa() {
         return "Virhe! Et ole valinnut musiikkitiedostoa toistettavaksi.";
     }
 
+    /**
+     *
+     * @return teksti musiikkia toistetaan
+     */
     public String toistaMusiikkia() {
         return "Toistetaan...";
     }
 
+    /**
+     *
+     * @return teksti musiikki tauolla
+     */
     public String asetaMusiikkiTauolle() {
         return "Tauko\n";
     }
 
+    /**
+     *
+     * @return teksti toisto lopetettu
+     */
     public String lopetaToisto() {
         return "Toisto lopetettu.";
     }
 
+    /**
+     *
+     * @return teksti virheellinen musiikkitiedosto
+     */
     public String virheellinenTiedosto(Exception e) {
         return "Virheellinen tiedostopolku!\n"
                 + e.getLocalizedMessage();
     }
 
+    /**
+     *
+     * @return teksti musiikkitiedoston tiedot
+     */
     public String tiedostonTiedot() {
         return "Nimi: " + sovelluslogiikka.tiedostonimi()
                 + "\nKesto: " + sovelluslogiikka.kesto() + " ms(?)\n";

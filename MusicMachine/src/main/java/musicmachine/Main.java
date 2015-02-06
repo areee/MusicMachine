@@ -3,6 +3,9 @@ package musicmachine;
 import java.util.Scanner;
 import musicmachine.ui.textUI.ValitseKayttoliittyma;
 
+/**
+ * Ohjelman Main-luokka, josta ValitseKäyttöliittymä-luokka käynnistyy.
+ */
 public class Main {
 
     public static void main(String[] args) throws Exception {

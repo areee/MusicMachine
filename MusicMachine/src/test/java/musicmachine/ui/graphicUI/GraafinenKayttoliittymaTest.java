@@ -9,7 +9,10 @@ import static org.junit.Assert.*;
 
 public class GraafinenKayttoliittymaTest {
 
+    private GraafinenKayttoliittyma gk;
+
     public GraafinenKayttoliittymaTest() {
+        gk = new GraafinenKayttoliittyma();
     }
 
     @BeforeClass
@@ -29,6 +32,49 @@ public class GraafinenKayttoliittymaTest {
     }
 
     @Test
-    public void hello() {
+    public void pienennaIndeksiaYhdella() {
+        gk.setIndeksi(5);
+        gk.pienennaIndeksiaYhdella(5);
+        assertEquals(4, gk.getIndeksi());
+    }
+
+    @Test
+    public void pienennaIndeksiaYhdellaKokoEri() {
+        gk.setIndeksi(5);
+        gk.pienennaIndeksiaYhdella(4);
+        assertEquals(5, gk.getIndeksi());
+    }
+
+    @Test
+    public void tiedostoEiAsetettu() {
+        assertFalse(gk.isTiedostoAsetettu());
+    }
+
+    @Test
+    public void tiedostoOnAsetettu() {
+        gk.setTiedostoAsetettu(true);
+        assertTrue(gk.isTiedostoAsetettu());
+    }
+    
+    @Test
+    public void tiedostoEiValittu() {
+        assertFalse(gk.isTiedostoValittu());
+    }
+
+    @Test
+    public void tiedostoOnValittu() {
+        gk.setTiedostoValittu(true);
+        assertTrue(gk.isTiedostoValittu());
+    }
+    
+    @Test
+    public void tiedostoEiToisteta() {
+        assertFalse(gk.isTiedostoaToistetaan());
+    }
+
+    @Test
+    public void tiedostoaToistetaan() {
+        gk.setTiedostoaToistetaan(true);
+        assertTrue(gk.isTiedostoaToistetaan());
     }
 }

@@ -1,6 +1,5 @@
 package musicmachine.ui.textUI;
 
-import musicmachine.ui.textUI.TekstiKayttoliittyma;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,29 +36,29 @@ public class TekstiKayttoliittymaTest {
     }
 
     @Test
-    public void tauko() {
+    public void taukoTulostuu() {
         assertEquals("Tauko\n", tk.asetaMusiikkiTauolle());
     }
 
     @Test
-    public void lopetaToisto() {
+    public void lopetaToistoTulostuu() {
         assertEquals("Toisto lopetettu.", tk.lopetaToisto());
     }
 
     @Test
-    public void ohje() {
+    public void ohjeTulostuu() {
         assertEquals("Anna tiedostonimi muodossa\n"
                 + "\"/Users/ylhaart/Music/Elastinen_Eteen ja ylos.wav\"\n"
                 + "tai \"/Users/ylhaart/Music/Rally_3D_title_music.mid\"", tk.ohje());
     }
 
     @Test
-    public void virhe() {
+    public void virheTulostuu() {
         assertEquals("Virhe! Et ole valinnut musiikkitiedostoa toistettavaksi.", tk.tiedostoaEiVoidaToistaa());
     }
 
     @Test
-    public void toistetaan () {
+    public void toistetaanTulostuu () {
         assertEquals("Toistetaan...", tk.toistaMusiikkia());
     }
 

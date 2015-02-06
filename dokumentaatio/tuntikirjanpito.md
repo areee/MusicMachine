@@ -91,3 +91,9 @@
 	- lisätty graafiseen käliin ikoneita
 	- luokkakaavio päivitetty
 	- testejä päivitetty
+
+## Perjantai 6.2.2015
+- Käytetty aika: 1 h 43 min
+- Ajankäytön kohde:
+	- lisätty testejä + pit-raportti
+	- tehty luokille ja metodeille JavaDoc-kuvaukset
