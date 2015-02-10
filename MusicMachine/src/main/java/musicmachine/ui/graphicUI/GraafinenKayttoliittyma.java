@@ -2,6 +2,8 @@ package musicmachine.ui.graphicUI;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -53,6 +55,10 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         valitseTiedostoPainike = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         poistaTiedostoPainike = new javax.swing.JButton();
+        KelaaEteenpainPainike = new javax.swing.JButton();
+        KelaaTaaksepainPainike = new javax.swing.JButton();
+        TallennaSoittolistaPainike = new javax.swing.JButton();
+        LataaSoittolistaPainike = new javax.swing.JButton();
 
         tiedostonValitsija.setCurrentDirectory(new java.io.File("/Users/ylhaart/Music"));
         tiedostonValitsija.setDialogTitle("Valitse musiikkitiedosto...");
@@ -114,6 +120,36 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             }
         });
 
+        KelaaEteenpainPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Ff-painike.png"))); // NOI18N
+        KelaaEteenpainPainike.setToolTipText("Kelaa eteenpäin");
+        KelaaEteenpainPainike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KelaaEteenpainPainikeActionPerformed(evt);
+            }
+        });
+
+        KelaaTaaksepainPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Rew-painike.png"))); // NOI18N
+        KelaaTaaksepainPainike.setToolTipText("Kelaa taaksepäin");
+        KelaaTaaksepainPainike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KelaaTaaksepainPainikeActionPerformed(evt);
+            }
+        });
+
+        TallennaSoittolistaPainike.setText("Tallenna soittolista...");
+        TallennaSoittolistaPainike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TallennaSoittolistaPainikeActionPerformed(evt);
+            }
+        });
+
+        LataaSoittolistaPainike.setText("Lataa soittolista...");
+        LataaSoittolistaPainike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LataaSoittolistaPainikeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,7 +158,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -133,16 +171,27 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(valitseTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(poistaTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(136, 136, 136)
-                                .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(poistaTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(toistaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TallennaSoittolistaPainike)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 180, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(LataaSoittolistaPainike)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(KelaaTaaksepainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(toistaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(KelaaEteenpainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,20 +205,24 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(valitseTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(poistaTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(etenemissaadin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(toistaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(valitseTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
+                        .addComponent(poistaTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TallennaSoittolistaPainike)
+                        .addComponent(LataaSoittolistaPainike)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(etenemissaadin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(toistaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(KelaaEteenpainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(KelaaTaaksepainPainike, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -265,8 +318,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     /**
      * Metodi asettaa soittolistalla viimeisimpänä olevan musiikkitiedoston
      * valituksi
-     *
-     * @param indeksi soittolistan monesko musiikkikappale
      */
     public void asetaViimeisinTiedostoValituksi() {
         indeksi = listamalli.getSize() - 1;
@@ -294,10 +345,38 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_poistaTiedostoPainikeActionPerformed
 
+    private void KelaaEteenpainPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KelaaEteenpainPainikeActionPerformed
+        try {
+            sovelluslogiikka.kelaaEteenpain();
+        } catch (IOException ex) {
+            virheViesti();
+        }
+    }//GEN-LAST:event_KelaaEteenpainPainikeActionPerformed
+
+    private void KelaaTaaksepainPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KelaaTaaksepainPainikeActionPerformed
+        try {
+            sovelluslogiikka.kelaaTaaksepain();
+        } catch (IOException ex) {
+            virheViesti();
+        }
+    }//GEN-LAST:event_KelaaTaaksepainPainikeActionPerformed
+
+    private void TallennaSoittolistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TallennaSoittolistaPainikeActionPerformed
+
+    }//GEN-LAST:event_TallennaSoittolistaPainikeActionPerformed
+
+    private void LataaSoittolistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LataaSoittolistaPainikeActionPerformed
+
+    }//GEN-LAST:event_LataaSoittolistaPainikeActionPerformed
+
+    private void virheViesti() {
+        this.tilaTeksti.setText(virhe);
+    }
+
     /**
      * Metodi pienentää soittolistan kappaleindeksiä yhdellä.
      *
-     * @param indeksi soittolistan monesko musiikkikappale
+     * @param koko
      * @return indeksin arvo
      */
     public int pienennaIndeksiaYhdella(int koko) {
@@ -327,7 +406,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     /**
      * Metodi tarkistaa, onko tiedosto asetettu
      *
-     * @param tiedostoAsetettu boolean-arvo
      * @return onko tiedosto asetettu
      */
     public boolean isTiedostoAsetettu() {
@@ -346,7 +424,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     /**
      * Metodi tarkistaa, toistetaanko tiedostoa
      *
-     * @param tiedostoaToistetaan boolean-arvo
      * @return toistetaanko tiedostoa
      */
     public boolean isTiedostoaToistetaan() {
@@ -365,7 +442,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     /**
      * Metodi tarkistaa, onko tiedosto valittu
      *
-     * @param isTiedostoValittu boolean-arvo
      * @return onko tiedosto valittu
      */
     public boolean isTiedostoValittu() {
@@ -384,7 +460,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     /**
      * Metodi palauttaa indeksin arvon
      *
-     * @param indeksi int-arvo
      * @return indeksin arvo
      */
     public int getIndeksi() {
@@ -395,7 +470,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
      * Metodi asettaa indeksin arvon
      *
      * @param indeksi int-arvo
-     * @return indeksin arvo
      */
     public void setIndeksi(int indeksi) {
         this.indeksi = indeksi;
@@ -435,6 +509,10 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton KelaaEteenpainPainike;
+    private javax.swing.JButton KelaaTaaksepainPainike;
+    private javax.swing.JButton LataaSoittolistaPainike;
+    private javax.swing.JButton TallennaSoittolistaPainike;
     private javax.swing.JSlider etenemissaadin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

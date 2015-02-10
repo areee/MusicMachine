@@ -201,6 +201,7 @@ public class TekstiKayttoliittyma {
 
     /**
      *
+     * @param e poikkeus
      * @return teksti virheellinen musiikkitiedosto
      */
     public String virheellinenTiedosto(Exception e) {
@@ -213,7 +214,7 @@ public class TekstiKayttoliittyma {
      * @return teksti musiikkitiedoston tiedot
      */
     public String tiedostonTiedot() {
-        return "Nimi: " + sovelluslogiikka.tiedostonimi()
+        return "Nimi: " + sovelluslogiikka.tiedostopolku()
                 + "\nKesto: " + sovelluslogiikka.kesto() + " ms(?)\n";
     }
 }

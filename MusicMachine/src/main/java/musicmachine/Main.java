@@ -4,7 +4,7 @@ import java.util.Scanner;
 import musicmachine.ui.textUI.ValitseKayttoliittyma;
 
 /**
- * Ohjelman Main-luokka, josta ValitseKäyttöliittymä-luokka käynnistyy.
+ * Ohjelman Main-luokka, josta ValitseKayttoliittyma-luokka käynnistyy.
  */
 public class Main {
 

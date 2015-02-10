@@ -39,7 +39,7 @@ public class SovelluslogiikkaTest {
 
     @Test
     public void saaTiedostonimen() throws IOException {
-        assertEquals(testipolku, sovelluslogiikka.tiedostonimi());
+        assertEquals(testipolku, sovelluslogiikka.tiedostopolku());
     }
 
     @Test

@@ -38,7 +38,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -51,20 +54,34 @@
                               <Component id="valitseTiedostoPainike" min="-2" pref="24" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="poistaTiedostoPainike" min="-2" pref="24" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                              <Component id="taukoPainike" min="-2" pref="37" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="toistaPainike" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="TallennaSoittolistaPainike" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="pysaytaPainike" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="LataaSoittolistaPainike" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="180" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="taukoPainike" min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pysaytaPainike" min="-2" pref="33" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="KelaaTaaksepainPainike" min="-2" pref="54" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="toistaPainike" min="-2" pref="53" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="KelaaEteenpainPainike" min="-2" pref="54" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,24 +98,28 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="179" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="valitseTiedostoPainike" pref="29" max="32767" attributes="0"/>
-                  <Component id="poistaTiedostoPainike" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
-              <Component id="etenemissaadin" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                      <Component id="toistaPainike" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="valitseTiedostoPainike" pref="29" max="32767" attributes="0"/>
+                      <Component id="poistaTiedostoPainike" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pysaytaPainike" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="taukoPainike" min="-2" pref="40" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="TallennaSoittolistaPainike" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="LataaSoittolistaPainike" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="etenemissaadin" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pysaytaPainike" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="taukoPainike" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="toistaPainike" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="KelaaEteenpainPainike" min="-2" pref="57" max="-2" attributes="0"/>
+                  <Component id="KelaaTaaksepainPainike" alignment="1" min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -202,6 +223,44 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="poistaTiedostoPainikeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="KelaaEteenpainPainike">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/icons/Ff-painike.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Kelaa eteenp&#xe4;in"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KelaaEteenpainPainikeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="KelaaTaaksepainPainike">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/icons/Rew-painike.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Kelaa taaksep&#xe4;in"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KelaaTaaksepainPainikeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="TallennaSoittolistaPainike">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tallenna soittolista..."/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TallennaSoittolistaPainikeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="LataaSoittolistaPainike">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lataa soittolista..."/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LataaSoittolistaPainikeActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

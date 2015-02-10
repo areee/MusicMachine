@@ -22,6 +22,7 @@ public class ValitseKayttoliittyma {
      * käyttöliittymän.
      *
      * @param lukija käyttäjän kirjoittamia valintoja seuraava skanneri
+     * @throws java.io.IOException
      */
     public void kaynnista(Scanner lukija) throws IOException {
 
