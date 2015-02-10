@@ -99,7 +99,7 @@
 	- tehty luokille ja metodeille JavaDoc-kuvaukset
 
 ## Tiistai 10.2.2015
-- Käytetty aika: 4 h 17 min (+ klo 21:55->)
+- Käytetty aika: 5 h 30 min
 - Ajankäytön kohde:
 	- konfiguroitu pit- ja cobertura-raportteja: testaavat ainoastaan musicmachine.logic-pakkauksessa olevia luokkia (cobertura-raportin konfigurointi ei toimi)
 	- luotu mahdollisuus tallentaa JavaDoc html-tiedostoksi
