@@ -99,10 +99,11 @@
 	- tehty luokille ja metodeille JavaDoc-kuvaukset
 
 ## Tiistai 10.2.2015
-- Käytetty aika: 4 h 17 min
+- Käytetty aika: 4 h 17 min (+ klo 21:55->)
 - Ajankäytön kohde:
-	- konfiguroitu pit- ja cobertura-raportteja: testaavat ainoastaan musicmachine.logic-pakkauksessa olevia luokkia (cobertura-raportti ei toimi)
+	- konfiguroitu pit- ja cobertura-raportteja: testaavat ainoastaan musicmachine.logic-pakkauksessa olevia luokkia (cobertura-raportin konfigurointi ei toimi)
 	- luotu mahdollisuus tallentaa JavaDoc html-tiedostoksi
 	- muutoksia sovelluslogiikkaan:
 		- kelaus-toiminto (toimii vain eteenpäin kelatessa)
-		- aloitettu musiikkiominaisuuksien päivittäminen, tavoitteena siirtyä käyttämään kokonaan Java Sound API:ta.
+		- aloitettu musiikkiominaisuuksien päivittäminen, tavoitteena siirtyä käyttämään kokonaan Java Sound API:a
+		- aloitettu soittolistan tallentamis- ja lataamistoiminnallisuudet

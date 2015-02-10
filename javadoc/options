@@ -1,0 +1,24 @@
+-classpath
+'/Users/ylhaart/MusicMachine/MusicMachine/target/classes'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/ylhaart/MusicMachine/MusicMachine/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2015. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/ylhaart/MusicMachine/MusicMachine/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'MusicMachine 1.0-SNAPSHOT API'
+-linkoffline
+'http://docs.oracle.com/javase/7/docs/api' '/Users/ylhaart/MusicMachine/MusicMachine/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'MusicMachine 1.0-SNAPSHOT API'

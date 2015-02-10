@@ -2,8 +2,6 @@ package musicmachine.ui.graphicUI;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -50,10 +48,10 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         etenemissaadin = new javax.swing.JSlider();
         tilanOhjeteksti = new javax.swing.JLabel();
         tilaTeksti = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        rullausPaneeli = new javax.swing.JScrollPane();
         soittolista = new javax.swing.JList();
         valitseTiedostoPainike = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        soittolistaTeksti = new javax.swing.JLabel();
         poistaTiedostoPainike = new javax.swing.JButton();
         KelaaEteenpainPainike = new javax.swing.JButton();
         KelaaTaaksepainPainike = new javax.swing.JButton();
@@ -99,7 +97,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tilaTeksti.setText("VALMIS");
 
         soittolista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(soittolista);
+        rullausPaneeli.setViewportView(soittolista);
 
         valitseTiedostoPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Add-painike.png"))); // NOI18N
         valitseTiedostoPainike.setToolTipText("Valitse tiedosto...");
@@ -109,8 +107,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setText("Soittolista:");
+        soittolistaTeksti.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        soittolistaTeksti.setText("Soittolista:");
 
         poistaTiedostoPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Delete-painike.png"))); // NOI18N
         poistaTiedostoPainike.setToolTipText("Poista tiedosto");
@@ -159,11 +157,11 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addComponent(rullausPaneeli)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(soittolistaTeksti)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tilanOhjeteksti)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -201,9 +199,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                     .addComponent(tilanOhjeteksti)
                     .addComponent(tilaTeksti))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(soittolistaTeksti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rullausPaneeli, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -225,6 +223,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                     .addComponent(KelaaTaaksepainPainike, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        getAccessibleContext().setAccessibleDescription("Toista musiikkia");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -514,11 +514,11 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private javax.swing.JButton LataaSoittolistaPainike;
     private javax.swing.JButton TallennaSoittolistaPainike;
     private javax.swing.JSlider etenemissaadin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton poistaTiedostoPainike;
     private javax.swing.JButton pysaytaPainike;
+    private javax.swing.JScrollPane rullausPaneeli;
     private javax.swing.JList soittolista;
+    private javax.swing.JLabel soittolistaTeksti;
     private javax.swing.JButton taukoPainike;
     private javax.swing.JFileChooser tiedostonValitsija;
     private javax.swing.JLabel tilaTeksti;
