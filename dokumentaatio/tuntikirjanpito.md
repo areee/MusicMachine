@@ -107,3 +107,8 @@
 		- kelaus-toiminto (toimii vain eteenpäin kelatessa)
 		- aloitettu musiikkiominaisuuksien päivittäminen, tavoitteena siirtyä käyttämään kokonaan Java Sound API:a
 		- aloitettu soittolistan tallentamis- ja lataamistoiminnallisuudet
+
+## Keskiviikko 11.2.2015
+- Käytetty aika: 30 min
+- Ajankäytön kohde:
+	- projektille luotu HTML-sivu
