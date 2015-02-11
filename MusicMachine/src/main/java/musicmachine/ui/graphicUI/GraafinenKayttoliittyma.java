@@ -1,7 +1,12 @@
 package musicmachine.ui.graphicUI;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -41,7 +46,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tiedostonValitsija = new javax.swing.JFileChooser();
+        lisaaMusatiedostoValitsija = new javax.swing.JFileChooser();
+        lataaSoittolistaValitsija = new javax.swing.JFileChooser();
         toistaPainike = new javax.swing.JButton();
         pysaytaPainike = new javax.swing.JButton();
         taukoPainike = new javax.swing.JButton();
@@ -58,8 +64,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         TallennaSoittolistaPainike = new javax.swing.JButton();
         LataaSoittolistaPainike = new javax.swing.JButton();
 
-        tiedostonValitsija.setCurrentDirectory(new java.io.File("/Users/ylhaart/Music"));
-        tiedostonValitsija.setDialogTitle("Valitse musiikkitiedosto...");
+        lisaaMusatiedostoValitsija.setCurrentDirectory(new java.io.File("/Users/ylhaart/Music"));
+        lisaaMusatiedostoValitsija.setDialogTitle("Valitse musiikkitiedosto...");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MusicMachine");
@@ -298,8 +304,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     // Valitse tiedosto ja lisää se soittolistaan:
     private void valitseTiedostoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valitseTiedostoPainikeActionPerformed
-        asetaFiltteri();
-        int valinta = tiedostonValitsija.showOpenDialog(this);
+        asetaFiltteriMusiikkitiedostolle();
+        int valinta = lisaaMusatiedostoValitsija.showOpenDialog(this);
         if (valinta == JFileChooser.APPROVE_OPTION) {
             lisaaTiedostoSoittolistalle();
         } else {
@@ -308,11 +314,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }//GEN-LAST:event_valitseTiedostoPainikeActionPerformed
 
     private void lisaaTiedostoSoittolistalle() {
-        File tiedosto = tiedostonValitsija.getSelectedFile();
+        File tiedosto = lisaaMusatiedostoValitsija.getSelectedFile();
         listamalli.addElement(tiedosto.getAbsolutePath());
         asetaViimeisinTiedostoValituksi();
-        tiedostoValittu = true;
-        tilaTeksti.setText("TIEDOSTO VALITTU");
     }
 
     /**
@@ -322,12 +326,14 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     public void asetaViimeisinTiedostoValituksi() {
         indeksi = listamalli.getSize() - 1;
         valitseViimeisinTiedosto(indeksi);
+        tiedostoValittu = true;
+        tilaTeksti.setText("TIEDOSTO VALITTU");
     }
 
-    private void asetaFiltteri() {
+    private void asetaFiltteriMusiikkitiedostolle() {
         FileNameExtensionFilter filtteri = new FileNameExtensionFilter(
                 "WAV- ja MIDI-tiedostot", "wav", "mid");
-        tiedostonValitsija.setFileFilter(filtteri);
+        lisaaMusatiedostoValitsija.setFileFilter(filtteri);
     }
 
     private void poistaTiedostoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poistaTiedostoPainikeActionPerformed
@@ -362,12 +368,52 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }//GEN-LAST:event_KelaaTaaksepainPainikeActionPerformed
 
     private void TallennaSoittolistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TallennaSoittolistaPainikeActionPerformed
-
+        File tiedosto = new File("src/main/resources/soittolista.txt");
+        try {
+            try (FileWriter soittolistanKirjoittaja = new FileWriter(tiedosto)) {
+                for (int i = 0; i < listamalli.size(); i++) {
+                    soittolistanKirjoittaja.write(listamalli.get(i));
+                    if (i != listamalli.size() - 1) {
+                        soittolistanKirjoittaja.write("\n");
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            virheViesti();
+        }
     }//GEN-LAST:event_TallennaSoittolistaPainikeActionPerformed
 
     private void LataaSoittolistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LataaSoittolistaPainikeActionPerformed
-
+        asetaFiltteriSoittolistalle();
+        int valinta = lataaSoittolistaValitsija.showOpenDialog(this);
+        if (valinta == JFileChooser.APPROVE_OPTION) {
+            lataaSoittolista();
+        } else {
+            tilaTeksti.setText("SOITTOLISTAN VALINTA KESKEYTETTY");
+        }
     }//GEN-LAST:event_LataaSoittolistaPainikeActionPerformed
+
+    private void asetaFiltteriSoittolistalle() {
+        FileNameExtensionFilter filtteri = new FileNameExtensionFilter(
+                "Tekstitiedostot (.txt)", "txt");
+        lataaSoittolistaValitsija.setFileFilter(filtteri);
+    }
+
+    private void lataaSoittolista() {
+        try {
+            File tiedosto = lataaSoittolistaValitsija.getSelectedFile();
+
+            try (Scanner lukija = new Scanner(tiedosto, "UTF-8")) {
+                while (lukija.hasNextLine()) {
+                    String rivi = lukija.nextLine();
+                    listamalli.addElement(rivi);
+                }
+            }
+            asetaViimeisinTiedostoValituksi();
+        } catch (FileNotFoundException ex) {
+            virheViesti();
+        }
+    }
 
     private void virheViesti() {
         this.tilaTeksti.setText(virhe);
@@ -514,13 +560,14 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private javax.swing.JButton LataaSoittolistaPainike;
     private javax.swing.JButton TallennaSoittolistaPainike;
     private javax.swing.JSlider etenemissaadin;
+    private javax.swing.JFileChooser lataaSoittolistaValitsija;
+    private javax.swing.JFileChooser lisaaMusatiedostoValitsija;
     private javax.swing.JButton poistaTiedostoPainike;
     private javax.swing.JButton pysaytaPainike;
     private javax.swing.JScrollPane rullausPaneeli;
     private javax.swing.JList soittolista;
     private javax.swing.JLabel soittolistaTeksti;
     private javax.swing.JButton taukoPainike;
-    private javax.swing.JFileChooser tiedostonValitsija;
     private javax.swing.JLabel tilaTeksti;
     private javax.swing.JLabel tilanOhjeteksti;
     private javax.swing.JButton toistaPainike;

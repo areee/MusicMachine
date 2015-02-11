@@ -109,6 +109,7 @@
 		- aloitettu soittolistan tallentamis- ja lataamistoiminnallisuudet
 
 ## Keskiviikko 11.2.2015
-- Käytetty aika: 30 min
+- Käytetty aika: 1h 31 min
 - Ajankäytön kohde:
 	- projektille luotu HTML-sivu
+	- soittolistan tallennus- ja lataustoiminnot säädetty toimintakuntoon
