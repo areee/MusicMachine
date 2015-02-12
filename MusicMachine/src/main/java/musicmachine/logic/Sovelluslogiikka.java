@@ -5,7 +5,7 @@ import sun.audio.*;
 
 /**
  * Luokka hoitaa MusicMachinen musiikkitiedostojen toistot, lisäämiset ja
- * poistot.
+ * poistot
  */
 public class Sovelluslogiikka {
 
@@ -14,33 +14,33 @@ public class Sovelluslogiikka {
     private AudioStream audioStream;
 
     /**
-     * Metodi asettaa musiikkitiedoston audioStreamiin.
+     * Metodi asettaa musiikkitiedoston audioStreamiin
      *
      * @param komento Käyttäjän antama syöte
      * @throws java.io.IOException
      */
     public void valitseTiedosto(String komento) throws IOException {
-        musiikkitiedosto = new Musiikkitiedosto(komento);
-        input = new FileInputStream(musiikkitiedosto.getTiedostopolku());
+        musiikkitiedosto = new Musiikkitiedosto(new File(komento));
+        input = new FileInputStream(musiikkitiedosto.getTiedosto());
         audioStream = new AudioStream(input);
     }
 
     /**
-     * Metodi laittaa musiikkitiedoston soimaan.
+     * Metodi laittaa musiikkitiedoston soimaan
      */
     public void toista() {
         AudioPlayer.player.start(audioStream);
     }
 
     /**
-     * Metodi laittaa musiikkitiedoston tauolle.
+     * Metodi asettaa musiikkitiedoston tauolle
      */
     public void tauko() {
         AudioPlayer.player.stop(audioStream);
     }
 
     /**
-     * Metodi lopettaa musiikkitiedoston toistamisen.
+     * Metodi lopettaa musiikkitiedoston toistamisen
      *
      * @throws java.io.IOException
      */
@@ -50,35 +50,37 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston tiedostopolun.
+     * Metodi palauttaa musiikkitiedoston tiedostopolun
      *
      * @return musiikkitiedoston tiedostopolku
      */
     public String tiedostopolku() {
-        return this.musiikkitiedosto.getTiedostopolku();
+        return this.musiikkitiedosto.getTiedosto().getAbsolutePath();
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston keston.
+     * Metodi palauttaa musiikkitiedoston keston
      *
-     * @return musiikkitiedoston kesto millisekunteina(?)
+     * @return musiikkitiedoston kesto bitteinä(?)
      */
-    public int kesto() { // aikayksikkö vielä epäselvä
-        return audioStream.getLength(); // /85000 (?)
+    public long kesto() { // aikayksikkö vielä epäselvä
+        return musiikkitiedosto.getTiedosto().getTotalSpace();
+        // audioStream.getLength()/85000 millisekunteja(?)
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston toistokohdan.
+     * Metodi palauttaa musiikkitiedoston toistokohdan
      *
      * @return tiedoston toistokohta millisekunteina(?)
      * @throws IOException
      */
     public int tiedostonToistokohta() throws IOException {
+//        musiikkitiedosto.getTiedosto().getUsableSpace();//??
         return audioStream.available();
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston.
+     * Metodi palauttaa musiikkitiedoston
      *
      * @return musiikkitiedosto
      */
@@ -87,7 +89,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi asettaa musiikkitiedoston.
+     * Metodi asettaa musiikkitiedoston
      *
      * @param musiikkitiedosto
      */
@@ -96,7 +98,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi palauttaa InputStreamin arvon.
+     * Metodi palauttaa InputStreamin arvon
      *
      * @return input
      */
@@ -105,7 +107,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi asettaa InputStreamin.
+     * Metodi asettaa InputStreamin
      *
      * @param input
      */
@@ -114,7 +116,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi palauttaa AudioStreamin arvon.
+     * Metodi palauttaa AudioStreamin arvon
      *
      * @return audioStream
      */
@@ -123,7 +125,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi asettaa AudioStreamin.
+     * Metodi asettaa AudioStreamin
      *
      * @param audioStream
      */
@@ -132,7 +134,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi kelaa eteenpäin kappaletta 50 bittiä
+     * Metodi kelaa kappaletta 50 bittiä eteenpäin
      *
      * @throws IOException
      */
@@ -144,7 +146,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi kelaa taaksepäin kappaletta 50 bittiä (ei toimi vielä oikein...)
+     * Metodi kelaa kappaletta 50 bittiä eteenpäin (ei toimi vielä oikein...)
      *
      * @throws IOException
      */
@@ -153,13 +155,4 @@ public class Sovelluslogiikka {
         audioStream.skip(-50);
         toista();
     }
-
-    public void tallennaSoittolista() {
-
-    }
-
-    public void lataaSoittolista() {
-
-    }
-
 }

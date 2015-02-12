@@ -113,3 +113,9 @@
 - Ajankäytön kohde:
 	- projektille luotu HTML-sivu
 	- soittolistan tallennus- ja lataustoiminnot säädetty toimintakuntoon
+
+## Torstai 12.2.2015
+- Käytetty aika: h 26 min
+- Ajankäytön kohde:
+	- sovelluslogiikkaa siistitty
+	- soittolistan tyhjennyspainike lisätty

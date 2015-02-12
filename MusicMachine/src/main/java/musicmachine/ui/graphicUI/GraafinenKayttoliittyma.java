@@ -63,6 +63,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         KelaaTaaksepainPainike = new javax.swing.JButton();
         TallennaSoittolistaPainike = new javax.swing.JButton();
         LataaSoittolistaPainike = new javax.swing.JButton();
+        tyhjennaSoittolista = new javax.swing.JButton();
 
         lisaaMusatiedostoValitsija.setCurrentDirectory(new java.io.File("/Users/ylhaart/Music"));
         lisaaMusatiedostoValitsija.setDialogTitle("Valitse musiikkitiedosto...");
@@ -154,6 +155,13 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             }
         });
 
+        tyhjennaSoittolista.setText("Tyhjennä soittolista");
+        tyhjennaSoittolista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tyhjennaSoittolistaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,8 +187,10 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TallennaSoittolistaPainike)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LataaSoittolistaPainike)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(LataaSoittolistaPainike)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tyhjennaSoittolista)))
+                        .addGap(0, 6, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,8 +225,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                         .addComponent(poistaTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TallennaSoittolistaPainike)
-                        .addComponent(LataaSoittolistaPainike)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LataaSoittolistaPainike)
+                        .addComponent(tyhjennaSoittolista)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(etenemissaadin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,6 +389,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                     }
                 }
             }
+            tilaTeksti.setText("SOITTOLISTA TALLENNETTU");
         } catch (IOException ex) {
             virheViesti();
         }
@@ -392,6 +404,11 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             tilaTeksti.setText("SOITTOLISTAN VALINTA KESKEYTETTY");
         }
     }//GEN-LAST:event_LataaSoittolistaPainikeActionPerformed
+
+    private void tyhjennaSoittolistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tyhjennaSoittolistaActionPerformed
+        listamalli.clear();
+        tilaTeksti.setText("SOITTOLISTA TYHJENNETTY");
+    }//GEN-LAST:event_tyhjennaSoittolistaActionPerformed
 
     private void asetaFiltteriSoittolistalle() {
         FileNameExtensionFilter filtteri = new FileNameExtensionFilter(
@@ -571,6 +588,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private javax.swing.JLabel tilaTeksti;
     private javax.swing.JLabel tilanOhjeteksti;
     private javax.swing.JButton toistaPainike;
+    private javax.swing.JButton tyhjennaSoittolista;
     private javax.swing.JButton valitseTiedostoPainike;
     // End of variables declaration//GEN-END:variables
 }

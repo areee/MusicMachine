@@ -1,43 +1,45 @@
 package musicmachine.logic;
 
+import java.io.File;
+
 /**
- * Luokka määrittelee sovelluslogiikan tarvitseman musiikkitiedoston.
+ * Luokka määrittelee sovelluslogiikan tarvitseman musiikkitiedoston
  */
 public class Musiikkitiedosto {
 
-    private String tiedostopolku;
+    private File tiedosto;
     private int kesto;
 
     /**
-     * Asettaa musiikkitiedoston tiedostopolun.
+     * Asettaa musiikkitiedoston tiedostopolun
      *
      * @param tiedosto musiikkitiedoston tiedostopolku
      */
-    public Musiikkitiedosto(String tiedosto) {
-        this.tiedostopolku = tiedosto;
+    public Musiikkitiedosto(File tiedosto) {
+        this.tiedosto = tiedosto;
         this.kesto = 0;
     }
 
     /**
-     * Palauttaa tiedostopolun merkkijonona.
+     * Palauttaa tiedostopolun merkkijonona
      *
      * @return tiedostopolku
      */
-    public String getTiedostopolku() {
-        return tiedostopolku;
+    public File getTiedosto() {
+        return tiedosto;
     }
 
     /**
-     * Asettaa musiikkitiedostolle tiedostopolun.
+     * Asettaa musiikkitiedostolle tiedostopolun
      *
-     * @param tiedosto musiikkitiedoston tiedostopolku.
+     * @param tiedosto musiikkitiedoston tiedostopolku
      */
-    public void setTiedostopolku(String tiedosto) {
-        this.tiedostopolku = tiedosto;
+    public void setTiedosto(File tiedosto) {
+        this.tiedosto = tiedosto;
     }
 
     /**
-     * Palauttaa musiikkitiedoston keston.
+     * Palauttaa musiikkitiedoston keston
      *
      * @return kesto
      */
@@ -46,9 +48,9 @@ public class Musiikkitiedosto {
     }
 
     /**
-     * Asettaa musiikkitiedoston keston.
+     * Asettaa musiikkitiedoston keston
      *
-     * @param kesto musiikkitiedoston kesto.
+     * @param kesto musiikkitiedoston kesto
      */
     public void setKesto(int kesto) {
         this.kesto = kesto;
