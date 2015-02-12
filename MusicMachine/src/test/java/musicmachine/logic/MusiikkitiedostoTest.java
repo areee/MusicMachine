@@ -35,7 +35,7 @@ public class MusiikkitiedostoTest {
 
     @Test
     public void tiedostonimiToimii() {
-        assertEquals("aaa", musiikkitiedosto.getTiedostopolku());
+        assertEquals("Juna_kulkee.mid", musiikkitiedosto.getTiedosto().getName());
     }
 
     @Test
@@ -46,8 +46,8 @@ public class MusiikkitiedostoTest {
 
     @Test
     public void tiedostonimenAsetusToimii() {
-        musiikkitiedosto.setTiedostopolku("bbb");
-        assertEquals("bbb", musiikkitiedosto.getTiedostopolku());
+        musiikkitiedosto.setTiedosto(new File("audio/SND_4985.WAV"));
+        assertEquals("SND_4985.WAV", musiikkitiedosto.getTiedosto().getName());
     }
 
     @Test

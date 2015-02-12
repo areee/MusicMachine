@@ -16,7 +16,7 @@ public class SovelluslogiikkaTest {
     private final String testipolku;
 
     public SovelluslogiikkaTest() {
-        testipolku = "/Users/ylhaart/Music/Rally_3D_title_music.mid";
+        testipolku = "audio/Hävetkää!.aif";
     }
 
     @BeforeClass
@@ -52,20 +52,20 @@ public class SovelluslogiikkaTest {
         Musiikkitiedosto musiikkitiedosto = sovelluslogiikka.getMusiikkitiedosto();
         assertEquals(testipolku, musiikkitiedosto.getTiedostopolku());
     }
-    
+
     @Test
     public void audioStreamienLukuJaKirjoitusSamat() throws IOException {
         AudioStream audioStream = new AudioStream(new FileInputStream(testipolku));
         sovelluslogiikka.setAudioStream(audioStream);
-        
+
         assertEquals(audioStream, sovelluslogiikka.getAudioStream());
     }
-    
+
     @Test
     public void fileInputStreamienLukuJaKirjoitusSamat() throws IOException {
         FileInputStream fileInputStream = new FileInputStream(testipolku);
         sovelluslogiikka.setInput(fileInputStream);
-        
+
         assertEquals(fileInputStream, sovelluslogiikka.getInput());
     }
 }

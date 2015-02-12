@@ -115,8 +115,9 @@
 	- soittolistan tallennus- ja lataustoiminnot säädetty toimintakuntoon
 
 ## Torstai 12.2.2015
-- Käytetty aika: 3 h 31 min
+- Käytetty aika: 3 h 40 min
 - Ajankäytön kohde:
 	- sovelluslogiikkaa siistitty
 	- soittolistan tyhjennyspainike lisätty
 	- soittolistan tallennukseen ja avaamiseen liittyviä toimintoja hiottu
+	- testejä hiottu
