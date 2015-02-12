@@ -1,5 +1,6 @@
 package musicmachine.logic;
 
+import java.io.File;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,7 +25,8 @@ public class MusiikkitiedostoTest {
 
     @Before
     public void setUp() {
-        musiikkitiedosto = new Musiikkitiedosto("aaa");
+        File tiedosto = new File("audio/Juna_kulkee.mid");
+        musiikkitiedosto = new Musiikkitiedosto(tiedosto);
     }
 
     @After
