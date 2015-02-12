@@ -16,7 +16,7 @@ public class SovelluslogiikkaTest {
     private final String testipolku;
 
     public SovelluslogiikkaTest() {
-        testipolku = "audio/Hävetkää!.aif";
+        testipolku = "audio/Juna_kulkee.mid";
     }
 
     @BeforeClass
@@ -50,7 +50,7 @@ public class SovelluslogiikkaTest {
     @Test
     public void sovelluslogiikanMusiikkitiedostoToimii() throws IOException {
         Musiikkitiedosto musiikkitiedosto = sovelluslogiikka.getMusiikkitiedosto();
-        assertEquals(testipolku, musiikkitiedosto.getTiedostopolku());
+        assertEquals(testipolku, musiikkitiedosto.getTiedosto());
     }
 
     @Test

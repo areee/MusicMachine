@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -317,13 +319,23 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         indeksi = valitunTiedostonIndeksi();
         String tiedostopolku = listamalli.get(indeksi);
 
-        sovelluslogiikka.valitseTiedosto(tiedostopolku);
+        try {
+            sovelluslogiikka.valitseTiedosto(tiedostopolku);
+        } catch (LineUnavailableException ex) {
+            tilaTeksti.setText(virhe);
+        } catch (UnsupportedAudioFileException ex) {
+            tilaTeksti.setText(epaonnistui + " TIEDOSTO EI TUETTU");
+        }
         tiedostoAsetettu = true;
     }
 
     private void toistaTiedostoa() {
-        // Toistetaan asetettu tiedosto:
-        sovelluslogiikka.toista();
+        try {
+            // Toistetaan asetettu tiedosto:
+            sovelluslogiikka.toista();
+        } catch (LineUnavailableException | IOException ex) {
+            tilaTeksti.setText(virhe);
+        }
         tilaTeksti.setText("TOISTETAAN...");
         tiedostoaToistetaan = true;
     }
@@ -377,19 +389,19 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }//GEN-LAST:event_poistaTiedostoPainikeActionPerformed
 
     private void kelaaEteenpainPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelaaEteenpainPainikeActionPerformed
-        try {
-            sovelluslogiikka.kelaaEteenpain();
-        } catch (IOException ex) {
-            virheViesti();
-        }
+//        try {
+//            sovelluslogiikka.kelaaEteenpain();
+//        } catch (IOException | LineUnavailableException ex) {
+//            virheViesti();
+//        }
     }//GEN-LAST:event_kelaaEteenpainPainikeActionPerformed
 
     private void kelaaTaaksepainPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelaaTaaksepainPainikeActionPerformed
-        try {
-            sovelluslogiikka.kelaaTaaksepain();
-        } catch (IOException ex) {
-            virheViesti();
-        }
+//        try {
+//            sovelluslogiikka.kelaaTaaksepain();
+//        } catch (IOException | LineUnavailableException ex) {
+//            virheViesti();
+//        }
     }//GEN-LAST:event_kelaaTaaksepainPainikeActionPerformed
 
     private void tallennaSoittolistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tallennaSoittolistaPainikeActionPerformed

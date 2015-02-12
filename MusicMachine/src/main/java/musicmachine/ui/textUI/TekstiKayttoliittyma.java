@@ -2,6 +2,8 @@ package musicmachine.ui.textUI;
 
 import java.io.IOException;
 import java.util.Scanner;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import musicmachine.logic.Lukija;
 import musicmachine.logic.Sovelluslogiikka;
 
@@ -27,8 +29,9 @@ public class TekstiKayttoliittyma {
      *
      * @param lukija käyttäjän kirjoittamia valintoja seuraava skanneri
      * @throws java.io.IOException
+     * @throws javax.sound.sampled.LineUnavailableException
      */
-    public void kaynnista(Scanner lukija) throws IOException {
+    public void kaynnista(Scanner lukija) throws IOException, LineUnavailableException {
 
         OUTER:
         while (true) {
@@ -53,7 +56,7 @@ public class TekstiKayttoliittyma {
                     try {
                         sovelluslogiikka.valitseTiedosto(komento);
                         tiedostoAsetettu = true;
-                    } catch (Exception e) {
+                    } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
                         System.out.println(virheellinenTiedosto(e));
                     }
 
@@ -162,9 +165,9 @@ public class TekstiKayttoliittyma {
      * @return teksti ohje musiikkitiedoston valitsemiseen
      */
     public String ohje() {
-        return "Anna tiedostonimi muodossa\n"
-                + "\"/Users/ylhaart/Music/Elastinen_Eteen ja ylos.wav\"\n"
-                + "tai \"/Users/ylhaart/Music/Rally_3D_title_music.mid\"";
+        return "Anna tiedostonimi esim. muodossa\n"
+                + "\"audio/SND_4985_1.WAV\"\n"
+                + "tai \"/Users/kayttajanimi/Music/tiedostonimi.mid\"";
     }
 
     /**
@@ -206,7 +209,7 @@ public class TekstiKayttoliittyma {
      */
     public String virheellinenTiedosto(Exception e) {
         return "Virheellinen tiedostopolku!\n"
-                + e.getLocalizedMessage();
+                + e.getLocalizedMessage() + "\n";
     }
 
     /**
@@ -214,7 +217,8 @@ public class TekstiKayttoliittyma {
      * @return teksti musiikkitiedoston tiedot
      */
     public String tiedostonTiedot() {
-        return "Nimi: " + sovelluslogiikka.tiedostopolku()
-                + "\nKesto: " + sovelluslogiikka.kesto() + " ms(?)\n";
+        return "Nimi: " + sovelluslogiikka.tiedostonimi()
+                + "\nTiedostopolku: " + sovelluslogiikka.tiedostopolku()
+                + "\nKesto: " + sovelluslogiikka.kesto() + " sekuntia\n";
     }
 }

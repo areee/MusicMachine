@@ -115,9 +115,10 @@
 	- soittolistan tallennus- ja lataustoiminnot säädetty toimintakuntoon
 
 ## Torstai 12.2.2015
-- Käytetty aika: 3 h 40 min
+- Käytetty aika: 5 h 10 min
 - Ajankäytön kohde:
 	- sovelluslogiikkaa siistitty
 	- soittolistan tyhjennyspainike lisätty
 	- soittolistan tallennukseen ja avaamiseen liittyviä toimintoja hiottu
 	- testejä hiottu
+	- vaihdettu sovelluslogiikassa äänentoisto sun.audio:n AudioStream:sta javax.sound:n Clip:iin

@@ -1,6 +1,7 @@
 package musicmachine.logic;
 
 import java.io.*;
+import javax.sound.sampled.*;
 import sun.audio.*;
 
 /**
@@ -10,33 +11,48 @@ import sun.audio.*;
 public class Sovelluslogiikka {
 
     private Musiikkitiedosto musiikkitiedosto;
-    private InputStream input;
-    private AudioStream audioStream;
+//    private InputStream input;
+//    private AudioStream audioStream;
+
+    private Clip klippi;
+    private AudioInputStream audioInputStream;
 
     /**
      * Metodi asettaa musiikkitiedoston audioStreamiin
      *
-     * @param komento Käyttäjän antama syöte
+     * @param merkkijono käyttäjän antama syöte
      * @throws java.io.IOException
+     * @throws javax.sound.sampled.LineUnavailableException
+     * @throws javax.sound.sampled.UnsupportedAudioFileException
      */
-    public void valitseTiedosto(String komento) throws IOException {
-        musiikkitiedosto = new Musiikkitiedosto(new File(komento));
-        input = new FileInputStream(musiikkitiedosto.getTiedosto());
-        audioStream = new AudioStream(input);
+    public void valitseTiedosto(String merkkijono) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
+        musiikkitiedosto = new Musiikkitiedosto(merkkijono);
+//        input = new FileInputStream(musiikkitiedosto.getTiedosto());
+//        audioStream = new AudioStream(input);
+
+        klippi = AudioSystem.getClip();
+        audioInputStream = AudioSystem.getAudioInputStream(
+                musiikkitiedosto.getTiedosto());
+        klippi.open(audioInputStream);
     }
 
     /**
      * Metodi laittaa musiikkitiedoston soimaan
+     *
+     * @throws javax.sound.sampled.LineUnavailableException
+     * @throws java.io.IOException
      */
-    public void toista() {
-        AudioPlayer.player.start(audioStream);
+    public void toista() throws LineUnavailableException, IOException {
+//        AudioPlayer.player.start(audioStream);
+        klippi.start();
     }
 
     /**
      * Metodi asettaa musiikkitiedoston tauolle
      */
     public void tauko() {
-        AudioPlayer.player.stop(audioStream);
+//        AudioPlayer.player.stop(audioStream);
+        klippi.stop();
     }
 
     /**
@@ -45,8 +61,9 @@ public class Sovelluslogiikka {
      * @throws java.io.IOException
      */
     public void lopeta() throws IOException {
-        AudioPlayer.player.stop(audioStream);
-        audioStream.close();
+//        AudioPlayer.player.stop(audioStream);
+//        audioStream.close();
+        klippi.close();
     }
 
     /**
@@ -63,8 +80,11 @@ public class Sovelluslogiikka {
      *
      * @return musiikkitiedoston kesto bitteinä(?)
      */
-    public long kesto() { // aikayksikkö vielä epäselvä
-        return musiikkitiedosto.getTiedosto().getTotalSpace();
+    public int kesto() { // aikayksikkö vielä epäselvä
+        AudioFormat format = audioInputStream.getFormat();
+        long frames = audioInputStream.getFrameLength();
+        return (int) ((frames + 0.0) / format.getFrameRate());
+//        return musiikkitiedosto.getTiedosto().getTotalSpace();
         // audioStream.getLength()/85000 millisekunteja(?)
     }
 
@@ -76,7 +96,12 @@ public class Sovelluslogiikka {
      */
     public int tiedostonToistokohta() throws IOException {
 //        musiikkitiedosto.getTiedosto().getUsableSpace();//??
-        return audioStream.available();
+//        return audioStream.available();
+        return 0;
+    }
+
+    public String tiedostonimi() {
+        return musiikkitiedosto.getTiedosto().getName();
     }
 
     /**
@@ -102,46 +127,44 @@ public class Sovelluslogiikka {
      *
      * @return input
      */
-    public InputStream getInput() {
-        return input;
-    }
-
+//    public InputStream getInput() {
+//        return input;
+//    }
     /**
      * Metodi asettaa InputStreamin
      *
      * @param input
      */
-    public void setInput(InputStream input) {
-        this.input = input;
-    }
-
+//    public void setInput(InputStream input) {
+//        this.input = input;
+//    }
     /**
      * Metodi palauttaa AudioStreamin arvon
      *
      * @return audioStream
      */
-    public AudioStream getAudioStream() {
-        return audioStream;
-    }
-
+//    public AudioStream getAudioStream() {
+//        return audioStream;
+//    }
     /**
      * Metodi asettaa AudioStreamin
      *
      * @param audioStream
      */
-    public void setAudioStream(AudioStream audioStream) {
-        this.audioStream = audioStream;
-    }
-
+//    public void setAudioStream(AudioStream audioStream) {
+//        this.audioStream = audioStream;
+//    }
     /**
      * Metodi kelaa kappaletta 50 bittiä eteenpäin
      *
      * @throws IOException
+     * @throws javax.sound.sampled.LineUnavailableException
      */
-    public void kelaaEteenpain() throws IOException {
+    public void kelaaEteenpain() throws IOException, LineUnavailableException {
         tauko();
 //        input.
-        audioStream.skip(50);
+        audioInputStream.skip(50);
+//        audioStream.skip(50);
         toista();
     }
 
@@ -149,10 +172,12 @@ public class Sovelluslogiikka {
      * Metodi kelaa kappaletta 50 bittiä eteenpäin (ei toimi vielä oikein...)
      *
      * @throws IOException
+     * @throws javax.sound.sampled.LineUnavailableException
      */
-    public void kelaaTaaksepain() throws IOException {
+    public void kelaaTaaksepain() throws IOException, LineUnavailableException {
         tauko();
-        audioStream.skip(-50);
+        audioInputStream.skip(-50);
+//        audioStream.skip(-50);
         toista();
     }
 }

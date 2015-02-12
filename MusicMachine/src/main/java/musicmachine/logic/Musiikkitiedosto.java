@@ -11,28 +11,28 @@ public class Musiikkitiedosto {
     private int kesto;
 
     /**
-     * Asettaa musiikkitiedoston tiedostopolun
+     * Luo musiikkitiedoston, johon asettaa musiikkitiedoston tiedostopolun
      *
-     * @param tiedosto musiikkitiedoston tiedostopolku
+     * @param tiedostopolku musiikkitiedoston tiedostopolku
      */
-    public Musiikkitiedosto(File tiedosto) {
-        this.tiedosto = tiedosto;
+    public Musiikkitiedosto(String tiedostopolku) {
+        this.tiedosto = new File(tiedostopolku);
         this.kesto = 0;
     }
 
     /**
-     * Palauttaa tiedostopolun merkkijonona
+     * Palauttaa musiikkitiedoston
      *
-     * @return tiedostopolku
+     * @return musiikkitiedosto
      */
     public File getTiedosto() {
         return tiedosto;
     }
 
     /**
-     * Asettaa musiikkitiedostolle tiedostopolun
+     * Asettaa musiikkitiedoston
      *
-     * @param tiedosto musiikkitiedoston tiedostopolku
+     * @param tiedosto musiikkitiedosto
      */
     public void setTiedosto(File tiedosto) {
         this.tiedosto = tiedosto;
@@ -55,5 +55,4 @@ public class Musiikkitiedosto {
     public void setKesto(int kesto) {
         this.kesto = kesto;
     }
-
 }
