@@ -10,10 +10,8 @@ import static org.junit.Assert.*;
 
 public class MusiikkitiedostoTest {
 
-    public MusiikkitiedostoTest() {
-    }
-
-    Musiikkitiedosto musiikkitiedosto;
+    private Musiikkitiedosto musiikkitiedosto;
+    private String tiedostopolku;
 
     @BeforeClass
     public static void setUpClass() {
@@ -25,8 +23,8 @@ public class MusiikkitiedostoTest {
 
     @Before
     public void setUp() {
-        File tiedosto = new File("audio/Juna_kulkee.mid");
-        musiikkitiedosto = new Musiikkitiedosto(tiedosto);
+        tiedostopolku = "audio/Juna_kulkee.mid";
+        musiikkitiedosto = new Musiikkitiedosto(tiedostopolku);
     }
 
     @After

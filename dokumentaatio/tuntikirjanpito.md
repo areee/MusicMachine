@@ -122,3 +122,8 @@
 	- soittolistan tallennukseen ja avaamiseen liittyviä toimintoja hiottu
 	- testejä hiottu
 	- vaihdettu sovelluslogiikassa äänentoisto sun.audio:n AudioStream:sta javax.sound:n Clip:iin
+
+## Perjantai 13.2.2015
+- Käytetty aika: h 6 min (+ klo 9:45->)
+- Ajankäytön kohde:
+	- siistitty koodia

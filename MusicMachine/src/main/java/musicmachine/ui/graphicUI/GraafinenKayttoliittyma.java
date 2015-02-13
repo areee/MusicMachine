@@ -1,13 +1,10 @@
 package musicmachine.ui.graphicUI;
 
-import java.awt.Container;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.DefaultListModel;
@@ -16,7 +13,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import musicmachine.logic.Sovelluslogiikka;
 
 /**
- * Luokka graafisen käyttöliittymän näyttämiseen
+ * MusicMachinen graafisen käyttöliittymän ulkoasuun keskittyvä luokka
  */
 public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
@@ -297,9 +294,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }
 
     private void toistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toistaPainikeActionPerformed
-        if (tiedostoAsetettu) {
+        if (tiedostoAsetettu && !tiedostoaToistetaan && !tiedostoaToistetaan) {
             toistaTiedostoa();
-        } else if (!tiedostoaToistetaan && tiedostoValittu) {
+        } else if (!tiedostoaToistetaan && tiedostoValittu && !tiedostoAsetettu) {
             try {
                 asetaTiedostoToistovalmiiksi();
                 toistaTiedostoa();
@@ -311,7 +308,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         } else {
             tilaTeksti.setText("TOISTO " + epaonnistui);
         }
-
     }//GEN-LAST:event_toistaPainikeActionPerformed
 
     private void asetaTiedostoToistovalmiiksi() throws IOException {
@@ -342,7 +338,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     // Valitse tiedosto ja lisää se soittolistaan:
     private void valitseTiedostoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valitseTiedostoPainikeActionPerformed
-        lisaaMusatiedostoValitsija.setFileFilter(asetaMusatiedostoFiltteri());
+        lisaaMusatiedostoValitsija.setFileFilter(asetaMusatiedostonFiltteri());
         int valinta = lisaaMusatiedostoValitsija.showOpenDialog(this);
         if (valinta == JFileChooser.APPROVE_OPTION) {
             lisaaTiedostoSoittolistalle();
@@ -368,7 +364,14 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tilaTeksti.setText("TIEDOSTO VALITTU");
     }
 
-    private FileNameExtensionFilter asetaMusatiedostoFiltteri() {
+    /**
+     * Metodi palauttaa filtterinä ohjelman tukemat äänitiedostomuodot. Tuetut
+     * tiedostomuodot ovat WAV, MIDI ja AIFF.
+     *
+     * @return new FileNameExtensionFilter("Musiikkitiedostot (*.wav, *.mid,
+     * *.aif)", "wav", "mid", "aif")
+     */
+    public FileNameExtensionFilter asetaMusatiedostonFiltteri() {
         return new FileNameExtensionFilter(
                 "Musiikkitiedostot (*.wav, *.mid, *.aif)", "wav", "mid", "aif");
     }
@@ -389,19 +392,19 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }//GEN-LAST:event_poistaTiedostoPainikeActionPerformed
 
     private void kelaaEteenpainPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelaaEteenpainPainikeActionPerformed
-//        try {
-//            sovelluslogiikka.kelaaEteenpain();
-//        } catch (IOException | LineUnavailableException ex) {
-//            virheViesti();
-//        }
+        try {
+            sovelluslogiikka.kelaaEteenpain();
+        } catch (IOException | LineUnavailableException ex) {
+            virheViesti();
+        }
     }//GEN-LAST:event_kelaaEteenpainPainikeActionPerformed
 
     private void kelaaTaaksepainPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelaaTaaksepainPainikeActionPerformed
-//        try {
-//            sovelluslogiikka.kelaaTaaksepain();
-//        } catch (IOException | LineUnavailableException ex) {
-//            virheViesti();
-//        }
+        try {
+            sovelluslogiikka.kelaaTaaksepain();
+        } catch (IOException | LineUnavailableException ex) {
+            virheViesti();
+        }
     }//GEN-LAST:event_kelaaTaaksepainPainikeActionPerformed
 
     private void tallennaSoittolistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tallennaSoittolistaPainikeActionPerformed
@@ -418,6 +421,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             }
             try {
                 try (FileWriter soittolistanKirjoittaja = new FileWriter(tiedosto)) {
+
                     for (int i = 0; i < listamalli.size(); i++) {
                         soittolistanKirjoittaja.write(listamalli.get(i));
                         if (i != listamalli.size() - 1) {
@@ -429,13 +433,18 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             } catch (IOException ex) {
                 virheViesti();
             }
-//            tilaTeksti.setText("SOITTOLISTA TALLENNETTU");
         } else {
             tilaTeksti.setText("SOITTOLISTAN TALLENNUS KESKEYTETTY");
         }
     }//GEN-LAST:event_tallennaSoittolistaPainikeActionPerformed
 
-    private FileNameExtensionFilter asetaTekstitiedostoFiltteri() {
+    /**
+     * Metodi palauttaa filtterinä ohjelman tukeman soittolistamuodon. Tuettu
+     * tiedostomuoto on tekstitiedosto (*.txt).
+     *
+     * @return new FileNameExtensionFilter("Tekstitiedostot (*.txt)", "txt")
+     */
+    public FileNameExtensionFilter asetaTekstitiedostoFiltteri() {
         return new FileNameExtensionFilter("Tekstitiedostot (*.txt)", "txt");
     }
 
@@ -470,7 +479,10 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         }
     }
 
-    private void virheViesti() {
+    /**
+     * Metodi asettaa tilaTeksti-tekstikentän arvoksi virheviestin
+     */
+    public void virheViesti() {
         this.tilaTeksti.setText(virhe);
     }
 
@@ -498,82 +510,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tilaTeksti.setText("TIEDOSTO POISTETTU SOITTOLISTALTA");
         return indeksi;
     }
-    // turhia gettereitä + settereitä?:
 
     private int valitunTiedostonIndeksi() {
         return soittolista.getSelectedIndex();
-    }
-
-    /**
-     * Metodi tarkistaa, onko tiedosto asetettu
-     *
-     * @return onko tiedosto asetettu
-     */
-    public boolean isTiedostoAsetettu() {
-        return tiedostoAsetettu;
-    }
-
-    /**
-     * Metodi muuttaa tiedostoAsetettu-booleanarvon tilaa
-     *
-     * @param tiedostoAsetettu boolean-arvo
-     */
-    public void setTiedostoAsetettu(boolean tiedostoAsetettu) {
-        this.tiedostoAsetettu = tiedostoAsetettu;
-    }
-
-    /**
-     * Metodi tarkistaa, toistetaanko tiedostoa
-     *
-     * @return toistetaanko tiedostoa
-     */
-    public boolean isTiedostoaToistetaan() {
-        return tiedostoaToistetaan;
-    }
-
-    /**
-     * Metodi muuttaa tiedostoaToistetaan-booleanarvon tilaa
-     *
-     * @param tiedostoaToistetaan boolean-arvo
-     */
-    public void setTiedostoaToistetaan(boolean tiedostoaToistetaan) {
-        this.tiedostoaToistetaan = tiedostoaToistetaan;
-    }
-
-    /**
-     * Metodi tarkistaa, onko tiedosto valittu
-     *
-     * @return onko tiedosto valittu
-     */
-    public boolean isTiedostoValittu() {
-        return tiedostoValittu;
-    }
-
-    /**
-     * Metodi muuttaa tiedostoValittu-booleanarvon tilaa
-     *
-     * @param tiedostoValittu boolean-arvo
-     */
-    public void setTiedostoValittu(boolean tiedostoValittu) {
-        this.tiedostoValittu = tiedostoValittu;
-    }
-
-    /**
-     * Metodi palauttaa indeksin arvon
-     *
-     * @return indeksin arvo
-     */
-    public int getIndeksi() {
-        return indeksi;
-    }
-
-    /**
-     * Metodi asettaa indeksin arvon
-     *
-     * @param indeksi int-arvo
-     */
-    public void setIndeksi(int indeksi) {
-        this.indeksi = indeksi;
     }
 
     public static void main(String args[]) {

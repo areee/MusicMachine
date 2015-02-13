@@ -3,12 +3,12 @@ package musicmachine.logic;
 import java.util.Scanner;
 
 /**
- * Luokka seuraa käyttäjän komentoja Scanner-luokan kautta.
+ * Luokka seuraa käyttäjän komentoja Scanner-luokan kautta
  */
 public class Lukija {
 
     /**
-     * Metodi antaa käyttäjälle mahdollisuuden antaa komennon.
+     * Metodi antaa käyttäjälle mahdollisuuden antaa komennon
      *
      * @param lukija asetettu Scanner
      * @return käyttäjän asettama komento

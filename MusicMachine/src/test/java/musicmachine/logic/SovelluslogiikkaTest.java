@@ -1,23 +1,22 @@
 package musicmachine.logic;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import sun.audio.AudioStream;
 
 public class SovelluslogiikkaTest {
 
     private Sovelluslogiikka sovelluslogiikka;
-    private final String testipolku;
-
-    public SovelluslogiikkaTest() {
-        testipolku = "audio/Juna_kulkee.mid";
-    }
+    private String tiedostopolku;
+    private String tiedostonimi;
+    private String uusiTiedostopolku;
+    private String uusiTiedostonimi;
 
     @BeforeClass
     public static void setUpClass() {
@@ -28,9 +27,14 @@ public class SovelluslogiikkaTest {
     }
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() throws IOException, LineUnavailableException,
+            UnsupportedAudioFileException {
+        tiedostopolku = "audio/Juna_kulkee.mid";
+        tiedostonimi = "Juna_kulkee.mid";
+        uusiTiedostopolku = "audio/SND_4985.WAV";
+        uusiTiedostonimi = "SND_4985.WAV";
         sovelluslogiikka = new Sovelluslogiikka();
-        sovelluslogiikka.valitseTiedosto(testipolku);
+        sovelluslogiikka.valitseTiedosto(tiedostopolku);
     }
 
     @After
@@ -38,34 +42,42 @@ public class SovelluslogiikkaTest {
     }
 
     @Test
-    public void saaTiedostonimen() throws IOException {
-        assertEquals(testipolku, sovelluslogiikka.tiedostopolku());
+    public void tiedostonimiTasmaa() throws IOException {
+        assertEquals(tiedostonimi, sovelluslogiikka.tiedostonimi());
     }
 
     @Test
-    public void testaaKesto() throws IOException {
-        assertEquals(15523200, sovelluslogiikka.kesto());
+    public void kestoTasmaa() throws IOException {
+        assertEquals(145, sovelluslogiikka.kestoSekunteina());
     }
 
     @Test
-    public void sovelluslogiikanMusiikkitiedostoToimii() throws IOException {
+    public void tiedostopolkuTasmaa() throws IOException {
         Musiikkitiedosto musiikkitiedosto = sovelluslogiikka.getMusiikkitiedosto();
-        assertEquals(testipolku, musiikkitiedosto.getTiedosto());
+        assertEquals(System.getProperty("user.dir") + "/" + tiedostopolku,
+                musiikkitiedosto.getTiedosto().getAbsolutePath());
     }
 
     @Test
-    public void audioStreamienLukuJaKirjoitusSamat() throws IOException {
-        AudioStream audioStream = new AudioStream(new FileInputStream(testipolku));
-        sovelluslogiikka.setAudioStream(audioStream);
-
-        assertEquals(audioStream, sovelluslogiikka.getAudioStream());
+    public void kestoTasmaaKunTiedostoVaihdettu() throws IOException,
+            LineUnavailableException, UnsupportedAudioFileException {
+        sovelluslogiikka.valitseTiedosto(uusiTiedostopolku);
+        assertEquals(10, sovelluslogiikka.kestoSekunteina());
     }
 
     @Test
-    public void fileInputStreamienLukuJaKirjoitusSamat() throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(testipolku);
-        sovelluslogiikka.setInput(fileInputStream);
+    public void tiedostonimiTasmaaKunTiedostoVaihdettu() throws IOException,
+            LineUnavailableException, UnsupportedAudioFileException {
+        sovelluslogiikka.valitseTiedosto(uusiTiedostopolku);
+        assertEquals(uusiTiedostonimi, sovelluslogiikka.tiedostonimi());
+    }
 
-        assertEquals(fileInputStream, sovelluslogiikka.getInput());
+    @Test
+    public void tiedostopolkuTasmaaKunTiedostoVaihdettu() throws IOException,
+            LineUnavailableException, UnsupportedAudioFileException {
+        sovelluslogiikka.valitseTiedosto(uusiTiedostopolku);
+        Musiikkitiedosto musiikkitiedosto = sovelluslogiikka.getMusiikkitiedosto();
+        assertEquals(System.getProperty("user.dir") + "/" + uusiTiedostopolku,
+                musiikkitiedosto.getTiedosto().getAbsolutePath());
     }
 }

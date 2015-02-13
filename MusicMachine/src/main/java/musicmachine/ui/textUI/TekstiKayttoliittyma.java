@@ -8,7 +8,7 @@ import musicmachine.logic.Lukija;
 import musicmachine.logic.Sovelluslogiikka;
 
 /**
- * MusicMachinen tekstikäyttöliittymän ulkonäköön keskittyvä luokka.
+ * MusicMachinen tekstikäyttöliittymän ulkoasuun keskittyvä luokka
  */
 public class TekstiKayttoliittyma {
 
@@ -25,13 +25,12 @@ public class TekstiKayttoliittyma {
     }
 
     /**
-     * Käynnistää tekstipohjaisen käyttöliittymän.
+     * Käynnistää tekstipohjaisen käyttöliittymän
      *
      * @param lukija käyttäjän kirjoittamia valintoja seuraava skanneri
      * @throws java.io.IOException
-     * @throws javax.sound.sampled.LineUnavailableException
      */
-    public void kaynnista(Scanner lukija) throws IOException, LineUnavailableException {
+    public void kaynnista(Scanner lukija) throws IOException {
 
         OUTER:
         while (true) {
@@ -44,7 +43,8 @@ public class TekstiKayttoliittyma {
                         System.out.println("\n" + valitseMusiikkitiedosto());
                         komento = this.lukija.annaKomento(lukija);
 
-                        // jos komento joko kysymysmerkki tai tyhjä rivinvaihto, tulosta ohje:
+                        // jos komento joko kysymysmerkki tai tyhjä rivinvaihto,
+                        // tulosta ohje:
                         if (komento.equals("?") || komento.equals("")) {
                             System.out.println(ohje());
                         } else {
@@ -56,15 +56,20 @@ public class TekstiKayttoliittyma {
                     try {
                         sovelluslogiikka.valitseTiedosto(komento);
                         tiedostoAsetettu = true;
-                    } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+                    } catch (IOException | LineUnavailableException |
+                            UnsupportedAudioFileException e) {
                         System.out.println(virheellinenTiedosto(e));
                     }
 
                     break;
                 case "2":
                     if (tiedostoAsetettu) {
-                        System.out.println(toistaMusiikkia() + "\n");
-                        sovelluslogiikka.toista();
+                        try {
+                            System.out.println(toistaMusiikkia() + "\n");
+                            sovelluslogiikka.toista();
+                        } catch (LineUnavailableException ex) {
+                            tiedostonToistoEpaonnistui();
+                        }
                     } else {
                         tiedostonToistoEpaonnistui();
                     }
@@ -106,7 +111,7 @@ public class TekstiKayttoliittyma {
     }
 
     /**
-     * Metodi, joka tulostaa päävalikon.
+     * Metodi, joka tulostaa päävalikon
      *
      * @return palautettavaTeksti
      */
@@ -123,10 +128,10 @@ public class TekstiKayttoliittyma {
     }
 
     /**
-     * Metodi, joka tulostaa päävalikon komennot.
+     * Metodi, joka tulostaa päävalikon komennot
      *
      * @param mones monesko päävalikon kohde on kyseessä
-     * @return teksti päävalikon komento
+     * @return päävalikon komento
      */
     public String komennot(int mones) {
         if (mones == 1) {
@@ -145,24 +150,27 @@ public class TekstiKayttoliittyma {
     }
 
     /**
+     * Metodi ohjelman sulkeutumisilmoitukselle
      *
-     * @return teksti ohjelma sulkeutuu
+     * @return "Ohjelma sulkeutuu."
      */
     public String suljeOhjelma() {
         return "Ohjelma sulkeutuu.";
     }
 
     /**
+     * Metodi musiikkitieodoston valintailmoitukselle
      *
-     * @return teksti musiikkitiedoston valitseminen
+     * @return komennot(1) + "\n(valitse \"?\", jos haluat ohjeen):"
      */
     public String valitseMusiikkitiedosto() {
         return komennot(1) + "\n(valitse \"?\", jos haluat ohjeen):";
     }
 
     /**
+     * Metodi musiikkitieodoston valintaohjeelle
      *
-     * @return teksti ohje musiikkitiedoston valitsemiseen
+     * @return ohje musiikkitiedoston valitsemiseen
      */
     public String ohje() {
         return "Anna tiedostonimi esim. muodossa\n"
@@ -171,54 +179,59 @@ public class TekstiKayttoliittyma {
     }
 
     /**
+     * Metodi virheviestille
      *
-     * @return teksti musiikkitiedoston toistovirhe
+     * @return "Virhe! Et ole valinnut musiikkitiedostoa toistettavaksi."
      */
     public String tiedostoaEiVoidaToistaa() {
         return "Virhe! Et ole valinnut musiikkitiedostoa toistettavaksi.";
     }
 
     /**
+     * Metodi toistoilmoitukselle
      *
-     * @return teksti musiikkia toistetaan
+     * @return "Toistetaan..."
      */
     public String toistaMusiikkia() {
         return "Toistetaan...";
     }
 
     /**
+     * Metodi toistoilmoitukselle
      *
-     * @return teksti musiikki tauolla
+     * @return "Tauko\n"
      */
     public String asetaMusiikkiTauolle() {
         return "Tauko\n";
     }
 
     /**
+     * Metodi toiston lopetusilmoitukselle
      *
-     * @return teksti toisto lopetettu
+     * @return "Toisto lopetettu."
      */
     public String lopetaToisto() {
         return "Toisto lopetettu.";
     }
 
     /**
+     * Metodi virheellisen tiedostopolun ilmoittamiseen
      *
      * @param e poikkeus
-     * @return teksti virheellinen musiikkitiedosto
+     * @return "Virheellinen tiedostopolku!\n" + e.getLocalizedMessage() + "\n"
      */
     public String virheellinenTiedosto(Exception e) {
         return "Virheellinen tiedostopolku!\n"
                 + e.getLocalizedMessage() + "\n";
     }
 
-    /**
+    /** Metodi musiikkitiedoston tietojen tulostamiseen
      *
-     * @return teksti musiikkitiedoston tiedot
+     * @return nimi, tiedostopolku, kesto
      */
     public String tiedostonTiedot() {
         return "Nimi: " + sovelluslogiikka.tiedostonimi()
                 + "\nTiedostopolku: " + sovelluslogiikka.tiedostopolku()
-                + "\nKesto: " + sovelluslogiikka.kesto() + " sekuntia\n";
+                + "\nKesto: " + sovelluslogiikka.kestoSekunteina() + " sekuntia\n";
     }
 }

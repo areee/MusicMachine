@@ -7,7 +7,7 @@ import musicmachine.ui.graphicUI.GraafinenKayttoliittyma;
 
 /**
  * Tekstikäyttöliittymä, jolla valitaan, halutaanko avata MusicMachinen
- * graafinen vai tekstipohjainen käyttöliittymä.
+ * graafinen vai tekstipohjainen käyttöliittymä
  */
 public class ValitseKayttoliittyma {
 
@@ -19,9 +19,9 @@ public class ValitseKayttoliittyma {
 
     /**
      * Käynnistää käyttäjän valinnan mukaan joko tekstipohjaisen tai graafisen
-     * käyttöliittymän.
+     * käyttöliittymän
      *
-     * @param lukija käyttäjän kirjoittamia valintoja seuraava skanneri
+     * @param lukija käyttäjän kirjoittamia komentoja seuraava skanneri
      * @throws java.io.IOException
      */
     public void kaynnista(Scanner lukija) throws IOException {
@@ -30,7 +30,7 @@ public class ValitseKayttoliittyma {
         while (true) {
             System.out.println("Valitse käyttöliittymä:\n"
                     + "1) Graafinen käyttöliittymä\n"
-                    + "2) Tekstipohjainen käyttöliittymä\n"
+                    + "2) Tekstikäyttöliittymä\n"
                     + "x) Lopeta");
             String komento = this.lukija.annaKomento(lukija);
             switch (komento) {

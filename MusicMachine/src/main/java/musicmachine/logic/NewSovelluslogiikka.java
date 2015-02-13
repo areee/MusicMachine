@@ -1,4 +1,5 @@
-// Kesken! Yritän tähän parannella sovelluslogiikan musiikkitoimintoja.
+// Kesken! Yritän tähän parannella sovelluslogiikan musiikkitoimintoja
+// erään JavaSound-esimerkin avulla.
 
 //package musicmachine.logic;
 //

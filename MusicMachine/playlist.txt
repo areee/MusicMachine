@@ -1,0 +1,4 @@
+/Users/ylhaart/MusicMachine/MusicMachine/audio/SND_4985_1.WAV
+/Users/ylhaart/MusicMachine/MusicMachine/audio/SND_4985.WAV
+/Users/ylhaart/MusicMachine/MusicMachine/audio/Juna_kulkee.mid
+/Users/ylhaart/MusicMachine/MusicMachine/audio/Havetkaa!.aif
