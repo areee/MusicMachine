@@ -129,3 +129,8 @@
 	- siistitty koodia
 	- päivitetty JavaDoc, Pit-raportti ja JUnit-testit
 	- lisätty sekvenssikaaviot
+
+## Tiistai 17.2.2015
+- Käytetty aika:  h 56 min
+- Ajankäytön kohde:
+	- lisätty alustava luuppaustoiminto

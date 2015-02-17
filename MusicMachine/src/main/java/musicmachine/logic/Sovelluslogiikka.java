@@ -132,4 +132,24 @@ public class Sovelluslogiikka {
         audioInputStream.skip(-100000);
         toista();
     }
+
+    /**
+     * Metodi toistaa musiikkikappaleen alusta uudelleen (= "luuppaa")
+     *
+     * @throws javax.sound.sampled.LineUnavailableException
+     * @throws java.io.IOException
+     */
+    public void toistaAlustaUudelleen() throws LineUnavailableException, IOException {
+        tauko();
+        klippi.loop(Clip.LOOP_CONTINUOUSLY);
+        toista();
+    }
+
+    /**
+     * Metodi lopettaa "luuppaamisen", eli musiikkikappaleen toiston alusta
+     * uudelleen
+     */
+    public void alatoistaAlustaUudelleen() {
+        klippi.loop(0);
+    }
 }
