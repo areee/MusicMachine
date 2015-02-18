@@ -136,6 +136,9 @@
 	- lisätty alustava luuppaustoiminto
 
 ## Keskiviikko 18.2.2015
-- Käytetty aika: 14 min
+- Käytetty aika: 48 min
 - Ajankäytön kohde:
 	- Sekvenssikaavio_1 päivitetty (tikku-ukko vaihdettu Main-luokaksi)
+	- siistitty projektia
+	- päivitetty aihemäärittely
+	- laadittu 3. sekvenssiota (ei vielä lisätty)

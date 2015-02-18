@@ -9,7 +9,7 @@ Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata sitä.
 
 ## Toiminnot:
 - soittolistojen luominen
-- musiikkitiedostojen (esim. MP3-tiedostojen) lisääminen soittolistalle
+- musiikkitiedostojen (WAV, AIFF, MIDI jne.) lisääminen soittolistalle
 - musiikkitiedostojen poisto soittolistalta
 - musiikin toistaminen
 - musiikin pistäminen tauolle
