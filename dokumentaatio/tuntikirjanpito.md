@@ -131,6 +131,11 @@
 	- lisätty sekvenssikaaviot
 
 ## Tiistai 17.2.2015
-- Käytetty aika:  h 56 min
+- Käytetty aika: 56 min
 - Ajankäytön kohde:
 	- lisätty alustava luuppaustoiminto
+
+## Keskiviikko 18.2.2015
+- Käytetty aika: 14 min
+- Ajankäytön kohde:
+	- Sekvenssikaavio_1 päivitetty (tikku-ukko vaihdettu Main-luokaksi)
