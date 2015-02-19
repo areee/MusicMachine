@@ -79,6 +79,23 @@ public class Sovelluslogiikka {
         return (int) ((frames + 0.0) / format.getFrameRate());
     }
 
+    public String kestoMinuutteinaJaSekunteina() {
+        int kestoSekunteina = kestoSekunteina();
+        if (kestoSekunteina < 60) {
+            return "00:" + kestoSekunteina;
+        } else if (kestoSekunteina < 10) {
+            return "00:0" + kestoSekunteina;
+        }
+
+        double minuutit = kestoSekunteina / 60; // 215/60
+        int minuutitKokonaislukuna = (int) minuutit;
+
+        double sekunnit = (minuutit - minuutitKokonaislukuna) * 60;
+        int sekunnitKokonaislukuna = (int) sekunnit;
+        return "" + kestoSekunteina;
+//        return minuutitKokonaislukuna + ":" + sekunnitKokonaislukuna;
+    }
+
     /**
      * Metodi palauttaa musiikkitiedoston toistokohdan
      *
@@ -86,7 +103,7 @@ public class Sovelluslogiikka {
      * @throws IOException
      */
     public int tiedostonToistokohtaSekunteina() throws IOException {
-        return 0;
+        return (int) klippi.getMicrosecondPosition() * 1000000;
     }
 
     public String tiedostonimi() {
@@ -161,20 +178,45 @@ public class Sovelluslogiikka {
         klippi.setLoopPoints(getAlkukohta(), getLoppukohta());
     }
 
+    /**
+     * Metodi palauttaa musiikkikappaleen alkukohdan
+     *
+     * @return alkukohta
+     */
     public int getAlkukohta() {
         return alkukohta;
     }
 
+    /**
+     * Metodi asettaa musiikkikappaleen alkukohdan
+     *
+     * @param alkukohta
+     */
     public void setAlkukohta(int alkukohta) {
         this.alkukohta = alkukohta;
     }
 
+    /**
+     * Metodi palauttaa musiikkikappaleen loppukohdan
+     *
+     * @return loppukohta
+     */
     public int getLoppukohta() {
         return loppukohta;
     }
 
+    /**
+     * Metodi asettaa musiikkikappaleen loppukohdan
+     *
+     * @param loppukohta
+     */
     public void setLoppukohta(int loppukohta) {
         this.loppukohta = loppukohta;
+    }
+
+    public void asetaToistokohta(int kohta) {
+        kohta /= 100;
+        klippi.setFramePosition(kohta * kestoSekunteina());
     }
 
 }

@@ -69,6 +69,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         avaaSoittolistaPainike = new javax.swing.JButton();
         tyhjennaSoittolista = new javax.swing.JButton();
         luuppiCheckBox = new javax.swing.JCheckBox();
+        tiedostonKokonaiskesto = new javax.swing.JLabel();
+        tiedostonToistokohta = new javax.swing.JLabel();
 
         lisaaMusatiedostoValitsija.setApproveButtonText("Lisää");
         lisaaMusatiedostoValitsija.setCurrentDirectory(new File(System.getProperty("user.dir")));
@@ -99,6 +101,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MusicMachine");
 
         toistaPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Play-painike.png"))); // NOI18N
@@ -126,6 +129,11 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         });
 
         etenemissaadin.setValue(0);
+        etenemissaadin.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                etenemissaadinStateChanged(evt);
+            }
+        });
 
         tilanOhjeteksti.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         tilanOhjeteksti.setText("TILA:");
@@ -199,6 +207,10 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             }
         });
 
+        tiedostonKokonaiskesto.setText("--:--");
+
+        tiedostonToistokohta.setText("--:--");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,7 +221,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                 .addComponent(rullausPaneeli)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(soittolistaTeksti)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tilanOhjeteksti)
@@ -226,19 +238,24 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tyhjennaSoittolista))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
+                        .addGap(14, 14, 14)
+                        .addComponent(tiedostonToistokohta)
+                        .addGap(129, 129, 129)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(kelaaTaaksepainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(toistaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(kelaaEteenpainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(kelaaEteenpainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tiedostonKokonaiskesto)
+                                .addGap(4, 4, 4)))))
                 .addGap(0, 15, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(235, 235, 235)
@@ -270,7 +287,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tiedostonToistokohta)
+                    .addComponent(tiedostonKokonaiskesto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(toistaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,6 +368,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
         try {
             sovelluslogiikka.valitseTiedosto(tiedostopolku);
+            tiedostonKokonaiskesto.setText("" + sovelluslogiikka.kestoMinuutteinaJaSekunteina());
         } catch (LineUnavailableException ex) {
             tilaTeksti.setText(virhe);
         } catch (UnsupportedAudioFileException ex) {
@@ -523,6 +543,11 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_luuppiCheckBoxActionPerformed
 
+    private void etenemissaadinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_etenemissaadinStateChanged
+        int valittuKohta = etenemissaadin.getValue();
+        sovelluslogiikka.asetaToistokohta(valittuKohta);
+    }//GEN-LAST:event_etenemissaadinStateChanged
+
     private void avaaSoittolista() {
         try {
             File tiedosto = avaaSoittolistaValitsija.getSelectedFile();
@@ -625,6 +650,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private javax.swing.JButton tallennaSoittolistaPainike;
     private javax.swing.JFileChooser tallennaSoittolistaValitsija;
     private javax.swing.JButton taukoPainike;
+    private javax.swing.JLabel tiedostonKokonaiskesto;
+    private javax.swing.JLabel tiedostonToistokohta;
     private javax.swing.JLabel tilaTeksti;
     private javax.swing.JLabel tilanOhjeteksti;
     private javax.swing.JButton toistaPainike;

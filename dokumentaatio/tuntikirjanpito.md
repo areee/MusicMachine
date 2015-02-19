@@ -144,7 +144,7 @@
 	- laadittu Sekvenssio_3:aa (ei vielä lisätty)
 
 ## Torstai 19.2.2015
-- Käytetty aika: 2 h 26 min
+- Käytetty aika: 3 h 22 min
 - Ajankäytön kohde:
 	- päivitetty luuppaus-toimintoa (toimii jo melkein)
 	- asetettu ohjelman JFrame asettumaan keskelle kuvaruutua
@@ -152,3 +152,5 @@
 		- etsitty netistä vapaasti käytettävissä oleva Java Swing Range Slider
 	- yritetty mp3-tuen lisäämistä Java Sound API:lle siinä kuitenkaan onnistumatta
 		- kokeiltu mp3pluginia, jolla mp3 ei kuitenkaan lähtenyt toistumaan
+	- kappaleen toistokohdan valintaa paranneltu
+	- paranneltu kappaleen kokonaiskeston ja toistokohdan ilmoittamista
