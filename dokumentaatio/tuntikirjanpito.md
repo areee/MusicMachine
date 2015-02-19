@@ -141,4 +141,11 @@
 	- Sekvenssikaavio_1 päivitetty (tikku-ukko vaihdettu Main-luokaksi)
 	- siistitty projektia
 	- päivitetty aihemäärittely
-	- laadittu 3. sekvenssiota (ei vielä lisätty)
+	- laadittu Sekvenssio_3:aa (ei vielä lisätty)
+
+## Torstai 19.2.2015
+- Käytetty aika: 2 h 23 min
+- Ajankäytön kohde:
+	- päivitetty luuppaus-toimintoa (toimii jo melkein)
+	- asetettu ohjelman JFrame asettumaan keskelle kuvaruutua
+	- alettu luomaan musiikkikappaleen pituudenmuokkaus -toimintoa (etsitty netistä vapaasti käytettävissä oleva Java Swing Range Slider)

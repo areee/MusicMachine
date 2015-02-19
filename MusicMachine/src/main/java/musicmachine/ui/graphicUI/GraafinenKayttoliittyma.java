@@ -25,6 +25,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private boolean tiedostoaToistetaan;
     private boolean tiedostoValittu;
     private int indeksi;
+    private boolean luuppausPaalla;
 
     /**
      * Määrittelee graafisen käyttöliittymän muuttujat
@@ -40,6 +41,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tiedostoaToistetaan = false;
         tiedostoValittu = false;
         indeksi = -1;
+        luuppausPaalla = false;
     }
 
     @SuppressWarnings("unchecked")
@@ -49,6 +51,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         lisaaMusatiedostoValitsija = new javax.swing.JFileChooser();
         avaaSoittolistaValitsija = new javax.swing.JFileChooser();
         tallennaSoittolistaValitsija = new javax.swing.JFileChooser();
+        asetaToistorajat = new javax.swing.JFrame();
         toistaPainike = new javax.swing.JButton();
         pysaytaPainike = new javax.swing.JButton();
         taukoPainike = new javax.swing.JButton();
@@ -83,7 +86,19 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tallennaSoittolistaValitsija.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
         tallennaSoittolistaValitsija.getAccessibleContext().setAccessibleName("Tallenna soittolista tekstitiedostona");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        asetaToistorajat.setTitle("Aseta kappaleelle toistorajat...");
+
+        javax.swing.GroupLayout asetaToistorajatLayout = new javax.swing.GroupLayout(asetaToistorajat.getContentPane());
+        asetaToistorajat.getContentPane().setLayout(asetaToistorajatLayout);
+        asetaToistorajatLayout.setHorizontalGroup(
+            asetaToistorajatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        asetaToistorajatLayout.setVerticalGroup(
+            asetaToistorajatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setTitle("MusicMachine");
 
         toistaPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Play-painike.png"))); // NOI18N
@@ -268,6 +283,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleDescription("Toista musiikkia");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void pysaytaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pysaytaPainikeActionPerformed
@@ -304,15 +320,21 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }
 
     private void toistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toistaPainikeActionPerformed
-        if (tiedostoAsetettu && !tiedostoaToistetaan && !tiedostoaToistetaan) {
+        if (tiedostoValittu && tiedostoAsetettu && !tiedostoaToistetaan) {
             toistaTiedostoa();
         } else if (!tiedostoaToistetaan && tiedostoValittu && !tiedostoAsetettu) {
             try {
                 asetaTiedostoToistovalmiiksi();
-                toistaTiedostoa();
-            } catch (IOException ex) {
+                if (luuppausPaalla) {
+                    sovelluslogiikka.luuppaa();
+                } else {
+                    toistaTiedostoa();
+                }
+            } catch (IOException | LineUnavailableException ex) {
                 tilaTeksti.setText(virhe + ex.getLocalizedMessage());
             }
+        } else if (tiedostoaToistetaan && !luuppausPaalla) {
+            sovelluslogiikka.lopetaLuuppaaminen();
         } else if (tiedostoaToistetaan) {
             tilaTeksti.setText("TIEDOSTOA TOISTETAAN JO!");
         } else {
@@ -475,19 +497,29 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     private void luuppiCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuppiCheckBoxActionPerformed
         if (luuppiCheckBox.isSelected()) {
-            try {
-                sovelluslogiikka.toistaAlustaUudelleen();
-            } catch (LineUnavailableException | IOException ex) {
-                virheViesti();
-            }
+            luuppausPaalla = true;
+        } else {
+            luuppausPaalla = false;
         }
 
-//        if (!luuppiCheckBox.isSelected()) {
-//            luuppiCheckBox.setSelected(true);
-//            sovelluslogiikka.toistaAlustaUudelleen();
-//        } else {
-//            luuppiCheckBox.setSelected(false);
+//        if (tiedostoAsetettu && !tiedostoaToistetaan && !tiedostoaToistetaan) {
+//            try {
+//                sovelluslogiikka.toistaAlustaUudelleen();
+//            } catch (LineUnavailableException | IOException ex) {
+//                virheViesti();
+//            }
+//        } else if (!tiedostoaToistetaan && tiedostoValittu && !tiedostoAsetettu) {
+//            try {
+//                asetaTiedostoToistovalmiiksi();
+//                sovelluslogiikka.toistaAlustaUudelleen();
+//            } catch (IOException | LineUnavailableException ex) {
+//                virheViesti();
+//            }
+//        } else if (tiedostoaToistetaan) {
+//            tilaTeksti.setText("TIEDOSTOA TOISTETAAN JO!");
 //            sovelluslogiikka.alatoistaAlustaUudelleen();
+//        } else {
+//            tilaTeksti.setText("TOISTO " + epaonnistui);
 //        }
     }//GEN-LAST:event_luuppiCheckBoxActionPerformed
 
@@ -577,6 +609,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame asetaToistorajat;
     private javax.swing.JButton avaaSoittolistaPainike;
     private javax.swing.JFileChooser avaaSoittolistaValitsija;
     private javax.swing.JSlider etenemissaadin;

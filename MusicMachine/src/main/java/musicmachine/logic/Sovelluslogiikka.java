@@ -12,6 +12,8 @@ public class Sovelluslogiikka {
     private Musiikkitiedosto musiikkitiedosto;
     private Clip klippi;
     private AudioInputStream audioInputStream;
+    private int alkukohta;
+    private int loppukohta;
 
     /**
      * Metodi asettaa musiikkitiedoston toistovalmiuteen
@@ -83,7 +85,7 @@ public class Sovelluslogiikka {
      * @return tiedoston toistokohta sekunteina (ei toimi vielä...)
      * @throws IOException
      */
-    public int tiedostonToistokohta() throws IOException {
+    public int tiedostonToistokohtaSekunteina() throws IOException {
         return 0;
     }
 
@@ -139,17 +141,40 @@ public class Sovelluslogiikka {
      * @throws javax.sound.sampled.LineUnavailableException
      * @throws java.io.IOException
      */
-    public void toistaAlustaUudelleen() throws LineUnavailableException, IOException {
-        tauko();
+    public void luuppaa() throws LineUnavailableException, IOException {
         klippi.loop(Clip.LOOP_CONTINUOUSLY);
-        toista();
     }
 
     /**
      * Metodi lopettaa "luuppaamisen", eli musiikkikappaleen toiston alusta
      * uudelleen
      */
-    public void alatoistaAlustaUudelleen() {
+    public void lopetaLuuppaaminen() {
         klippi.loop(0);
     }
+
+    /**
+     * Metodi asettaa musiikkikappaleeseen luupattavan kohdan (=
+     * "musiikkikappaleen pituudenmuokkaustoiminto")
+     */
+    public void asetaToistokohdat() {
+        klippi.setLoopPoints(getAlkukohta(), getLoppukohta());
+    }
+
+    public int getAlkukohta() {
+        return alkukohta;
+    }
+
+    public void setAlkukohta(int alkukohta) {
+        this.alkukohta = alkukohta;
+    }
+
+    public int getLoppukohta() {
+        return loppukohta;
+    }
+
+    public void setLoppukohta(int loppukohta) {
+        this.loppukohta = loppukohta;
+    }
+
 }
