@@ -52,7 +52,7 @@ public class SovelluslogiikkaTest {
     }
 
     @Test
-    public void tiedostopolkuTasmaa() throws IOException {
+    public void tiedostopolkuTasmaaMusiikkitiedostolla() throws IOException {
         Musiikkitiedosto musiikkitiedosto = sovelluslogiikka.getMusiikkitiedosto();
         assertEquals(System.getProperty("user.dir") + "/" + tiedostopolku,
                 musiikkitiedosto.getTiedosto().getAbsolutePath());
@@ -89,6 +89,18 @@ public class SovelluslogiikkaTest {
     @Test
     public void loppukohtaToimii() {
         assertEquals(0, sovelluslogiikka.getLoppukohta());
+    }
+
+    @Test
+    public void alkukohdanAsetusToimii() {
+        sovelluslogiikka.setAlkukohta(5);
+        assertEquals(5, sovelluslogiikka.getAlkukohta());
+    }
+
+    @Test
+    public void loppukohdanAsetusToimii() {
+        sovelluslogiikka.setLoppukohta(5);
+        assertEquals(5, sovelluslogiikka.getLoppukohta());
     }
 
     @Test
@@ -133,5 +145,12 @@ public class SovelluslogiikkaTest {
     public void tiedostoValittu() {
         sovelluslogiikka.setTiedostoValittu(true);
         assertTrue(sovelluslogiikka.isTiedostoValittu());
+    }
+
+    @Test
+    public void tiedostopolkuTasmaa() {
+        assertEquals(System.getProperty("user.dir") + "/" + tiedostopolku,
+                sovelluslogiikka.tiedostopolku());
+
     }
 }
