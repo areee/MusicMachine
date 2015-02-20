@@ -93,10 +93,10 @@ public class Sovelluslogiikka {
     /**
      * Metodi palauttaa musiikkitiedoston keston minuutteina ja sekunteina
      *
+     * @param kestoSekunteina
      * @return musiikkitiedoston kesto minuutteina ja sekunteina
      */
-    public String kestoMinuutteinaJaSekunteina() {
-        int kestoSekunteina = kestoSekunteina();
+    public String kestoMinuutteinaJaSekunteina(int kestoSekunteina) {
         if (kestoSekunteina >= 60) {
 
             int minuutit = kestoSekunteina / 60;

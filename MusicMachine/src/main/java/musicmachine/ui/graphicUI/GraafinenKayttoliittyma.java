@@ -365,7 +365,10 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
         try {
             sovelluslogiikka.valitseTiedosto(tiedostopolku);
-            tiedostonKokonaiskesto.setText("" + sovelluslogiikka.kestoMinuutteinaJaSekunteina());
+            tiedostonKokonaiskesto.setText(sovelluslogiikka.
+                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.kestoSekunteina()));
+            tiedostonToistokohta.setText(sovelluslogiikka.
+                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.tiedostonToistokohtaSekunteina()));
         } catch (LineUnavailableException ex) {
             tilaTeksti.setText(virhe);
         } catch (UnsupportedAudioFileException ex) {
