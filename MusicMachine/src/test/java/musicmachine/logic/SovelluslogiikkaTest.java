@@ -80,4 +80,58 @@ public class SovelluslogiikkaTest {
         assertEquals(System.getProperty("user.dir") + "/" + uusiTiedostopolku,
                 musiikkitiedosto.getTiedosto().getAbsolutePath());
     }
+
+    @Test
+    public void alkukohtaToimii() {
+        assertEquals(0, sovelluslogiikka.getAlkukohta());
+    }
+
+    @Test
+    public void loppukohtaToimii() {
+        assertEquals(0, sovelluslogiikka.getLoppukohta());
+    }
+
+    @Test
+    public void luuppausEiPaalla() {
+        assertFalse(sovelluslogiikka.isLuuppausPaalla());
+    }
+
+    @Test
+    public void toistoEiPaalla() {
+        assertFalse(sovelluslogiikka.isTiedostoaToistetaan());
+    }
+
+    @Test
+    public void tiedostoaEiAsetettu() {
+        assertFalse(sovelluslogiikka.isTiedostoAsetettu());
+    }
+
+    @Test
+    public void tiedostoaEiValittu() {
+        assertFalse(sovelluslogiikka.isTiedostoValittu());
+    }
+
+    @Test
+    public void luuppausPaalla() {
+        sovelluslogiikka.setLuuppausPaalla(true);
+        assertTrue(sovelluslogiikka.isLuuppausPaalla());
+    }
+
+    @Test
+    public void toistoPaalla() {
+        sovelluslogiikka.setTiedostoaToistetaan(true);
+        assertTrue(sovelluslogiikka.isTiedostoaToistetaan());
+    }
+
+    @Test
+    public void tiedostoAsetettu() {
+        sovelluslogiikka.setTiedostoAsetettu(true);
+        assertTrue(sovelluslogiikka.isTiedostoAsetettu());
+    }
+
+    @Test
+    public void tiedostoValittu() {
+        sovelluslogiikka.setTiedostoValittu(true);
+        assertTrue(sovelluslogiikka.isTiedostoValittu());
+    }
 }
