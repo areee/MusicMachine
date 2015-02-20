@@ -1,7 +1,6 @@
 package musicmachine.ui.textUI;
 
 import java.io.IOException;
-import java.util.Scanner;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import musicmachine.logic.Lukija;
@@ -27,21 +26,22 @@ public class TekstiKayttoliittyma {
     /**
      * Käynnistää tekstipohjaisen käyttöliittymän
      *
-     * @param lukija käyttäjän kirjoittamia valintoja seuraava skanneri
      * @throws java.io.IOException
      */
-    public void kaynnista(Scanner lukija) throws IOException {
+    public void kaynnista() throws IOException {
 
         OUTER:
         while (true) {
             System.out.println(valikko());
-            String komento = this.lukija.annaKomento(lukija);
+            System.out.print(lukija);
+            String komento = this.lukija.annaKomento();
 
             switch (komento) {
                 case "1":
                     while (true) {
                         System.out.println("\n" + valitseMusiikkitiedosto());
-                        komento = this.lukija.annaKomento(lukija);
+                        System.out.print(lukija);
+                        komento = this.lukija.annaKomento();
 
                         // jos komento joko kysymysmerkki tai tyhjä rivinvaihto,
                         // tulosta ohje:
@@ -225,7 +225,8 @@ public class TekstiKayttoliittyma {
                 + e.getLocalizedMessage() + "\n";
     }
 
-    /** Metodi musiikkitiedoston tietojen tulostamiseen
+    /**
+     * Metodi musiikkitiedoston tietojen tulostamiseen
      *
      * @return nimi, tiedostopolku, kesto
      */

@@ -14,6 +14,17 @@ public class Sovelluslogiikka {
     private AudioInputStream audioInputStream;
     private int alkukohta;
     private int loppukohta;
+    private boolean tiedostoAsetettu;
+    private boolean tiedostoValittu;
+    private boolean tiedostoaToistetaan;
+    private boolean luuppausPaalla;
+
+    public Sovelluslogiikka() {
+        tiedostoAsetettu = false;
+        tiedostoaToistetaan = false;
+        tiedostoValittu = false;
+        luuppausPaalla = false;
+    }
 
     /**
      * Metodi asettaa musiikkitiedoston toistovalmiuteen
@@ -69,7 +80,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston keston
+     * Metodi palauttaa musiikkitiedoston keston sekunteina
      *
      * @return musiikkitiedoston kesto sekunteina
      */
@@ -79,25 +90,29 @@ public class Sovelluslogiikka {
         return (int) ((frames + 0.0) / format.getFrameRate());
     }
 
+    /**
+     * Metodi palauttaa musiikkitiedoston keston minuutteina ja sekunteina
+     *
+     * @return musiikkitiedoston kesto minuutteina ja sekunteina
+     */
     public String kestoMinuutteinaJaSekunteina() {
         int kestoSekunteina = kestoSekunteina();
-        if (kestoSekunteina < 60) {
-            return "00:" + kestoSekunteina;
+        if (kestoSekunteina >= 60) {
+
+            int minuutit = kestoSekunteina / 60;
+            int sekunnit = kestoSekunteina % 60;
+
+            return minuutit + ":" + sekunnit;
+
         } else if (kestoSekunteina < 10) {
             return "00:0" + kestoSekunteina;
         }
 
-        double minuutit = kestoSekunteina / 60; // 215/60
-        int minuutitKokonaislukuna = (int) minuutit;
-
-        double sekunnit = (minuutit - minuutitKokonaislukuna) * 60;
-        int sekunnitKokonaislukuna = (int) sekunnit;
-        return "" + kestoSekunteina;
-//        return minuutitKokonaislukuna + ":" + sekunnitKokonaislukuna;
+        return "00:" + kestoSekunteina;
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston toistokohdan
+     * Metodi palauttaa musiikkitiedoston toistokohdan sekunteina
      *
      * @return tiedoston toistokohta sekunteina (ei toimi vielä...)
      * @throws IOException
@@ -106,6 +121,11 @@ public class Sovelluslogiikka {
         return (int) klippi.getMicrosecondPosition() * 1000000;
     }
 
+    /**
+     * Metodi palauttaa musiikkitiedoston tiedostonimen
+     *
+     * @return tiedostonimi
+     */
     public String tiedostonimi() {
         return musiikkitiedosto.getTiedosto().getName();
     }
@@ -214,9 +234,46 @@ public class Sovelluslogiikka {
         this.loppukohta = loppukohta;
     }
 
-    public void asetaToistokohta(int kohta) {
-        kohta /= 100;
-        klippi.setFramePosition(kohta * kestoSekunteina());
+    /**
+     * Metodi asettaa musiikkikappaleen toistokohdan halutuksi
+     *
+     * @param kohtaProsentteina
+     */
+    public void asetaToistokohta(int kohtaProsentteina) {
+        kohtaProsentteina /= 100;
+        klippi.setFramePosition(kohtaProsentteina * kestoSekunteina());
+    }
+
+    public boolean isTiedostoAsetettu() {
+        return tiedostoAsetettu;
+    }
+
+    public void setTiedostoAsetettu(boolean tiedostoAsetettu) {
+        this.tiedostoAsetettu = tiedostoAsetettu;
+    }
+
+    public boolean isTiedostoValittu() {
+        return tiedostoValittu;
+    }
+
+    public void setTiedostoValittu(boolean tiedostoValittu) {
+        this.tiedostoValittu = tiedostoValittu;
+    }
+
+    public boolean isTiedostoaToistetaan() {
+        return tiedostoaToistetaan;
+    }
+
+    public void setTiedostoaToistetaan(boolean tiedostoaToistetaan) {
+        this.tiedostoaToistetaan = tiedostoaToistetaan;
+    }
+
+    public boolean isLuuppausPaalla() {
+        return luuppausPaalla;
+    }
+
+    public void setLuuppausPaalla(boolean luuppausPaalla) {
+        this.luuppausPaalla = luuppausPaalla;
     }
 
 }

@@ -38,9 +38,9 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <configuration>
                     <instrumentation>
-                        <includes>
+<!--                        <includes>
                             <include>musicmachine.logic/*.class</include>
-                        </includes>
+                        </includes>-->
                     </instrumentation>
                 </configuration>
                 <version>2.6</version>

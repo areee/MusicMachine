@@ -10,6 +10,8 @@ import static org.junit.Assert.*;
 
 public class LukijaTest {
 
+    Lukija lukija;
+
     public LukijaTest() {
     }
 
@@ -23,6 +25,7 @@ public class LukijaTest {
 
     @Before
     public void setUp() {
+        lukija = new Lukija();
     }
 
     @After
@@ -30,8 +33,21 @@ public class LukijaTest {
     }
 
     @Test
-    public void lukijaToimii() {
-        Lukija lukija = new Lukija();
-        assertEquals("aaa", lukija.annaKomento(new Scanner("aaa")));
+    public void asetaScannerToimii() {
+        lukija.setLukija(new Scanner("aaa"));
+        assertEquals("aaa", lukija.annaKomento());
     }
+
+    @Test
+    public void ScannerinAsetusJaLukuToimii() {
+        Scanner scanner = new Scanner("aaa");
+        lukija.setLukija(scanner);
+        assertEquals(scanner, lukija.getLukija());
+    }
+
+    @Test
+    public void lukijanKirjoitakohtaToimii() {
+        assertEquals("> ", lukija.toString());
+    }
+
 }
