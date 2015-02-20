@@ -153,4 +153,15 @@ public class SovelluslogiikkaTest {
                 sovelluslogiikka.tiedostopolku());
 
     }
+
+    @Test
+    public void tiedostonKestoSekunneissaTasmaa() {
+        assertEquals(145, sovelluslogiikka.kestoSekunteina());
+    }
+
+    @Test
+    public void tiedostonKestoMinuuteissaJaSekunneissaTasmaa() {
+        assertEquals("2:25", sovelluslogiikka.kestoMinuutteinaJaSekunteina(
+                sovelluslogiikka.kestoSekunteina()));
+    }
 }
