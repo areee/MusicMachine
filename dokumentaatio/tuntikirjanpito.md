@@ -156,9 +156,10 @@
 	- paranneltu kappaleen kokonaiskeston ja toistokohdan ilmoittamista
 
 ## Perjantai 20.2.2015
-- Käytetty aika: 2 h 34 min
+- Käytetty aika: 2 h 49 min
 - Ajankäytön kohde:
 	- kaksiosainen Sekvenssikaavio_3 lisätty, muut sekvenssikaaviot päivitetty
 	- kappaleen kokonaiskesto päivitetty toimivaksi
 	- testejä lisätty
 	- sovelluslogiikkaa päivitetty
+	- cobertura- ja pit- raportit ja javadoc päivitetty
