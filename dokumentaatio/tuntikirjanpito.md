@@ -163,3 +163,9 @@
 	- testejä lisätty
 	- sovelluslogiikkaa päivitetty
 	- cobertura- ja pit- raportit ja javadoc päivitetty
+
+## Maanantai 23.2.2015
+- Käytetty aika: h min (klo 9:10->)
+- Ajankäytön kohde:
+	- .gitignore-tiedosto päivitetty
+	- 
