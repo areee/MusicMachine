@@ -36,12 +36,19 @@ public class Sovelluslogiikka {
      */
     public void valitseTiedosto(String merkkijono) throws IOException,
             LineUnavailableException, UnsupportedAudioFileException {
+        try {
+            musiikkitiedosto = new Musiikkitiedosto(merkkijono);
+            audioInputStream = AudioSystem.getAudioInputStream(
+                    musiikkitiedosto.getTiedosto());
 
-        musiikkitiedosto = new Musiikkitiedosto(merkkijono);
-        klippi = AudioSystem.getClip();
-        audioInputStream = AudioSystem.getAudioInputStream(
-                musiikkitiedosto.getTiedosto());
-        klippi.open(audioInputStream);
+            AudioFormat format = audioInputStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+
+            klippi = (Clip) AudioSystem.getLine(info);
+
+            klippi.open(audioInputStream);
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e1) {
+        }
     }
 
     /**

@@ -165,10 +165,11 @@
 	- cobertura- ja pit- raportit ja javadoc päivitetty
 
 ## Maanantai 23.2.2015
-- Käytetty aika: 1h 25 min
+- Käytetty aika: 1h 25 min (+ klo 18:08->)
 - Ajankäytön kohde:
 	- .gitignore-tiedosto päivitetty
 	- sekvenssikaavio_1 päivitetty vastaamaan nykyistä ohjelmaa
 	- ohjelman toimivuutta testattu TKTL:n Ubuntu-tietokoneella
 		- havaittu puute: WAV- ja MIDI-tiedostot eivät soi, vaan tulee virheviestiä
-		- löydetty ratkaisu vikaan: Sovelluslogiikan koodia täydennettävä äänitiedoston asettamisen osalta
+		- löydetty ratkaisu vikaan: sovelluslogiikan koodia täydennettävä äänitiedoston asettamisen osalta
+		- vika korjattu ja testattu toimivaksi niin Ubuntulla kuin myös Macilla
