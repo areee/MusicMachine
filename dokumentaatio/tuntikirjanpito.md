@@ -165,7 +165,7 @@
 	- cobertura- ja pit- raportit ja javadoc päivitetty
 
 ## Maanantai 23.2.2015
-- Käytetty aika: h min (klo 9:10->)
+- Käytetty aika: 55 min
 - Ajankäytön kohde:
 	- .gitignore-tiedosto päivitetty
-	- 
+	- sekvenssikaavio_1 päivitetty vastaamaan nykyistä ohjelmaa

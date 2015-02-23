@@ -24,7 +24,7 @@ public class ValitseKayttoliittyma {
      */
     public void kaynnista() throws IOException {
 
-        OUTER:
+//        OUTER:
         while (true) {
             System.out.println("Valitse käyttöliittymä:\n"
                     + "1) Graafinen käyttöliittymä\n"
@@ -32,16 +32,29 @@ public class ValitseKayttoliittyma {
                     + "x) Lopeta");
             System.out.print(lukija);
             String komento = lukija.annaKomento();
-            switch (komento) {
-                case "1":
-                    new GraafinenKayttoliittyma().setVisible(true);
-                    break OUTER;
-                case "2":
-                    new TekstiKayttoliittyma().kaynnista();
-                    break OUTER;
-                case "x":
-                    break OUTER;
+
+            if (komento.equals("1")) {
+                new GraafinenKayttoliittyma().setVisible(true);
+                break;
+
+            } else if (komento.equals("2")) {
+                new TekstiKayttoliittyma().kaynnista();
+                break;
+            } else if (komento.equals("x")) {
+                break;
             }
+
+            // vaihtoehtoinen ja NetBeansin ehdottama tapa:
+//            switch (komento) {
+//                case "1":
+//                    new GraafinenKayttoliittyma().setVisible(true);
+//                    break OUTER;
+//                case "2":
+//                    new TekstiKayttoliittyma().kaynnista();
+//                    break OUTER;
+//                case "x":
+//                    break OUTER;
+//            }
         }
     }
 }
