@@ -152,17 +152,17 @@
               <Component id="rullausPaneeli" min="-2" pref="179" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Component id="valitseTiedostoPainike" pref="29" max="32767" attributes="0"/>
                       <Component id="poistaTiedostoPainike" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="tallennaSoittolistaPainike" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="avaaSoittolistaPainike" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tyhjennaSoittolista" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
               <Component id="etenemissaadin" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">

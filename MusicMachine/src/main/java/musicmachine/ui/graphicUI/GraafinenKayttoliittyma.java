@@ -275,7 +275,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                         .addComponent(tallennaSoittolistaPainike)
                         .addComponent(avaaSoittolistaPainike)
                         .addComponent(tyhjennaSoittolista)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(etenemissaadin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,6 +315,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         sovelluslogiikka.lopeta();
         tilaTeksti.setText("PYSÄYTETTY");
         tiedostonKokonaiskesto.setText("--:--");
+        tiedostonToistokohta.setText("--:--");
         sovelluslogiikka.setTiedostoAsetettu(false);
         sovelluslogiikka.setTiedostoaToistetaan(false);
     }
@@ -386,6 +387,16 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         }
         tilaTeksti.setText("TOISTETAAN...");
         sovelluslogiikka.setTiedostoaToistetaan(true);
+    }
+
+    private void toistoLuuppi() {
+        while (sovelluslogiikka.isTiedostoaToistetaan()) {
+            tiedostonKokonaiskesto.setText(sovelluslogiikka.
+                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.kestoSekunteina()));
+            if (pysaytaPainike.isSelected() || taukoPainike.isSelected()) {
+                break;
+            }
+        }
     }
 
     // Valitse tiedosto ja lisää se soittolistaan:
@@ -522,8 +533,17 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }//GEN-LAST:event_luuppiCheckBoxActionPerformed
 
     private void etenemissaadinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_etenemissaadinStateChanged
-        int valittuKohta = etenemissaadin.getValue();
-        sovelluslogiikka.asetaToistokohta(valittuKohta);
+        try {
+            if (!etenemissaadin.getValueIsAdjusting()) {
+                int valittuKohta = etenemissaadin.getValue();
+                sovelluslogiikka.asetaToistokohta(valittuKohta);
+                tiedostonToistokohta.setText(sovelluslogiikka.
+                        kestoMinuutteinaJaSekunteina(sovelluslogiikka.
+                                tiedostonToistokohtaSekunteina()));
+            }
+        } catch (IOException | LineUnavailableException ex) {
+            virheViesti();
+        }
     }//GEN-LAST:event_etenemissaadinStateChanged
 
     private void avaaSoittolista() {

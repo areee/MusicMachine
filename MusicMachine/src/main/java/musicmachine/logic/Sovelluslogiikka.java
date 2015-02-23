@@ -98,7 +98,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston keston minuutteina ja sekunteina
+     * Metodi palauttaa keston minuutteina ja sekunteina
      *
      * @param kestoSekunteina
      * @return musiikkitiedoston kesto minuutteina ja sekunteina
@@ -125,7 +125,7 @@ public class Sovelluslogiikka {
      * @throws IOException
      */
     public int tiedostonToistokohtaSekunteina() throws IOException {
-        return (int) klippi.getMicrosecondPosition() * 1000000;
+        return (int) klippi.getMicrosecondPosition() / 1000000;
     }
 
     /**
@@ -247,8 +247,13 @@ public class Sovelluslogiikka {
      * @param kohtaProsentteina
      */
     public void asetaToistokohta(int kohtaProsentteina) {
-        kohtaProsentteina /= 100;
-        klippi.setFramePosition(kohtaProsentteina * kestoSekunteina());
+//        double kohtaDesimaalilukuna = kohtaProsentteina / 100;
+//        double uusiToistokohta = kohtaDesimaalilukuna * kestoSekunteina() * 1000000;
+//
+//        klippi.stop();
+//        klippi.setMicrosecondPosition((long) uusiToistokohta); // hieman epäselvää, miten toteuttaa
+//        klippi.start();
+        klippi.setMicrosecondPosition(kohtaProsentteina * 1000);
     }
 
     public boolean isTiedostoAsetettu() {
