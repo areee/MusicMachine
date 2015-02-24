@@ -1,6 +1,6 @@
 package musicmachine;
 
-import musicmachine.ui.textUI.ValitseKayttoliittyma;
+import musicmachine.ui.text.ValitseKayttoliittyma;
 
 /**
  * Ohjelman Main-luokka, josta ValitseKayttoliittyma-luokka käynnistyy.

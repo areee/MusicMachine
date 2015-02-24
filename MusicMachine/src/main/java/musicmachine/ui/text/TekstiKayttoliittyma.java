@@ -1,4 +1,4 @@
-package musicmachine.ui.textUI;
+package musicmachine.ui.text;
 
 import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;

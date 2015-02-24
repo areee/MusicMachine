@@ -1,8 +1,8 @@
-package musicmachine.ui.textUI;
+package musicmachine.ui.text;
 
 import java.io.IOException;
 import musicmachine.logic.Lukija;
-import musicmachine.ui.graphicUI.GraafinenKayttoliittyma;
+import musicmachine.ui.graphicui.GraafinenKayttoliittyma;
 
 /**
  * Tekstikäyttöliittymä, jolla valitaan, halutaanko avata MusicMachinen

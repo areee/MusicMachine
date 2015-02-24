@@ -48,6 +48,7 @@ public class Sovelluslogiikka {
 
             klippi.open(audioInputStream);
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e1) {
+            e1.printStackTrace();
         }
     }
 

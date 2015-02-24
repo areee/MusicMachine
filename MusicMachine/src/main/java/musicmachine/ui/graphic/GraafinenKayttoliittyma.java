@@ -1,4 +1,4 @@
-package musicmachine.ui.graphicUI;
+package musicmachine.ui.graphic;
 
 import java.io.File;
 import java.io.FileNotFoundException;
