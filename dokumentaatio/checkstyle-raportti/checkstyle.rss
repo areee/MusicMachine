@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2015</copyright>
     <item>
       <title>File: 7,
-             Errors: 101,
+             Errors: 97,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,20 +46,6 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#musicmachine.ui.textUI.ValitseKayttoliittyma.java">musicmachine/ui/textUI/ValitseKayttoliittyma.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#musicmachine.logic.Sovelluslogiikka.java">musicmachine/logic/Sovelluslogiikka.java</a>
                 </td>
                 <td>
@@ -69,21 +55,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#musicmachine.ui.textUI.TekstiKayttoliittyma.java">musicmachine/ui/textUI/TekstiKayttoliittyma.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
+                  1
                 </td>
               </tr>
                           <tr>
@@ -130,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#musicmachine.ui.graphicUI.GraafinenKayttoliittyma.java">musicmachine/ui/graphicUI/GraafinenKayttoliittyma.java</a>
+                  <a href="${project.url}/checkstyle.html#musicmachine.ui.text.ValitseKayttoliittyma.java">musicmachine/ui/text/ValitseKayttoliittyma.java</a>
                 </td>
                 <td>
                   0
@@ -139,7 +111,35 @@ under the License.
                   0
                 </td>
                 <td>
-                  95
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#musicmachine.ui.graphic.GraafinenKayttoliittyma.java">musicmachine/ui/graphic/GraafinenKayttoliittyma.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  94
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#musicmachine.ui.text.TekstiKayttoliittyma.java">musicmachine/ui/text/TekstiKayttoliittyma.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
                 </td>
               </tr>
                       </tbody>

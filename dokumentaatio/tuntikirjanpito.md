@@ -182,3 +182,4 @@
 	- hienosäädetty koodia
 	- tarkistettu uudelleen, että ohjelma toimii Macin lisäksi Ubuntulla
 	- projektiin lisätty testattavia äänitiedostoja
+	- paketteja uudelleennimetty
