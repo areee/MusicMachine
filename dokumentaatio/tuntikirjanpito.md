@@ -176,7 +176,7 @@
 	- sovelluslogiikkaa ja graafista käyttöliittymää päivitetty: yritetty lisätä toiminto, jossa liukusäätimestä pystyisi valitsemaan kappaleen kohdan
 
 ## Tiistai 24.2.2015
-- Käytetty aika: 1 h 41 min (+ klo 12:47->)
+- Käytetty aika: 2 h 53 min
 - Ajankäytön kohde:
 	- yritetty uudistaa tuloksitta graafinen käyttöliittymä ja sovelluslogiikka, ei onnistunut
 	- hienosäädetty koodia

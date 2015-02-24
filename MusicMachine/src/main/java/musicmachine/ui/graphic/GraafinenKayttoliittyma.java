@@ -301,7 +301,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pysaytaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pysaytaPainikeActionPerformed
-
         if (sovelluslogiikka.isTiedostoAsetettu()) {
             try {
                 lopetaToisto();
