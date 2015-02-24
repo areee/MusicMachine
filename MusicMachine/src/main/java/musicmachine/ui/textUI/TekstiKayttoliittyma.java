@@ -174,7 +174,7 @@ public class TekstiKayttoliittyma {
      */
     public String ohje() {
         return "Anna tiedostonimi esim. muodossa\n"
-                + "\"audio/SND_4985_1.WAV\"\n"
+                + "\"audio/Havetkaa!.aif\"\n"
                 + "tai \"/Users/kayttajanimi/Music/tiedostonimi.mid\"";
     }
 

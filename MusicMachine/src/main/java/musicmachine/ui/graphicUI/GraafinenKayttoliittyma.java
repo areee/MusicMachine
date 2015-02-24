@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.DefaultListModel;
@@ -533,16 +535,16 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }//GEN-LAST:event_luuppiCheckBoxActionPerformed
 
     private void etenemissaadinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_etenemissaadinStateChanged
-        try {
-            if (!etenemissaadin.getValueIsAdjusting()) {
+        if (!etenemissaadin.getValueIsAdjusting()) {
+            try {
                 int valittuKohta = etenemissaadin.getValue();
                 sovelluslogiikka.asetaToistokohta(valittuKohta);
                 tiedostonToistokohta.setText(sovelluslogiikka.
                         kestoMinuutteinaJaSekunteina(sovelluslogiikka.
                                 tiedostonToistokohtaSekunteina()));
+            } catch (IOException ex) {
+                Logger.getLogger(GraafinenKayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException | LineUnavailableException ex) {
-            virheViesti();
         }
     }//GEN-LAST:event_etenemissaadinStateChanged
 
