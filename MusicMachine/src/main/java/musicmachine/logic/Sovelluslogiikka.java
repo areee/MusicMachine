@@ -123,6 +123,10 @@ public class Sovelluslogiikka {
         return audioPosition;
     }
 
+    public void setAudioPosition(int audioPosition) {
+        this.audioPosition = audioPosition;
+    }
+
     /**
      * Metodi palauttaa musiikkitiedoston keston sekunteina
      *
@@ -267,10 +271,10 @@ public class Sovelluslogiikka {
         if (kohtaProsentteina < 0 || kohtaProsentteina > audioLength) {
             return;
         }
-        
+
         audioPosition = kohtaProsentteina;
-        
-        klippi.setMicrosecondPosition(kohtaProsentteina*1000);
+
+        klippi.setMicrosecondPosition(kohtaProsentteina * 1000);
 
 //        double kohtaDesimaalilukuna = kohtaProsentteina / 100;
 //        double uusiToistokohta = kohtaDesimaalilukuna * kestoSekunteina() * 1000000;
@@ -278,9 +282,6 @@ public class Sovelluslogiikka {
 //        klippi.stop();
 //        klippi.setMicrosecondPosition((long) uusiToistokohta); // hieman epäselvää, miten toteuttaa
 //        klippi.start();
-        
-        
-        
 //        klippi.setMicrosecondPosition(kohtaProsentteina * 1000);
     }
 
@@ -314,6 +315,18 @@ public class Sovelluslogiikka {
 
     public void setLuuppausPaalla(boolean luuppausPaalla) {
         this.luuppausPaalla = luuppausPaalla;
+    }
+
+    public boolean onkoKlippiAktiivinen() {
+        return klippi.isActive();
+    }
+
+    public void tiedostonToistokohdanPaivittyminen() {
+        audioPosition = (int) (klippi.getMicrosecondPosition() / 1000);
+    }
+
+    public void nollaaKlippi() {
+        klippi.setMicrosecondPosition(0);
     }
 
 }

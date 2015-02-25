@@ -185,10 +185,10 @@
 	- paketteja uudelleennimetty
 
 ## Tiistai 25.2.2015
-- Käytetty aika: 4 h 3 min
+- Käytetty aika: 5 h 47 min
 - Ajankäytön kohde:
 	- korjattu ValitseKayttoliittyma-luokassa ollut virheellinen import (bugi syntyi, kun refaktoroin pakettien nimiä)
 	- vaihdettu lopullisen projektin mukana tulevia äänitiedostoja (osittain tekijänoikeudellisista syistä)
 	- viilattu testejä toimiviksi -> projektin buildaus onnistuu jälleen
 	- pieniä viilauksia teksikäyttöliittymään
-	- aloitettu sovelluslogiikan + graafisen käyttöliittymän toistokohdan päivittymisen lisääminen
+	- aloitettu sovelluslogiikan + graafisen käyttöliittymän nykyisen toistokohdan päivittymisen lisääminen (sekä säätimen että aikatekstin osalta)

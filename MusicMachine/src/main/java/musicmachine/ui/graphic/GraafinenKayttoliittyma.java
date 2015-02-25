@@ -7,12 +7,11 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JSlider;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import musicmachine.logic.Sovelluslogiikka;
@@ -40,6 +39,14 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         listamalli = new DefaultListModel();
         soittolista.setModel(listamalli);
         indeksi = -1;
+
+        timer = new Timer(100, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tick();
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -53,7 +60,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         toistaPainike = new javax.swing.JButton();
         pysaytaPainike = new javax.swing.JButton();
         taukoPainike = new javax.swing.JButton();
-        etenemissaadin = new javax.swing.JSlider(0, sovelluslogiikka.getAudioLength(), 0);
+        etenemissaadin = new javax.swing.JSlider();
         tilanOhjeteksti = new javax.swing.JLabel();
         tilaTeksti = new javax.swing.JLabel();
         rullausPaneeli = new javax.swing.JScrollPane();
@@ -328,7 +335,10 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }//GEN-LAST:event_taukoPainikeActionPerformed
 
     private void asetaTauolle() {
+        timer.stop();
         sovelluslogiikka.tauko();
+        toistaPainike.setToolTipText("Toista");
+//        toistaPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Toista-painike.png")));
         tilaTeksti.setText("TAUKO");
         sovelluslogiikka.setTiedostoaToistetaan(false);
     }
@@ -349,10 +359,12 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             } catch (IOException | LineUnavailableException ex) {
                 tilaTeksti.setText(virhe + ex.getLocalizedMessage());
             }
-        } else if (sovelluslogiikka.isTiedostoaToistetaan() && !sovelluslogiikka.isLuuppausPaalla()) {
-            sovelluslogiikka.lopetaLuuppaaminen();
-        } else if (sovelluslogiikka.isTiedostoaToistetaan()) {
-            tilaTeksti.setText("TIEDOSTOA TOISTETAAN JO!");
+        } //        else if (sovelluslogiikka.isTiedostoaToistetaan() && !sovelluslogiikka.isLuuppausPaalla()) {
+        //            sovelluslogiikka.lopetaLuuppaaminen();
+        //        }
+        else if (sovelluslogiikka.isTiedostoaToistetaan()) {
+            asetaTauolle(); //testi, jolla voidaan pause-painike poistaa
+//            tilaTeksti.setText("TIEDOSTOA TOISTETAAN JO!");
         } else {
             tilaTeksti.setText("TOISTO " + epaonnistui);
         }
@@ -365,28 +377,37 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
         try {
             sovelluslogiikka.valitseTiedosto(tiedostopolku);
-            tiedostonKokonaiskesto.setText(sovelluslogiikka.
-                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.kestoSekunteina()));
-            tiedostonToistokohta.setText(sovelluslogiikka.
-                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.tiedostonToistokohtaSekunteina()));
-            etenemissaadin.setValue(0);
+            sovelluslogiikka.setTiedostoAsetettu(true);
+//            tiedostonKokonaiskesto.setText(sovelluslogiikka.
+//                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.kestoSekunteina()));
+//            tiedostonToistokohta.setText(sovelluslogiikka.
+//                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.tiedostonToistokohtaSekunteina()));
+//            etenemissaadin.setValue(0);
+
+            //uutta koodia:
+            etenemissaadin = new JSlider(0, sovelluslogiikka.getAudioLength(), 0);
+
         } catch (LineUnavailableException ex) {
             tilaTeksti.setText(virhe);
         } catch (UnsupportedAudioFileException ex) {
             tilaTeksti.setText(epaonnistui + " TIEDOSTO EI TUETTU");
         }
-        sovelluslogiikka.setTiedostoAsetettu(true);
     }
 
     private void toistaTiedostoa() {
         try {
             // Toistetaan asetettu tiedosto:
             sovelluslogiikka.toista();
+            timer.start();
+            toistaPainike.setToolTipText("Tauko");
+//            toistaPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Pause-painike.png")));
+            tilaTeksti.setText("TOISTETAAN...");
+            sovelluslogiikka.setTiedostoaToistetaan(true);
+
         } catch (LineUnavailableException | IOException ex) {
             tilaTeksti.setText(virhe);
         }
-        tilaTeksti.setText("TOISTETAAN...");
-        sovelluslogiikka.setTiedostoaToistetaan(true);
+
     }
 
     private void toistoLuuppi() {
@@ -552,23 +573,16 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 //            }
         }
     }//GEN-LAST:event_etenemissaadinStateChanged
-    
+
     /**
      * Metodi asettaa etenemissäätimen haluttuun kohtaan
-     * @param kohta 
+     *
+     * @param kohta
      */
-    public void asetaEtenemissaadinHaluttuunKohtaan(int kohta){
+    public void asetaEtenemissaadinHaluttuunKohtaan(int kohta) {
         etenemissaadin.setValue(kohta);
     }
-    
-//    timer = Timer(100, new ActionListener() {
-//
-//            public void actionPerformed(ActionEvent e) {
-//                tick();
-//            }
-//        });
-    
-    
+
     private void avaaSoittolista() {
         try {
             File tiedosto = avaaSoittolistaValitsija.getSelectedFile();
@@ -619,6 +633,22 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     private int valitunTiedostonIndeksi() {
         return soittolista.getSelectedIndex();
+    }
+
+    void tick() {
+        if (sovelluslogiikka.onkoKlippiAktiivinen()) {
+            sovelluslogiikka.tiedostonToistokohdanPaivittyminen();
+            etenemissaadin.setValue(sovelluslogiikka.getAudioPosition());
+        } else {
+            nollaa();
+        }
+    }
+
+    public void nollaa() {
+        asetaTauolle();
+        sovelluslogiikka.nollaaKlippi();
+        sovelluslogiikka.setAudioPosition(0);
+        etenemissaadin.setValue(0);
     }
 
     public static void main(String args[]) {

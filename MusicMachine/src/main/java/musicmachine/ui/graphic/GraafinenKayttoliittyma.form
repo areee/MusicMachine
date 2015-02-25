@@ -221,9 +221,6 @@
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="etenemissaadinStateChanged"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSlider(0, sovelluslogiikka.getAudioLength(), 0)"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="tilanOhjeteksti">
       <Properties>
