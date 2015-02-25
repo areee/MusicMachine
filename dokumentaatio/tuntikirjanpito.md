@@ -183,3 +183,10 @@
 	- tarkistettu uudelleen, että ohjelma toimii Macin lisäksi Ubuntulla
 	- projektiin lisätty testattavia äänitiedostoja
 	- paketteja uudelleennimetty
+
+## Tiistai 25.2.2015
+- Käytetty aika: h min (klo 10:41->)
+- Ajankäytön kohde:
+	- korjattu ValitseKayttoliittyma-luokassa ollut virheellinen import (bugi syntyi, kun refaktoroin pakettien nimiä)
+	- vaihdettu lopullisen projektin mukana tulevia äänitiedostoja (osittain tekijänoikeudellisista syistä)
+	- viilattu testejä toimiviksi -> projektin buildaus onnistuu jälleen

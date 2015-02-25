@@ -68,7 +68,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tiedostonToistokohta = new javax.swing.JLabel();
 
         lisaaMusatiedostoValitsija.setApproveButtonText("Lisää");
-        lisaaMusatiedostoValitsija.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        lisaaMusatiedostoValitsija.setCurrentDirectory(new File(System.getProperty("user.dir")+"/audio"));
         lisaaMusatiedostoValitsija.setDialogTitle("Lisää musiikkitiedosto...");
 
         avaaSoittolistaValitsija.setApproveButtonText("Avaa");
@@ -371,6 +371,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                     kestoMinuutteinaJaSekunteina(sovelluslogiikka.kestoSekunteina()));
             tiedostonToistokohta.setText(sovelluslogiikka.
                     kestoMinuutteinaJaSekunteina(sovelluslogiikka.tiedostonToistokohtaSekunteina()));
+            etenemissaadin.setValue(0);
         } catch (LineUnavailableException ex) {
             tilaTeksti.setText(virhe);
         } catch (UnsupportedAudioFileException ex) {

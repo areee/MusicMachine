@@ -31,8 +31,8 @@ public class SovelluslogiikkaTest {
             UnsupportedAudioFileException {
         tiedostopolku = "audio/Juna_kulkee.mid";
         tiedostonimi = "Juna_kulkee.mid";
-        uusiTiedostopolku = "audio/SND_4985.WAV";
-        uusiTiedostonimi = "SND_4985.WAV";
+        uusiTiedostopolku = "audio/complete.wav";
+        uusiTiedostonimi = "complete.wav";
         sovelluslogiikka = new Sovelluslogiikka();
         sovelluslogiikka.valitseTiedosto(tiedostopolku);
     }
@@ -62,7 +62,7 @@ public class SovelluslogiikkaTest {
     public void kestoTasmaaKunTiedostoVaihdettu() throws IOException,
             LineUnavailableException, UnsupportedAudioFileException {
         sovelluslogiikka.valitseTiedosto(uusiTiedostopolku);
-        assertEquals(10, sovelluslogiikka.kestoSekunteina());
+        assertEquals(0, sovelluslogiikka.kestoSekunteina());
     }
 
     @Test

@@ -43,9 +43,15 @@ public class MusiikkitiedostoTest {
     }
 
     @Test
-    public void tiedostonimenAsetusToimii() {
-        musiikkitiedosto.setTiedosto(new File("audio/SND_4985.WAV"));
-        assertEquals("SND_4985.WAV", musiikkitiedosto.getTiedosto().getName());
+    public void tiedostonimenAsetusNimiOikein() {
+        musiikkitiedosto.setTiedosto(new File("audio/complete.wav"));
+        assertEquals("complete.wav", musiikkitiedosto.getTiedosto().getName());
+    }
+    
+    @Test
+    public void tiedostonimenAsetusKestoOikein() {
+        musiikkitiedosto.setTiedosto(new File("audio/complete.wav"));
+        assertEquals(0, musiikkitiedosto.getKesto());
     }
 
     @Test

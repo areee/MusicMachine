@@ -32,7 +32,7 @@ public class TekstiKayttoliittyma {
 
         OUTER:
         while (true) {
-            System.out.println(valikko());
+            System.out.println(valikko(6));
             System.out.print(lukija);
             String komento = this.lukija.annaKomento();
 
@@ -113,15 +113,16 @@ public class TekstiKayttoliittyma {
     /**
      * Metodi, joka tulostaa päävalikon
      *
+     * @param montakoValikonKohtaa
      * @return palautettavaTeksti
      */
-    public String valikko() {
+    public String valikko(int montakoValikonKohtaa) {
         String nimi = "MusicMachine";
         String toiminnot = "Valitse toiminto:";
 
         String palautettavaTeksti = "*** " + nimi + " ***\n"
                 + toiminnot + "\n";
-        for (int i = 1; i <= 6; i++) {
+        for (int i = 1; i <= montakoValikonKohtaa; i++) {
             palautettavaTeksti += "  " + i + ") " + komennot(i) + "\n";
         }
         return palautettavaTeksti;
@@ -164,7 +165,7 @@ public class TekstiKayttoliittyma {
      * @return komennot(1) + "\n(valitse \"?\", jos haluat ohjeen):"
      */
     public String valitseMusiikkitiedosto() {
-        return komennot(1) + "\n(valitse \"?\", jos haluat ohjeen):";
+        return komennot(1) + "\n(syötä \"?\" tai [Enter], jos haluat ohjeen):";
     }
 
     /**
@@ -173,9 +174,12 @@ public class TekstiKayttoliittyma {
      * @return ohje musiikkitiedoston valitsemiseen
      */
     public String ohje() {
-        return "Anna tiedostonimi esim. muodossa\n"
-                + "\"audio/Havetkaa!.aif\"\n"
-                + "tai \"/Users/kayttajanimi/Music/tiedostonimi.mid\"";
+        return "\nLinuxia tai Macia käyttäessäsi anna tiedostopolku muodossa\n"
+                + "\"audio/tiedostonimi.tiedostomuoto\"\n"
+                + "(esimerkiksi \"audio/Havetkaa!.aif\").\n"
+                + "(Voit myös syöttää tiedostopolun muodossa\n"
+                + "\"/Users/kayttajanimi/kansio/tiedostonimi.tiedostomuoto\").\n"
+                + "Ohjelma tukee WAV, MIDI ja AIFF-tiedostoja.";
     }
 
     /**

@@ -2,7 +2,7 @@ package musicmachine.ui.text;
 
 import java.io.IOException;
 import musicmachine.logic.Lukija;
-import musicmachine.ui.graphicui.GraafinenKayttoliittyma;
+import musicmachine.ui.graphic.GraafinenKayttoliittyma;
 
 /**
  * Tekstikäyttöliittymä, jolla valitaan, halutaanko avata MusicMachinen
@@ -12,6 +12,9 @@ public class ValitseKayttoliittyma {
 
     private final Lukija lukija;
 
+    /**
+     * Asettaa lukijaksi uuden Lukija-luokan
+     */
     public ValitseKayttoliittyma() {
         lukija = new Lukija();
     }

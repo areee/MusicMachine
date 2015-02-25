@@ -18,6 +18,7 @@ public class Sovelluslogiikka {
     private boolean tiedostoValittu;
     private boolean tiedostoaToistetaan;
     private boolean luuppausPaalla;
+    int audioLength;
 
     public Sovelluslogiikka() {
         tiedostoAsetettu = false;
@@ -47,9 +48,10 @@ public class Sovelluslogiikka {
             klippi = (Clip) AudioSystem.getLine(info);
 
             klippi.open(audioInputStream);
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e1) {
-            e1.printStackTrace();
+        } finally {
+            audioInputStream.close();
         }
+        audioLength = (int) (klippi.getMicrosecondLength() / 1000);
     }
 
     /**
@@ -88,17 +90,6 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston keston sekunteina
-     *
-     * @return musiikkitiedoston kesto sekunteina
-     */
-    public int kestoSekunteina() {
-        AudioFormat format = audioInputStream.getFormat();
-        long frames = audioInputStream.getFrameLength();
-        return (int) ((frames + 0.0) / format.getFrameRate());
-    }
-
-    /**
      * Metodi palauttaa keston minuutteina ja sekunteina
      *
      * @param kestoSekunteina
@@ -117,6 +108,17 @@ public class Sovelluslogiikka {
         }
 
         return "00:" + kestoSekunteina;
+    }
+
+    /**
+     * Metodi palauttaa musiikkitiedoston keston sekunteina
+     *
+     * @return musiikkitiedoston kesto sekunteina
+     */
+    public int kestoSekunteina() {
+        AudioFormat format = audioInputStream.getFormat();
+        long frames = audioInputStream.getFrameLength();
+        return (int) ((frames + 0.0) / format.getFrameRate());
     }
 
     /**

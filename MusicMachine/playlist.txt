@@ -1,5 +1,8 @@
+/Users/ylhaart/MusicMachine/MusicMachine/audio/07. Latin.aif
+/Users/ylhaart/MusicMachine/MusicMachine/audio/Broadcast News Long.aif
+/Users/ylhaart/MusicMachine/MusicMachine/audio/Broadcast News Short.wav
 /Users/ylhaart/MusicMachine/MusicMachine/audio/complete.wav
 /Users/ylhaart/MusicMachine/MusicMachine/audio/Havetkaa!.aif
+/Users/ylhaart/MusicMachine/MusicMachine/audio/Hysteerinen biisi.mid
 /Users/ylhaart/MusicMachine/MusicMachine/audio/Juna_kulkee.mid
-/Users/ylhaart/MusicMachine/MusicMachine/audio/SND_4985.WAV
-/Users/ylhaart/MusicMachine/MusicMachine/audio/SND_4985_1.WAV
+/Users/ylhaart/MusicMachine/MusicMachine/audio/Teknokappale.mid
