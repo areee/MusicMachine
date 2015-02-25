@@ -14,18 +14,13 @@ public class Sovelluslogiikka {
     private AudioInputStream audioInputStream;
     private int alkukohta;
     private int loppukohta;
-    private boolean tiedostoAsetettu;
-    private boolean tiedostoValittu;
-    private boolean tiedostoaToistetaan;
-    private boolean luuppausPaalla;
-    int audioLength;
+    private boolean tiedostoAsetettu = false;
+    private boolean tiedostoValittu = false;
+    private boolean tiedostoaToistetaan = false;
+    private boolean luuppausPaalla = false;
 
-    public Sovelluslogiikka() {
-        tiedostoAsetettu = false;
-        tiedostoaToistetaan = false;
-        tiedostoValittu = false;
-        luuppausPaalla = false;
-    }
+    private int audioLength;
+    private int audioPosition = 0;
 
     /**
      * Metodi asettaa musiikkitiedoston toistovalmiuteen
@@ -37,11 +32,11 @@ public class Sovelluslogiikka {
      */
     public void valitseTiedosto(String merkkijono) throws IOException,
             LineUnavailableException, UnsupportedAudioFileException {
-        try {
-            musiikkitiedosto = new Musiikkitiedosto(merkkijono);
-            audioInputStream = AudioSystem.getAudioInputStream(
-                    musiikkitiedosto.getTiedosto());
 
+        musiikkitiedosto = new Musiikkitiedosto(merkkijono);
+        audioInputStream = AudioSystem.getAudioInputStream(
+                musiikkitiedosto.getTiedosto());
+        try {
             AudioFormat format = audioInputStream.getFormat();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
 
@@ -111,14 +106,33 @@ public class Sovelluslogiikka {
     }
 
     /**
+     * Metodi palauttaa musiikkitiedoston keston
+     *
+     * @return audioLength
+     */
+    public int getAudioLength() {
+        return audioLength;
+    }
+
+    /**
+     * Metodi palauttaa musiikkitiedoston nykyisen sijainnin
+     *
+     * @return audioPosition
+     */
+    public int getAudioPosition() {
+        return audioPosition;
+    }
+
+    /**
      * Metodi palauttaa musiikkitiedoston keston sekunteina
      *
      * @return musiikkitiedoston kesto sekunteina
      */
     public int kestoSekunteina() {
-        AudioFormat format = audioInputStream.getFormat();
-        long frames = audioInputStream.getFrameLength();
-        return (int) ((frames + 0.0) / format.getFrameRate());
+//        AudioFormat format = audioInputStream.getFormat();
+//        long frames = audioInputStream.getFrameLength();
+//         return (int) ((frames + 0.0) / format.getFrameRate());
+        return audioLength / 1000;
     }
 
     /**
@@ -250,13 +264,24 @@ public class Sovelluslogiikka {
      * @param kohtaProsentteina
      */
     public void asetaToistokohta(int kohtaProsentteina) {
+        if (kohtaProsentteina < 0 || kohtaProsentteina > audioLength) {
+            return;
+        }
+        
+        audioPosition = kohtaProsentteina;
+        
+        klippi.setMicrosecondPosition(kohtaProsentteina*1000);
+
 //        double kohtaDesimaalilukuna = kohtaProsentteina / 100;
 //        double uusiToistokohta = kohtaDesimaalilukuna * kestoSekunteina() * 1000000;
 //
 //        klippi.stop();
 //        klippi.setMicrosecondPosition((long) uusiToistokohta); // hieman epäselvää, miten toteuttaa
 //        klippi.start();
-        klippi.setMicrosecondPosition(kohtaProsentteina * 1000);
+        
+        
+        
+//        klippi.setMicrosecondPosition(kohtaProsentteina * 1000);
     }
 
     public boolean isTiedostoAsetettu() {

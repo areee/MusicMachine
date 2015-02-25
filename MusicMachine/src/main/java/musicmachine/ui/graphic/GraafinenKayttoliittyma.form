@@ -218,12 +218,12 @@
       </Events>
     </Component>
     <Component class="javax.swing.JSlider" name="etenemissaadin">
-      <Properties>
-        <Property name="value" type="int" value="0"/>
-      </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="etenemissaadinStateChanged"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSlider(0, sovelluslogiikka.getAudioLength(), 0)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="tilanOhjeteksti">
       <Properties>
@@ -340,14 +340,14 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="tiedostonKokonaiskesto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="--:--"/>
-      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel(&quot;--:--&quot;)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="tiedostonToistokohta">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="--:--"/>
-      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel(&quot;--:--&quot;)"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

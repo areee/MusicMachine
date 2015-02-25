@@ -1,5 +1,7 @@
 package musicmachine.ui.graphic;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +13,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import musicmachine.logic.Sovelluslogiikka;
 
@@ -24,6 +27,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private final String epaonnistui;
     private final DefaultListModel<String> listamalli;
     private int indeksi;
+    private Timer timer;
 
     /**
      * Määrittelee graafisen käyttöliittymän muuttujat
@@ -36,7 +40,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         listamalli = new DefaultListModel();
         soittolista.setModel(listamalli);
         indeksi = -1;
-
     }
 
     @SuppressWarnings("unchecked")
@@ -50,7 +53,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         toistaPainike = new javax.swing.JButton();
         pysaytaPainike = new javax.swing.JButton();
         taukoPainike = new javax.swing.JButton();
-        etenemissaadin = new javax.swing.JSlider();
+        etenemissaadin = new javax.swing.JSlider(0, sovelluslogiikka.getAudioLength(), 0);
         tilanOhjeteksti = new javax.swing.JLabel();
         tilaTeksti = new javax.swing.JLabel();
         rullausPaneeli = new javax.swing.JScrollPane();
@@ -64,8 +67,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         avaaSoittolistaPainike = new javax.swing.JButton();
         tyhjennaSoittolista = new javax.swing.JButton();
         luuppiCheckBox = new javax.swing.JCheckBox();
-        tiedostonKokonaiskesto = new javax.swing.JLabel();
-        tiedostonToistokohta = new javax.swing.JLabel();
+        tiedostonKokonaiskesto = new javax.swing.JLabel("--:--");
+        tiedostonToistokohta = new javax.swing.JLabel("--:--");
 
         lisaaMusatiedostoValitsija.setApproveButtonText("Lisää");
         lisaaMusatiedostoValitsija.setCurrentDirectory(new File(System.getProperty("user.dir")+"/audio"));
@@ -123,7 +126,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             }
         });
 
-        etenemissaadin.setValue(0);
         etenemissaadin.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 etenemissaadinStateChanged(evt);
@@ -201,10 +203,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                 luuppiCheckBoxActionPerformed(evt);
             }
         });
-
-        tiedostonKokonaiskesto.setText("--:--");
-
-        tiedostonToistokohta.setText("--:--");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -536,18 +534,41 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     private void etenemissaadinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_etenemissaadinStateChanged
         if (!etenemissaadin.getValueIsAdjusting()) {
-            try {
-                int valittuKohta = etenemissaadin.getValue();
+//            try {
+            int valittuKohta = etenemissaadin.getValue();
+
+            tiedostonToistokohta.setText(valittuKohta / 1000 + "." + (valittuKohta % 1000) / 100);
+
+            if (valittuKohta != sovelluslogiikka.getAudioPosition()) {
                 sovelluslogiikka.asetaToistokohta(valittuKohta);
-                tiedostonToistokohta.setText(sovelluslogiikka.
-                        kestoMinuutteinaJaSekunteina(sovelluslogiikka.
-                                tiedostonToistokohtaSekunteina()));
-            } catch (IOException ex) {
-                Logger.getLogger(GraafinenKayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+//                sovelluslogiikka.asetaToistokohta(valittuKohta);
+//                tiedostonToistokohta.setText(sovelluslogiikka.
+//                        kestoMinuutteinaJaSekunteina(sovelluslogiikka.
+//                                tiedostonToistokohtaSekunteina()));
+//            } catch (IOException ex) {
+//                Logger.getLogger(GraafinenKayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
     }//GEN-LAST:event_etenemissaadinStateChanged
-
+    
+    /**
+     * Metodi asettaa etenemissäätimen haluttuun kohtaan
+     * @param kohta 
+     */
+    public void asetaEtenemissaadinHaluttuunKohtaan(int kohta){
+        etenemissaadin.setValue(kohta);
+    }
+    
+//    timer = Timer(100, new ActionListener() {
+//
+//            public void actionPerformed(ActionEvent e) {
+//                tick();
+//            }
+//        });
+    
+    
     private void avaaSoittolista() {
         try {
             File tiedosto = avaaSoittolistaValitsija.getSelectedFile();

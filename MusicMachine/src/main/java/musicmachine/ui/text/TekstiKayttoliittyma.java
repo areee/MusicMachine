@@ -178,7 +178,7 @@ public class TekstiKayttoliittyma {
                 + "\"audio/tiedostonimi.tiedostomuoto\"\n"
                 + "(esimerkiksi \"audio/Havetkaa!.aif\").\n"
                 + "(Voit myös syöttää tiedostopolun muodossa\n"
-                + "\"/Users/kayttajanimi/kansio/tiedostonimi.tiedostomuoto\").\n"
+                + "\"/Users/kayttajanimi/kansio/tiedostonimi.tiedostomuoto\".)\n"
                 + "Ohjelma tukee WAV, MIDI ja AIFF-tiedostoja.";
     }
 

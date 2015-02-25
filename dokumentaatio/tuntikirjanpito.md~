@@ -185,7 +185,7 @@
 	- paketteja uudelleennimetty
 
 ## Tiistai 25.2.2015
-- Käytetty aika: 4 h 3 min
+- Käytetty aika: 4 h 1 min (+ klo 14:15->16:15)
 - Ajankäytön kohde:
 	- korjattu ValitseKayttoliittyma-luokassa ollut virheellinen import (bugi syntyi, kun refaktoroin pakettien nimiä)
 	- vaihdettu lopullisen projektin mukana tulevia äänitiedostoja (osittain tekijänoikeudellisista syistä)
