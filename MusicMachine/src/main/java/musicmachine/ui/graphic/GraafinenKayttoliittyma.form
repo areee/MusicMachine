@@ -80,7 +80,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="etenemissaadin" alignment="0" max="32767" attributes="0"/>
+          <Component id="progress" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="rullausPaneeli" max="32767" attributes="0"/>
@@ -107,13 +107,13 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="tiedostonToistokohta" min="-2" max="-2" attributes="0"/>
+                      <Component id="time" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="kelaaTaaksepainPainike" min="-2" pref="54" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="toistaPainike" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="play" min="-2" pref="53" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="kelaaEteenpainPainike" min="-2" pref="54" max="-2" attributes="0"/>
                           </Group>
@@ -163,17 +163,17 @@
                   </Group>
               </Group>
               <EmptySpace pref="28" max="32767" attributes="0"/>
-              <Component id="etenemissaadin" min="-2" max="-2" attributes="0"/>
+              <Component id="progress" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pysaytaPainike" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="taukoPainike" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="tiedostonToistokohta" min="-2" max="-2" attributes="0"/>
+                  <Component id="time" min="-2" max="-2" attributes="0"/>
                   <Component id="tiedostonKokonaiskesto" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="toistaPainike" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="play" min="-2" pref="58" max="-2" attributes="0"/>
                   <Component id="kelaaTaaksepainPainike" alignment="1" min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="kelaaEteenpainPainike" alignment="0" min="-2" pref="57" max="-2" attributes="0"/>
               </Group>
@@ -184,15 +184,13 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="toistaPainike">
+    <Component class="javax.swing.JButton" name="play">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/Play-painike.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="&#x25b6;"/>
         <Property name="toolTipText" type="java.lang.String" value="Toista"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toistaPainikeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="playActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="pysaytaPainike">
@@ -217,9 +215,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="taukoPainikeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JSlider" name="etenemissaadin">
+    <Component class="javax.swing.JSlider" name="progress">
       <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="etenemissaadinStateChanged"/>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="progressStateChanged"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="tilanOhjeteksti">
@@ -341,7 +339,7 @@
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel(&quot;--:--&quot;)"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="tiedostonToistokohta">
+    <Component class="javax.swing.JLabel" name="time">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel(&quot;--:--&quot;)"/>
       </AuxValues>

@@ -184,7 +184,7 @@
 	- projektiin lisätty testattavia äänitiedostoja
 	- paketteja uudelleennimetty
 
-## Tiistai 25.2.2015
+## Keskiviikko 25.2.2015
 - Käytetty aika: 5 h 47 min
 - Ajankäytön kohde:
 	- korjattu ValitseKayttoliittyma-luokassa ollut virheellinen import (bugi syntyi, kun refaktoroin pakettien nimiä)
@@ -192,3 +192,10 @@
 	- viilattu testejä toimiviksi -> projektin buildaus onnistuu jälleen
 	- pieniä viilauksia teksikäyttöliittymään
 	- aloitettu sovelluslogiikan + graafisen käyttöliittymän nykyisen toistokohdan päivittymisen lisääminen (sekä säätimen että aikatekstin osalta)
+
+
+## Torstai 25.2.2015
+- Käytetty aika: 1 h 10 min
+- Ajankäytön kohde:
+	- nykyisen toistokohdan päivittymistä säädetty
+	- toista-painike osaa toistamisen lisäksi asettaa musiikkitiedoston tauolle (erillisestä tauko-painikkeesta tulee tarpeeton)

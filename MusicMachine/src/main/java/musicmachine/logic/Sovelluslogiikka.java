@@ -10,13 +10,13 @@ import javax.sound.sampled.*;
 public class Sovelluslogiikka {
 
     private Musiikkitiedosto musiikkitiedosto;
-    private Clip klippi;
+    private Clip clip;
     private AudioInputStream audioInputStream;
     private int alkukohta;
     private int loppukohta;
     private boolean tiedostoAsetettu = false;
     private boolean tiedostoValittu = false;
-    private boolean tiedostoaToistetaan = false;
+    private boolean playing = false;
     private boolean luuppausPaalla = false;
 
     private int audioLength;
@@ -40,13 +40,13 @@ public class Sovelluslogiikka {
             AudioFormat format = audioInputStream.getFormat();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
 
-            klippi = (Clip) AudioSystem.getLine(info);
+            clip = (Clip) AudioSystem.getLine(info);
 
-            klippi.open(audioInputStream);
+            clip.open(audioInputStream);
         } finally {
             audioInputStream.close();
         }
-        audioLength = (int) (klippi.getMicrosecondLength() / 1000);
+        audioLength = (int) (clip.getMicrosecondLength() / 1000);
     }
 
     /**
@@ -56,14 +56,14 @@ public class Sovelluslogiikka {
      * @throws java.io.IOException
      */
     public void toista() throws LineUnavailableException, IOException {
-        klippi.start();
+        clip.start();
     }
 
     /**
      * Metodi asettaa musiikkitiedoston tauolle
      */
     public void tauko() {
-        klippi.stop();
+        clip.stop();
     }
 
     /**
@@ -72,7 +72,7 @@ public class Sovelluslogiikka {
      * @throws java.io.IOException
      */
     public void lopeta() throws IOException {
-        klippi.close();
+        clip.close();
     }
 
     /**
@@ -146,7 +146,7 @@ public class Sovelluslogiikka {
      * @throws IOException
      */
     public int tiedostonToistokohtaSekunteina() throws IOException {
-        return (int) klippi.getMicrosecondPosition() / 1000000;
+        return (int) clip.getMicrosecondPosition() / 1000000;
     }
 
     /**
@@ -207,7 +207,7 @@ public class Sovelluslogiikka {
      * @throws java.io.IOException
      */
     public void luuppaa() throws LineUnavailableException, IOException {
-        klippi.loop(Clip.LOOP_CONTINUOUSLY);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     /**
@@ -215,7 +215,7 @@ public class Sovelluslogiikka {
      * uudelleen
      */
     public void lopetaLuuppaaminen() {
-        klippi.loop(0);
+        clip.loop(0);
     }
 
     /**
@@ -223,7 +223,7 @@ public class Sovelluslogiikka {
      * "musiikkikappaleen pituudenmuokkaustoiminto")
      */
     public void asetaToistokohdat() {
-        klippi.setLoopPoints(getAlkukohta(), getLoppukohta());
+        clip.setLoopPoints(getAlkukohta(), getLoppukohta());
     }
 
     /**
@@ -265,16 +265,16 @@ public class Sovelluslogiikka {
     /**
      * Metodi asettaa musiikkikappaleen toistokohdan halutuksi
      *
-     * @param kohtaProsentteina
+     * @param position
      */
-    public void asetaToistokohta(int kohtaProsentteina) {
-        if (kohtaProsentteina < 0 || kohtaProsentteina > audioLength) {
-            return;
+    public int asetaToistokohta(int position) {
+        if (position < 0 || position > audioLength) {
+            return -1; //return
         }
-
-        audioPosition = kohtaProsentteina;
-
-        klippi.setMicrosecondPosition(kohtaProsentteina * 1000);
+        audioPosition = position;
+        clip.setMicrosecondPosition(position * 1000);
+        
+        return position;
 
 //        double kohtaDesimaalilukuna = kohtaProsentteina / 100;
 //        double uusiToistokohta = kohtaDesimaalilukuna * kestoSekunteina() * 1000000;
@@ -302,11 +302,11 @@ public class Sovelluslogiikka {
     }
 
     public boolean isTiedostoaToistetaan() {
-        return tiedostoaToistetaan;
+        return playing;
     }
 
     public void setTiedostoaToistetaan(boolean tiedostoaToistetaan) {
-        this.tiedostoaToistetaan = tiedostoaToistetaan;
+        this.playing = tiedostoaToistetaan;
     }
 
     public boolean isLuuppausPaalla() {
@@ -318,15 +318,15 @@ public class Sovelluslogiikka {
     }
 
     public boolean onkoKlippiAktiivinen() {
-        return klippi.isActive();
+        return clip.isActive();
     }
 
     public void tiedostonToistokohdanPaivittyminen() {
-        audioPosition = (int) (klippi.getMicrosecondPosition() / 1000);
+        audioPosition = (int) (clip.getMicrosecondPosition() / 1000);
     }
 
     public void nollaaKlippi() {
-        klippi.setMicrosecondPosition(0);
+        clip.setMicrosecondPosition(0);
     }
 
 }
