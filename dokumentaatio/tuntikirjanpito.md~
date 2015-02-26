@@ -195,7 +195,7 @@
 
 
 ## Torstai 25.2.2015
-- Käytetty aika: 4 h 45 min
+- Käytetty aika: 6 h 38 min
 - Ajankäytön kohde:
 	- nykyisen toistokohdan päivittymistä säädetty
 	- toista-painike osaa toistamisen lisäksi asettaa musiikkitiedoston tauolle, erillinen tauko-painike poistettu
@@ -204,3 +204,7 @@
 	- lisätty metodeihin JavaDoceja
 	- hienosäädetty toistokohdan valitsemissäädintä
 	- luotu testausdokumentti, aloitettu manuaalinen testaus
+	- hienosäädetty nykyisen toistokohdan aikatekstiä: nolla numeron eteen, jos luku on alle 10
+	- hienosäädetty kelausta
+	- päivitetty testaus- ja aiheenKuvausJaRakenne -dokumentteja
+	- päivitetty JavaDoc- sekä checkstyle- ja pit-raportit

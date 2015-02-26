@@ -12,8 +12,6 @@ public class Sovelluslogiikka {
     private Musiikkitiedosto musiikkitiedosto;
     private Clip klippi;
     private AudioInputStream audioInputStream;
-    private int alkukohta;
-    private int loppukohta;
     private boolean tiedostoAsetettu = false;
     private boolean tiedostoValittu = false;
     private boolean tiedostoaToistetaan = false;
@@ -91,18 +89,30 @@ public class Sovelluslogiikka {
      * @return äänitiedoston kesto minuutteina ja sekunteina
      */
     public String kestoMinuutteinaJaSekunteina(int kestoSekunteina) {
+        String palautettavaArvo = "";
+
         if (kestoSekunteina >= 60) {
 
             int minuutit = kestoSekunteina / 60;
             int sekunnit = kestoSekunteina % 60;
 
-            return minuutit + ":" + sekunnit;
+            if (minuutit < 10) {
+                palautettavaArvo += "0" + minuutit;
+            } else {
+                palautettavaArvo += minuutit;
+            }
+            if (sekunnit < 10) {
+                palautettavaArvo += ":0" + sekunnit;
+            } else {
+                palautettavaArvo += ":" + sekunnit;
+            }
 
         } else if (kestoSekunteina < 10) {
-            return "00:0" + kestoSekunteina;
+            palautettavaArvo += "00:0" + kestoSekunteina;
+        } else {
+            palautettavaArvo += "00:" + kestoSekunteina;
         }
-
-        return "00:" + kestoSekunteina;
+        return palautettavaArvo;
     }
 
     /**
@@ -138,9 +148,6 @@ public class Sovelluslogiikka {
      * @return äänitiedoston kesto sekunteina
      */
     public int kestoSekunteina() {
-//        AudioFormat format = audioInputStream.getFormat();
-//        long frames = audioInputStream.getFrameLength();
-//         return (int) ((frames + 0.0) / format.getFrameRate());
         return aanitiedostonKesto / 1000;
     }
 
@@ -181,95 +188,10 @@ public class Sovelluslogiikka {
         this.musiikkitiedosto = musiikkitiedosto;
     }
 
-//    /**
-//     * Metodi kelaa kappaletta 50 bittiä eteenpäin (ei toimi)
-//     *
-//     * @throws IOException
-//     * @throws javax.sound.sampled.LineUnavailableException
-//     */
-//    public void kelaaEteenpain() throws IOException, LineUnavailableException {
-//        tauko();
-//        audioInputStream.skip(100000);
-//        toista();
-//    }
-//    /**
-//     * Metodi kelaa kappaletta 50 bittiä taaksepäin (ei toimi vielä oikein...)
-//     *
-//     * @throws IOException
-//     * @throws javax.sound.sampled.LineUnavailableException
-//     */
-//    public void kelaaTaaksepain() throws IOException, LineUnavailableException {
-//        tauko();
-//        audioInputStream.skip(-100000);
-//        toista();
-//    }
-    /**
-     * Metodi toistaa musiikkikappaleen alusta uudelleen (= "luuppaa")
-     *
-     * @throws javax.sound.sampled.LineUnavailableException
-     * @throws java.io.IOException
-     */
-    public void luuppaa() throws LineUnavailableException, IOException {
-        klippi.loop(Clip.LOOP_CONTINUOUSLY);
-    }
-
-    /**
-     * Metodi lopettaa "luuppaamisen", eli musiikkikappaleen toiston alusta
-     * uudelleen
-     */
-    public void lopetaLuuppaaminen() {
-        klippi.loop(0);
-    }
-
-    /**
-     * Metodi asettaa musiikkikappaleeseen luupattavan kohdan (=
-     * "musiikkikappaleen pituudenmuokkaustoiminto")
-     */
-    public void asetaToistokohdat() {
-        klippi.setLoopPoints(getAlkukohta(), getLoppukohta());
-    }
-
-    /**
-     * Metodi palauttaa musiikkikappaleen alkukohdan
-     *
-     * @return alkukohta
-     */
-    public int getAlkukohta() {
-        return alkukohta;
-    }
-
-    /**
-     * Metodi asettaa musiikkikappaleen alkukohdan
-     *
-     * @param alkukohta
-     */
-    public void setAlkukohta(int alkukohta) {
-        this.alkukohta = alkukohta;
-    }
-
-    /**
-     * Metodi palauttaa musiikkikappaleen loppukohdan
-     *
-     * @return loppukohta
-     */
-    public int getLoppukohta() {
-        return loppukohta;
-    }
-
-    /**
-     * Metodi asettaa musiikkikappaleen loppukohdan
-     *
-     * @param loppukohta
-     */
-    public void setLoppukohta(int loppukohta) {
-        this.loppukohta = loppukohta;
-    }
-
     /**
      * Metodi asettaa musiikkikappaleen toistokohdan halutuksi
      *
      * @param sijainti
-     * @return sijainti
      */
     public void asetaToistokohta(int sijainti) {
         if (sijainti < 0 || sijainti > aanitiedostonKesto) {
@@ -373,5 +295,4 @@ public class Sovelluslogiikka {
     public void nollaaKlippi() {
         klippi.setMicrosecondPosition(0);
     }
-
 }

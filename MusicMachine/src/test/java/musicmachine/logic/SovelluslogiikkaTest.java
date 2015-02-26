@@ -82,28 +82,6 @@ public class SovelluslogiikkaTest {
     }
 
     @Test
-    public void alkukohtaToimii() {
-        assertEquals(0, sovelluslogiikka.getAlkukohta());
-    }
-
-    @Test
-    public void loppukohtaToimii() {
-        assertEquals(0, sovelluslogiikka.getLoppukohta());
-    }
-
-    @Test
-    public void alkukohdanAsetusToimii() {
-        sovelluslogiikka.setAlkukohta(5);
-        assertEquals(5, sovelluslogiikka.getAlkukohta());
-    }
-
-    @Test
-    public void loppukohdanAsetusToimii() {
-        sovelluslogiikka.setLoppukohta(5);
-        assertEquals(5, sovelluslogiikka.getLoppukohta());
-    }
-
-    @Test
     public void luuppausEiPaalla() {
         assertFalse(sovelluslogiikka.isLuuppausPaalla());
     }
@@ -161,7 +139,7 @@ public class SovelluslogiikkaTest {
 
     @Test
     public void tiedostonKestoMinuuteissaJaSekunneissaTasmaa() {
-        assertEquals("2:25", sovelluslogiikka.kestoMinuutteinaJaSekunteina(
+        assertEquals("02:25", sovelluslogiikka.kestoMinuutteinaJaSekunteina(
                 sovelluslogiikka.kestoSekunteina()));
     }
 }

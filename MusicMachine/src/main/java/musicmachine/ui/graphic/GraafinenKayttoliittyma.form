@@ -114,7 +114,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="luuppiValintalaatikko" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="toistoPainike" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="toistaPainike" min="-2" pref="53" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="pysaytaPainike" min="-2" pref="53" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -171,7 +171,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                              <Component id="toistoPainike" min="-2" pref="58" max="-2" attributes="0"/>
+                              <Component id="toistaPainike" min="-2" pref="58" max="-2" attributes="0"/>
                               <Component id="kelaaTaaksepainPainike" alignment="1" min="-2" pref="55" max="-2" attributes="0"/>
                               <Component id="kelaaEteenpainPainike" alignment="0" min="-2" pref="57" max="-2" attributes="0"/>
                           </Group>
@@ -185,13 +185,13 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="toistoPainike">
+    <Component class="javax.swing.JButton" name="toistaPainike">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x25b6;"/>
         <Property name="toolTipText" type="java.lang.String" value="Toista"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toistoPainikeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toistaPainikeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="pysaytaPainike">
@@ -200,6 +200,7 @@
           <Image iconType="3" name="/icons/Stop-painike_suurempi.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Pys&#xe4;yt&#xe4;"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pysaytaPainikeActionPerformed"/>
@@ -280,8 +281,10 @@
           <Image iconType="3" name="/icons/Ff-painike.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Kelaa eteenp&#xe4;in"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="kelaaEteenpainPainikeMousePressed"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kelaaEteenpainPainikeActionPerformed"/>
       </Events>
     </Component>
@@ -291,8 +294,10 @@
           <Image iconType="3" name="/icons/Rew-painike.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Kelaa taaksep&#xe4;in"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="kelaaTaaksepainPainikeMousePressed"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kelaaTaaksepainPainikeActionPerformed"/>
       </Events>
     </Component>

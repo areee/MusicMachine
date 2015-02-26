@@ -1,4 +1,4 @@
 musicmachine
 musicmachine.logic
-musicmachine.ui.graphicUI
-musicmachine.ui.textUI
+musicmachine.ui.graphic
+musicmachine.ui.text
