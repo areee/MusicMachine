@@ -13,6 +13,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JSlider;
 import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import musicmachine.logic.Sovelluslogiikka;
 
@@ -377,15 +379,16 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         try {
             sovelluslogiikka.valitseTiedosto(tiedostopolku);
             sovelluslogiikka.setTiedostoAsetettu(true);
-//            tiedostonKokonaiskesto.setText(sovelluslogiikka.
-//                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.kestoSekunteina()));
+            tiedostonKokonaiskesto.setText(sovelluslogiikka.
+                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.kestoSekunteina()));
 //            tiedostonToistokohta.setText(sovelluslogiikka.
 //                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.tiedostonToistokohtaSekunteina()));
 //            etenemissaadin.setValue(0);
 
             //uutta koodia:
-            progress.removeAll();
-            progress = new JSlider(0, sovelluslogiikka.getAudioLength(), 0);
+            progress.setMinimum(0);
+            progress.setMaximum(sovelluslogiikka.getAudioLength());
+            progress.setValue(0);
 
         } catch (LineUnavailableException ex) {
             tilaTeksti.setText(virhe);
@@ -639,7 +642,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     void tick() {
         if (sovelluslogiikka.onkoKlippiAktiivinen()) {
-            System.out.println(timer.getDelay()); //testaukseen
             sovelluslogiikka.tiedostonToistokohdanPaivittyminen();
             progress.setValue(sovelluslogiikka.getAudioPosition());
         } else {

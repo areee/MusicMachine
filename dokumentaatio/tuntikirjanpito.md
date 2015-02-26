@@ -195,7 +195,8 @@
 
 
 ## Torstai 25.2.2015
-- Käytetty aika: 1 h 30 min
+- Käytetty aika: 1 h 45 min
 - Ajankäytön kohde:
 	- nykyisen toistokohdan päivittymistä säädetty
 	- toista-painike osaa toistamisen lisäksi asettaa musiikkitiedoston tauolle (erillisestä tauko-painikkeesta tulee tarpeeton)
+	- muokattu toistokohdan valitsemissäädin toimivaksi
