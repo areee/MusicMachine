@@ -384,6 +384,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 //            etenemissaadin.setValue(0);
 
             //uutta koodia:
+            progress.removeAll();
             progress = new JSlider(0, sovelluslogiikka.getAudioLength(), 0);
 
         } catch (LineUnavailableException ex) {
@@ -638,6 +639,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
 
     void tick() {
         if (sovelluslogiikka.onkoKlippiAktiivinen()) {
+            System.out.println(timer.getDelay()); //testaukseen
             sovelluslogiikka.tiedostonToistokohdanPaivittyminen();
             progress.setValue(sovelluslogiikka.getAudioPosition());
         } else {
