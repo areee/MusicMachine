@@ -10,20 +10,20 @@ import javax.sound.sampled.*;
 public class Sovelluslogiikka {
 
     private Musiikkitiedosto musiikkitiedosto;
-    private Clip clip;
+    private Clip klippi;
     private AudioInputStream audioInputStream;
     private int alkukohta;
     private int loppukohta;
     private boolean tiedostoAsetettu = false;
     private boolean tiedostoValittu = false;
-    private boolean playing = false;
+    private boolean tiedostoaToistetaan = false;
     private boolean luuppausPaalla = false;
 
-    private int audioLength;
-    private int audioPosition = 0;
+    private int aanitiedostonKesto;
+    private int aanenSijainti = 0;
 
     /**
-     * Metodi asettaa musiikkitiedoston toistovalmiuteen
+     * Metodi asettaa äänitiedoston toistovalmiiksi
      *
      * @param merkkijono käyttäjän antama syöte
      * @throws java.io.IOException
@@ -40,45 +40,45 @@ public class Sovelluslogiikka {
             AudioFormat format = audioInputStream.getFormat();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
 
-            clip = (Clip) AudioSystem.getLine(info);
+            klippi = (Clip) AudioSystem.getLine(info);
 
-            clip.open(audioInputStream);
+            klippi.open(audioInputStream);
         } finally {
             audioInputStream.close();
         }
-        audioLength = (int) (clip.getMicrosecondLength() / 1000);
+        aanitiedostonKesto = (int) (klippi.getMicrosecondLength() / 1000);
     }
 
     /**
-     * Metodi laittaa musiikkitiedoston soimaan
+     * Metodi laittaa äänitiedoston soimaan
      *
      * @throws javax.sound.sampled.LineUnavailableException
      * @throws java.io.IOException
      */
     public void toista() throws LineUnavailableException, IOException {
-        clip.start();
+        klippi.start();
     }
 
     /**
-     * Metodi asettaa musiikkitiedoston tauolle
+     * Metodi asettaa äänitiedoston tauolle
      */
     public void tauko() {
-        clip.stop();
+        klippi.stop();
     }
 
     /**
-     * Metodi lopettaa musiikkitiedoston toistamisen
+     * Metodi lopettaa äänitiedoston toistamisen
      *
      * @throws java.io.IOException
      */
     public void lopeta() throws IOException {
-        clip.close();
+        klippi.close();
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston tiedostopolun
+     * Metodi palauttaa äänitiedoston tiedostopolun
      *
-     * @return musiikkitiedoston tiedostopolku
+     * @return äänitiedoston tiedostopolku
      */
     public String tiedostopolku() {
         return this.musiikkitiedosto.getTiedosto().getAbsolutePath();
@@ -88,7 +88,7 @@ public class Sovelluslogiikka {
      * Metodi palauttaa keston minuutteina ja sekunteina
      *
      * @param kestoSekunteina
-     * @return musiikkitiedoston kesto minuutteina ja sekunteina
+     * @return äänitiedoston kesto minuutteina ja sekunteina
      */
     public String kestoMinuutteinaJaSekunteina(int kestoSekunteina) {
         if (kestoSekunteina >= 60) {
@@ -106,51 +106,56 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston keston
+     * Metodi palauttaa äänitiedoston keston
      *
-     * @return audioLength
+     * @return aanitiedostonKesto
      */
-    public int getAudioLength() {
-        return audioLength;
+    public int getAanitiedostonKesto() {
+        return aanitiedostonKesto;
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston nykyisen sijainnin
+     * Metodi palauttaa äänitiedoston nykyisen sijainnin
      *
-     * @return audioPosition
+     * @return aanenSijainti
      */
-    public int getAudioPosition() {
-        return audioPosition;
-    }
-
-    public void setAudioPosition(int audioPosition) {
-        this.audioPosition = audioPosition;
+    public int getAanenSijainti() {
+        return aanenSijainti;
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston keston sekunteina
+     * Metodi asettaa äänitiedostolle uuden sijainnin
      *
-     * @return musiikkitiedoston kesto sekunteina
+     * @param aanenSijainti
+     */
+    public void setAanenSijainti(int aanenSijainti) {
+        this.aanenSijainti = aanenSijainti;
+    }
+
+    /**
+     * Metodi palauttaa äänitiedoston keston sekunteina
+     *
+     * @return äänitiedoston kesto sekunteina
      */
     public int kestoSekunteina() {
 //        AudioFormat format = audioInputStream.getFormat();
 //        long frames = audioInputStream.getFrameLength();
 //         return (int) ((frames + 0.0) / format.getFrameRate());
-        return audioLength / 1000;
+        return aanitiedostonKesto / 1000;
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston toistokohdan sekunteina
+     * Metodi palauttaa äänitiedoston toistokohdan sekunteina
      *
      * @return tiedoston toistokohta sekunteina (ei toimi vielä...)
      * @throws IOException
      */
     public int tiedostonToistokohtaSekunteina() throws IOException {
-        return (int) clip.getMicrosecondPosition() / 1000000;
+        return (int) klippi.getMicrosecondPosition() / 1000000;
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston tiedostonimen
+     * Metodi palauttaa äänitiedoston tiedostonimen
      *
      * @return tiedostonimi
      */
@@ -159,7 +164,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi palauttaa musiikkitiedoston
+     * Metodi palauttaa äänitiedoston
      *
      * @return musiikkitiedosto
      */
@@ -168,7 +173,7 @@ public class Sovelluslogiikka {
     }
 
     /**
-     * Metodi asettaa musiikkitiedoston
+     * Metodi asettaa äänitiedoston
      *
      * @param musiikkitiedosto
      */
@@ -176,30 +181,28 @@ public class Sovelluslogiikka {
         this.musiikkitiedosto = musiikkitiedosto;
     }
 
-    /**
-     * Metodi kelaa kappaletta 50 bittiä eteenpäin
-     *
-     * @throws IOException
-     * @throws javax.sound.sampled.LineUnavailableException
-     */
-    public void kelaaEteenpain() throws IOException, LineUnavailableException {
-        tauko();
-        audioInputStream.skip(100000);
-        toista();
-    }
-
-    /**
-     * Metodi kelaa kappaletta 50 bittiä taaksepäin (ei toimi vielä oikein...)
-     *
-     * @throws IOException
-     * @throws javax.sound.sampled.LineUnavailableException
-     */
-    public void kelaaTaaksepain() throws IOException, LineUnavailableException {
-        tauko();
-        audioInputStream.skip(-100000);
-        toista();
-    }
-
+//    /**
+//     * Metodi kelaa kappaletta 50 bittiä eteenpäin (ei toimi)
+//     *
+//     * @throws IOException
+//     * @throws javax.sound.sampled.LineUnavailableException
+//     */
+//    public void kelaaEteenpain() throws IOException, LineUnavailableException {
+//        tauko();
+//        audioInputStream.skip(100000);
+//        toista();
+//    }
+//    /**
+//     * Metodi kelaa kappaletta 50 bittiä taaksepäin (ei toimi vielä oikein...)
+//     *
+//     * @throws IOException
+//     * @throws javax.sound.sampled.LineUnavailableException
+//     */
+//    public void kelaaTaaksepain() throws IOException, LineUnavailableException {
+//        tauko();
+//        audioInputStream.skip(-100000);
+//        toista();
+//    }
     /**
      * Metodi toistaa musiikkikappaleen alusta uudelleen (= "luuppaa")
      *
@@ -207,7 +210,7 @@ public class Sovelluslogiikka {
      * @throws java.io.IOException
      */
     public void luuppaa() throws LineUnavailableException, IOException {
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        klippi.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     /**
@@ -215,7 +218,7 @@ public class Sovelluslogiikka {
      * uudelleen
      */
     public void lopetaLuuppaaminen() {
-        clip.loop(0);
+        klippi.loop(0);
     }
 
     /**
@@ -223,7 +226,7 @@ public class Sovelluslogiikka {
      * "musiikkikappaleen pituudenmuokkaustoiminto")
      */
     public void asetaToistokohdat() {
-        clip.setLoopPoints(getAlkukohta(), getLoppukohta());
+        klippi.setLoopPoints(getAlkukohta(), getLoppukohta());
     }
 
     /**
@@ -265,68 +268,110 @@ public class Sovelluslogiikka {
     /**
      * Metodi asettaa musiikkikappaleen toistokohdan halutuksi
      *
-     * @param position
+     * @param sijainti
+     * @return sijainti
      */
-    public int asetaToistokohta(int position) {
-        if (position < 0 || position > audioLength) {
-            return -1; //return
+    public void asetaToistokohta(int sijainti) {
+        if (sijainti < 0 || sijainti > aanitiedostonKesto) {
+            return;
         }
-        audioPosition = position;
-        clip.setMicrosecondPosition(position * 1000);
-        
-        return position;
-
-//        double kohtaDesimaalilukuna = kohtaProsentteina / 100;
-//        double uusiToistokohta = kohtaDesimaalilukuna * kestoSekunteina() * 1000000;
-//
-//        klippi.stop();
-//        klippi.setMicrosecondPosition((long) uusiToistokohta); // hieman epäselvää, miten toteuttaa
-//        klippi.start();
-//        klippi.setMicrosecondPosition(kohtaProsentteina * 1000);
+        aanenSijainti = sijainti;
+        klippi.setMicrosecondPosition(sijainti * 1000);
     }
 
+    /**
+     * Metodi palauttaa, onko tiedosto asetettu (true tai false)
+     *
+     * @return tiedostoAsetettu
+     */
     public boolean isTiedostoAsetettu() {
         return tiedostoAsetettu;
     }
 
+    /**
+     * Metodi muuttaa tiedostoAsetettu-muuttujan boolean-arvoa
+     *
+     * @param tiedostoAsetettu
+     */
     public void setTiedostoAsetettu(boolean tiedostoAsetettu) {
         this.tiedostoAsetettu = tiedostoAsetettu;
     }
 
+    /**
+     * Metodi palauttaa, onko tiedosto valittu (true tai false)
+     *
+     * @return tiedostoAsetettu
+     */
     public boolean isTiedostoValittu() {
         return tiedostoValittu;
     }
 
+    /**
+     * Metodi muuttaa tiedostoValittu-muuttujan boolean-arvoa
+     *
+     * @param tiedostoValittu
+     */
     public void setTiedostoValittu(boolean tiedostoValittu) {
         this.tiedostoValittu = tiedostoValittu;
     }
 
+    /**
+     * Metodi palauttaa, toistetaanko tiedostoa (true tai false)
+     *
+     * @return tiedostoAsetettu
+     */
     public boolean isTiedostoaToistetaan() {
-        return playing;
+        return tiedostoaToistetaan;
     }
 
+    /**
+     * Metodi muuttaa tiedostoaToistetaan-muuttujan boolean-arvoa
+     *
+     * @param tiedostoaToistetaan
+     */
     public void setTiedostoaToistetaan(boolean tiedostoaToistetaan) {
-        this.playing = tiedostoaToistetaan;
+        this.tiedostoaToistetaan = tiedostoaToistetaan;
     }
 
+    /**
+     * Metodi palauttaa, onko luuppaus päällä (true tai false)
+     *
+     * @return tiedostoAsetettu
+     */
     public boolean isLuuppausPaalla() {
         return luuppausPaalla;
     }
 
+    /**
+     * Metodi muuttaa luuppausPaalla-muuttujan boolean-arvoa
+     *
+     * @param luuppausPaalla
+     */
     public void setLuuppausPaalla(boolean luuppausPaalla) {
         this.luuppausPaalla = luuppausPaalla;
     }
 
+    /**
+     * Metodi palauttaa, onko klippi aktiivinen (true tai false)
+     *
+     * @return tiedostoAsetettu
+     */
     public boolean onkoKlippiAktiivinen() {
-        return clip.isActive();
+        return klippi.isActive();
     }
 
+    /**
+     * Metodi päivittää tiedoston toistokohtaa
+     */
     public void tiedostonToistokohdanPaivittyminen() {
-        audioPosition = (int) (clip.getMicrosecondPosition() / 1000);
+        aanenSijainti = (int) (klippi.getMicrosecondPosition() / 1000);
     }
 
+    /**
+     * Metodi nollaa, eli asettaa klipin toistokohdaksi nollan
+     */
     public void nollaaKlippi() {
-        clip.setMicrosecondPosition(0);
+        klippi.setMicrosecondPosition(0);
     }
 
 }

@@ -11,10 +11,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
-import javax.swing.JSlider;
 import javax.swing.Timer;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import musicmachine.logic.Sovelluslogiikka;
 
@@ -28,7 +25,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private final String epaonnistui;
     private final DefaultListModel<String> listamalli;
     private int indeksi;
-    private Timer timer;
+    private final Timer ajastin;
 
     /**
      * Määrittelee graafisen käyttöliittymän muuttujat
@@ -42,7 +39,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         soittolista.setModel(listamalli);
         indeksi = -1;
 
-        timer = new Timer(100, new ActionListener() {
+        ajastin = new Timer(100, new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 timerActionPerformed(e);
             }
@@ -57,10 +55,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         avaaSoittolistaValitsija = new javax.swing.JFileChooser();
         tallennaSoittolistaValitsija = new javax.swing.JFileChooser();
         asetaToistorajat = new javax.swing.JFrame();
-        play = new javax.swing.JButton();
+        toistoPainike = new javax.swing.JButton();
         pysaytaPainike = new javax.swing.JButton();
-        taukoPainike = new javax.swing.JButton();
-        progress = new javax.swing.JSlider();
+        etenemissaadin = new javax.swing.JSlider();
         tilanOhjeteksti = new javax.swing.JLabel();
         tilaTeksti = new javax.swing.JLabel();
         rullausPaneeli = new javax.swing.JScrollPane();
@@ -73,9 +70,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tallennaSoittolistaPainike = new javax.swing.JButton();
         avaaSoittolistaPainike = new javax.swing.JButton();
         tyhjennaSoittolista = new javax.swing.JButton();
-        luuppiCheckBox = new javax.swing.JCheckBox();
+        luuppiValintalaatikko = new javax.swing.JCheckBox();
         tiedostonKokonaiskesto = new javax.swing.JLabel("--:--");
-        time = new javax.swing.JLabel("--:--");
+        tiedostonNykyinenToistokohta = new javax.swing.JLabel("--:--");
 
         lisaaMusatiedostoValitsija.setApproveButtonText("Lisää");
         lisaaMusatiedostoValitsija.setCurrentDirectory(new File(System.getProperty("user.dir")+"/audio"));
@@ -109,15 +106,15 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MusicMachine");
 
-        play.setText("▶");
-        play.setToolTipText("Toista");
-        play.addActionListener(new java.awt.event.ActionListener() {
+        toistoPainike.setText("▶");
+        toistoPainike.setToolTipText("Toista");
+        toistoPainike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playActionPerformed(evt);
+                toistoPainikeActionPerformed(evt);
             }
         });
 
-        pysaytaPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Stop-painike_4.png"))); // NOI18N
+        pysaytaPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Stop-painike_suurempi.png"))); // NOI18N
         pysaytaPainike.setToolTipText("Pysäytä");
         pysaytaPainike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,17 +122,11 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             }
         });
 
-        taukoPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Pause-painike.png"))); // NOI18N
-        taukoPainike.setToolTipText("Tauko");
-        taukoPainike.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                taukoPainikeActionPerformed(evt);
-            }
-        });
-
-        progress.addChangeListener(new javax.swing.event.ChangeListener() {
+        etenemissaadin.setValue(0);
+        etenemissaadin.setEnabled(false);
+        etenemissaadin.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                progressStateChanged(evt);
+                etenemissaadinStateChanged(evt);
             }
         });
 
@@ -204,10 +195,10 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             }
         });
 
-        luuppiCheckBox.setText("Luuppaa");
-        luuppiCheckBox.addActionListener(new java.awt.event.ActionListener() {
+        luuppiValintalaatikko.setText("Luuppaa");
+        luuppiValintalaatikko.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                luuppiCheckBoxActionPerformed(evt);
+                luuppiValintalaatikkoActionPerformed(evt);
             }
         });
 
@@ -215,7 +206,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(progress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(etenemissaadin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(rullausPaneeli)
@@ -239,28 +230,22 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                         .addComponent(tyhjennaSoittolista))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(time)
-                        .addGap(129, 129, 129)
+                        .addComponent(tiedostonNykyinenToistokohta)
+                        .addGap(119, 119, 119)
+                        .addComponent(kelaaTaaksepainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(luuppiValintalaatikko)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(kelaaTaaksepainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(toistoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(play, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(kelaaEteenpainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tiedostonKokonaiskesto)
-                                .addGap(4, 4, 4)))))
+                                .addComponent(kelaaEteenpainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tiedostonKokonaiskesto)
+                        .addGap(4, 4, 4)))
                 .addGap(0, 15, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(235, 235, 235)
-                .addComponent(luuppiCheckBox)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,34 +254,39 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tilanOhjeteksti)
                     .addComponent(tilaTeksti))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(soittolistaTeksti)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rullausPaneeli, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(valitseTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
-                        .addComponent(poistaTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tallennaSoittolistaPainike)
-                        .addComponent(avaaSoittolistaPainike)
-                        .addComponent(tyhjennaSoittolista)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(taukoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(time)
-                    .addComponent(tiedostonKokonaiskesto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(play, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kelaaTaaksepainPainike, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kelaaEteenpainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(luuppiCheckBox))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(soittolistaTeksti)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rullausPaneeli, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(valitseTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
+                                .addComponent(poistaTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tallennaSoittolistaPainike)
+                                .addComponent(avaaSoittolistaPainike)
+                                .addComponent(tyhjennaSoittolista)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(etenemissaadin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tiedostonNykyinenToistokohta)
+                            .addComponent(tiedostonKokonaiskesto))
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(luuppiValintalaatikko)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(toistoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(kelaaTaaksepainPainike, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(kelaaEteenpainPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pysaytaPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         getAccessibleContext().setAccessibleDescription("Toista musiikkia");
@@ -310,7 +300,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             try {
                 lopetaToisto();
             } catch (IOException ex) {
-                tilaTeksti.setText(virhe + ex.getLocalizedMessage());
+                tilaTeksti.setText(virhe);
+                System.out.println(virhe + ":\n" + ex.getLocalizedMessage());
             }
         } else {
             tilaTeksti.setText("PYSÄTYS " + epaonnistui);
@@ -321,34 +312,27 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         sovelluslogiikka.lopeta();
         tilaTeksti.setText("PYSÄYTETTY");
         tiedostonKokonaiskesto.setText("--:--");
-        time.setText("--:--");
+        tiedostonNykyinenToistokohta.setText("--:--");
         sovelluslogiikka.setTiedostoAsetettu(false);
         sovelluslogiikka.setTiedostoaToistetaan(false);
     }
 
-    private void taukoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taukoPainikeActionPerformed
-        if (sovelluslogiikka.isTiedostoAsetettu() && sovelluslogiikka.isTiedostoaToistetaan()) {
-            asetaTauolle();
-        } else {
-            tilaTeksti.setText("TAUKO " + epaonnistui);
-        }
-    }//GEN-LAST:event_taukoPainikeActionPerformed
-
     private void asetaTauolle() {
-        timer.stop();
+        ajastin.stop();
         sovelluslogiikka.tauko();
-        play.setText("▶");
-        play.setToolTipText("Toista");
-//        play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Toista-painike.png")));
+        toistoPainike.setText("▶");
+        toistoPainike.setToolTipText("Toista");
         tilaTeksti.setText("TAUKO");
         sovelluslogiikka.setTiedostoaToistetaan(false);
     }
 
-    private void playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playActionPerformed
+    private void toistoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toistoPainikeActionPerformed
+        // tiedosto jo valmiiksi valittuna ja asetettuna, mutta ei vielä toisteta:
         if (sovelluslogiikka.isTiedostoValittu() && sovelluslogiikka.isTiedostoAsetettu()
                 && !sovelluslogiikka.isTiedostoaToistetaan()) {
             toistaTiedostoa();
-        } else if (!sovelluslogiikka.isTiedostoaToistetaan() && sovelluslogiikka.isTiedostoValittu()
+        } // tiedosto jo valittu, muttei se ole vielä asetettu eikä sitä toisteta:
+        else if (!sovelluslogiikka.isTiedostoaToistetaan() && sovelluslogiikka.isTiedostoValittu()
                 && !sovelluslogiikka.isTiedostoAsetettu()) {
             try {
                 asetaTiedostoToistovalmiiksi();
@@ -358,21 +342,21 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                     toistaTiedostoa();
                 }
             } catch (IOException | LineUnavailableException ex) {
-                tilaTeksti.setText(virhe + ex.getLocalizedMessage());
+                tilaTeksti.setText(virhe);
+                System.out.println(virhe + ":\n" + ex.getLocalizedMessage());
             }
         } //        else if (sovelluslogiikka.isTiedostoaToistetaan() && !sovelluslogiikka.isLuuppausPaalla()) {
         //            sovelluslogiikka.lopetaLuuppaaminen();
         //        }
         else if (sovelluslogiikka.isTiedostoaToistetaan()) {
-            asetaTauolle(); //testi, jolla voidaan pause-painike poistaa
-//            tilaTeksti.setText("TIEDOSTOA TOISTETAAN JO!");
+            asetaTauolle();
         } else {
             tilaTeksti.setText("TOISTO " + epaonnistui);
         }
-    }//GEN-LAST:event_playActionPerformed
+    }//GEN-LAST:event_toistoPainikeActionPerformed
 
     private void asetaTiedostoToistovalmiiksi() throws IOException {
-        // Asetetaan valittu tiedosto toistumaan:
+        // Asetetaan valittu tiedosto toistovalmiiksi:
         indeksi = valitunTiedostonIndeksi();
         String tiedostopolku = listamalli.get(indeksi);
 
@@ -381,47 +365,38 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
             sovelluslogiikka.setTiedostoAsetettu(true);
             tiedostonKokonaiskesto.setText(sovelluslogiikka.
                     kestoMinuutteinaJaSekunteina(sovelluslogiikka.kestoSekunteina()));
+
 //            tiedostonToistokohta.setText(sovelluslogiikka.
 //                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.tiedostonToistokohtaSekunteina()));
-//            etenemissaadin.setValue(0);
-
-            //uutta koodia:
-            progress.setMinimum(0);
-            progress.setMaximum(sovelluslogiikka.getAudioLength());
-            progress.setValue(0);
+            etenemissaadin.setEnabled(true);
+            etenemissaadin.setMinimum(0);
+            etenemissaadin.setMaximum(sovelluslogiikka.getAanitiedostonKesto());
+            etenemissaadin.setValue(0);
 
         } catch (LineUnavailableException ex) {
             tilaTeksti.setText(virhe);
+            System.out.println(virhe + ":\n" + ex.getLocalizedMessage());
         } catch (UnsupportedAudioFileException ex) {
             tilaTeksti.setText(epaonnistui + " TIEDOSTO EI TUETTU");
+            System.out.println(epaonnistui + ":\n" + ex.getLocalizedMessage());
         }
     }
 
     private void toistaTiedostoa() {
         try {
-            // Toistetaan asetettu tiedosto:
+            // Toistetaan toistovalmiiksi asetettu tiedosto:
             sovelluslogiikka.toista();
-            timer.start();
-            play.setText("▮▮");
-            play.setToolTipText("Tauko");
-//            play.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Pause-painike.png")));
+            ajastin.start();
+            toistoPainike.setText("▮▮");
+            toistoPainike.setToolTipText("Tauko");
             tilaTeksti.setText("TOISTETAAN...");
             sovelluslogiikka.setTiedostoaToistetaan(true);
 
         } catch (LineUnavailableException | IOException ex) {
             tilaTeksti.setText(virhe);
+            System.out.println(virhe + ":\n" + ex.getLocalizedMessage());
         }
 
-    }
-
-    private void toistoLuuppi() {
-        while (sovelluslogiikka.isTiedostoaToistetaan()) {
-            tiedostonKokonaiskesto.setText(sovelluslogiikka.
-                    kestoMinuutteinaJaSekunteina(sovelluslogiikka.kestoSekunteina()));
-            if (pysaytaPainike.isSelected() || taukoPainike.isSelected()) {
-                break;
-            }
-        }
     }
 
     // Valitse tiedosto ja lisää se soittolistaan:
@@ -442,7 +417,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }
 
     /**
-     * Metodi asettaa soittolistalla viimeisimpänä olevan musiikkitiedoston
+     * Metodi asettaa soittolistalla viimeisimpänä olevan äänitiedoston
      * valituksi
      */
     public void asetaViimeisinTiedostoValituksi() {
@@ -480,19 +455,21 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }//GEN-LAST:event_poistaTiedostoPainikeActionPerformed
 
     private void kelaaEteenpainPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelaaEteenpainPainikeActionPerformed
-        try {
-            sovelluslogiikka.kelaaEteenpain();
-        } catch (IOException | LineUnavailableException ex) {
-            virheViesti();
-        }
+        sovelluslogiikka.asetaToistokohta(sovelluslogiikka.getAanenSijainti() + 10);
+//        try {
+//            sovelluslogiikka.kelaaEteenpain();
+//        } catch (IOException | LineUnavailableException ex) {
+//            virheViesti();
+//        }
     }//GEN-LAST:event_kelaaEteenpainPainikeActionPerformed
 
     private void kelaaTaaksepainPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelaaTaaksepainPainikeActionPerformed
-        try {
-            sovelluslogiikka.kelaaTaaksepain();
-        } catch (IOException | LineUnavailableException ex) {
-            virheViesti();
-        }
+        sovelluslogiikka.asetaToistokohta(sovelluslogiikka.getAanenSijainti() - 10);
+//        try {
+//            sovelluslogiikka.kelaaTaaksepain();
+//        } catch (IOException | LineUnavailableException ex) {
+//            virheViesti();
+//        }
     }//GEN-LAST:event_kelaaTaaksepainPainikeActionPerformed
 
     private void tallennaSoittolistaPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tallennaSoittolistaPainikeActionPerformed
@@ -549,35 +526,30 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tilaTeksti.setText("SOITTOLISTA TYHJENNETTY");
     }//GEN-LAST:event_tyhjennaSoittolistaActionPerformed
 
-    private void luuppiCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuppiCheckBoxActionPerformed
-        if (luuppiCheckBox.isSelected()) {
+    private void luuppiValintalaatikkoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuppiValintalaatikkoActionPerformed
+        if (luuppiValintalaatikko.isSelected()) {
             sovelluslogiikka.setLuuppausPaalla(true);
         } else {
             sovelluslogiikka.setLuuppausPaalla(false);
         }
-    }//GEN-LAST:event_luuppiCheckBoxActionPerformed
+    }//GEN-LAST:event_luuppiValintalaatikkoActionPerformed
 
-    private void progressStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_progressStateChanged
-//        if (!progress.getValueIsAdjusting()) {
-//            try {
-        int value = progress.getValue();
+    private void etenemissaadinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_etenemissaadinStateChanged
+        if (!etenemissaadin.getValueIsAdjusting()) {
+            int toistokohta = etenemissaadin.getValue();
 
-        time.setText(value / 1000 + "."
-                + (value % 1000) / 100);
+            int kestoSekunteina = toistokohta / 1000;
+            String kestoMinuutteinaJaSekunteina = sovelluslogiikka.kestoMinuutteinaJaSekunteina(kestoSekunteina);
 
-        if (value != sovelluslogiikka.getAudioPosition()) {
-            progress.setValue(sovelluslogiikka.asetaToistokohta(value)); //sovelluslogiikka.asetaToistokohta(value)
+            int sekunninSadasosat = (toistokohta % 1000) / 100;
+
+            tiedostonNykyinenToistokohta.setText(kestoMinuutteinaJaSekunteina + ":" + sekunninSadasosat);
+
+            if (toistokohta != sovelluslogiikka.getAanenSijainti()) {
+                sovelluslogiikka.asetaToistokohta(toistokohta);
+            }
         }
-
-//                sovelluslogiikka.asetaToistokohta(valittuKohta);
-//                tiedostonToistokohta.setText(sovelluslogiikka.
-//                        kestoMinuutteinaJaSekunteina(sovelluslogiikka.
-//                                tiedostonToistokohtaSekunteina()));
-//            } catch (IOException ex) {
-//                Logger.getLogger(GraafinenKayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-    }//GEN-LAST:event_progressStateChanged
+    }//GEN-LAST:event_etenemissaadinStateChanged
 
     /**
      * Metodi asettaa etenemissäätimen haluttuun kohtaan
@@ -585,7 +557,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
      * @param kohta
      */
     public void asetaEtenemissaadinHaluttuunKohtaan(int kohta) {
-        progress.setValue(kohta);
+        etenemissaadin.setValue(kohta);
     }
 
     private void avaaSoittolista() {
@@ -640,26 +612,38 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         return soittolista.getSelectedIndex();
     }
 
-    void tick() {
+    /**
+     * Metodi siirtää etenemissäädintä musiikin soidessa
+     *
+     */
+    void ajastimenToimet() {
         if (sovelluslogiikka.onkoKlippiAktiivinen()) {
             sovelluslogiikka.tiedostonToistokohdanPaivittyminen();
-            progress.setValue(sovelluslogiikka.getAudioPosition());
+            etenemissaadin.setValue(sovelluslogiikka.getAanenSijainti());
         } else {
-            reset();
+            nollaa();
         }
     }
 
-    public void reset() {
+    /**
+     * Metodi nollaa äänitiedoston ja etenemissäätimen
+     */
+    public void nollaa() {
         asetaTauolle();
         sovelluslogiikka.nollaaKlippi();
-        sovelluslogiikka.setAudioPosition(0);
-        progress.setValue(0);
+        sovelluslogiikka.setAanenSijainti(0);
+        etenemissaadin.setValue(0);
     }
 
     private void timerActionPerformed(java.awt.event.ActionEvent evt) {
-        tick();
+        ajastimenToimet();
     }
 
+    /**
+     * GraafinenKayttoliittyma-luokkaa voidaan käyttää tarvittaessa pääluokkana
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -697,24 +681,23 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private javax.swing.JFrame asetaToistorajat;
     private javax.swing.JButton avaaSoittolistaPainike;
     private javax.swing.JFileChooser avaaSoittolistaValitsija;
+    private javax.swing.JSlider etenemissaadin;
     private javax.swing.JButton kelaaEteenpainPainike;
     private javax.swing.JButton kelaaTaaksepainPainike;
     private javax.swing.JFileChooser lisaaMusatiedostoValitsija;
-    private javax.swing.JCheckBox luuppiCheckBox;
-    private javax.swing.JButton play;
+    private javax.swing.JCheckBox luuppiValintalaatikko;
     private javax.swing.JButton poistaTiedostoPainike;
-    private javax.swing.JSlider progress;
     private javax.swing.JButton pysaytaPainike;
     private javax.swing.JScrollPane rullausPaneeli;
     private javax.swing.JList soittolista;
     private javax.swing.JLabel soittolistaTeksti;
     private javax.swing.JButton tallennaSoittolistaPainike;
     private javax.swing.JFileChooser tallennaSoittolistaValitsija;
-    private javax.swing.JButton taukoPainike;
     private javax.swing.JLabel tiedostonKokonaiskesto;
+    private javax.swing.JLabel tiedostonNykyinenToistokohta;
     private javax.swing.JLabel tilaTeksti;
     private javax.swing.JLabel tilanOhjeteksti;
-    private javax.swing.JLabel time;
+    private javax.swing.JButton toistoPainike;
     private javax.swing.JButton tyhjennaSoittolista;
     private javax.swing.JButton valitseTiedostoPainike;
     // End of variables declaration//GEN-END:variables

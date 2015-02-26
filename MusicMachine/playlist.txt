@@ -1,5 +1,5 @@
-/home/ad/fshome6/u6/y/ylhavuor/Linux/MusicMachine/MusicMachine/audio/07. Latin.aif
-/home/ad/fshome6/u6/y/ylhavuor/Linux/MusicMachine/MusicMachine/audio/Broadcast News Long.aif
+/home/ad/fshome6/u6/y/ylhavuor/Linux/MusicMachine/MusicMachine/audio/Areee.aif
+/home/ad/fshome6/u6/y/ylhavuor/Linux/MusicMachine/MusicMachine/audio/Aren lyhyt biisi.aif
 /home/ad/fshome6/u6/y/ylhavuor/Linux/MusicMachine/MusicMachine/audio/Broadcast News Short.wav
 /home/ad/fshome6/u6/y/ylhavuor/Linux/MusicMachine/MusicMachine/audio/complete.wav
 /home/ad/fshome6/u6/y/ylhavuor/Linux/MusicMachine/MusicMachine/audio/Havetkaa!.aif

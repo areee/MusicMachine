@@ -46,18 +46,6 @@ public class ValitseKayttoliittyma {
             } else if (komento.equals("x")) {
                 break;
             }
-
-            // vaihtoehtoinen ja NetBeansin ehdottama tapa:
-//            switch (komento) {
-//                case "1":
-//                    new GraafinenKayttoliittyma().setVisible(true);
-//                    break OUTER;
-//                case "2":
-//                    new TekstiKayttoliittyma().kaynnista();
-//                    break OUTER;
-//                case "x":
-//                    break OUTER;
-//            }
         }
     }
 }
