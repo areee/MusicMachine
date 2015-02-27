@@ -210,10 +210,11 @@
 	- päivitetty JavaDoc- sekä checkstyle- ja pit-raportit
 
 ## Torstai 25.2.2015
-- Käytetty aika: 1 h 40 min
+- Käytetty aika: 1 h 40 min (+ klo 21:17->)
 - Ajankäytön kohde:
 	- lisätty sovelluslogiikkaa testaavia testejä
 	- päivitetty pit-raportti
 	- luotu jar-tiedosto
 	- päivitetty käyttöohjeita, aiheen kuvausta ja rakennetta sekä testausdokumenttia
 	- päivitetty koodia: kaikki musa- tai musiikki-sanat korvattu ääni-sanalla
+	- 
