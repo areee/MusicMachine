@@ -66,7 +66,7 @@ For more information about the errors and possible solutions, please read the fo
 ```
 
 ## Kelaaminen (Ubuntu/Linux)
-1. Toistetaan [edellisen testin](#valitse-tiedoston-toistokohta-toistokohdan-säätimellä-(Ubuntu/Linux)) vaiheet 1-4.
+1. Toistetaan [edellisen testin](#valitse-tiedoston-toistokohta-toistokohdan-säätimellä-Ubuntu-Linux) vaiheet 1-4.
 2. Klikkaillaan vimmatusti eteenpäin kelaus -painiketta.
 3. Soiva äänitiedosto katkeilee, muttei juurikaan kelaudu.
 4. Klikkaillaan vimmatusti taaksepäin kelaus -painiketta.
