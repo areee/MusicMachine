@@ -147,4 +147,15 @@ public class SovelluslogiikkaTest {
     public void aanitiedostonKestoTasmaa() {
         assertEquals(145000, sovelluslogiikka.getAanitiedostonKesto());
     }
+
+    @Test
+    public void aanenSijaintiTasmaa() {
+        assertEquals(0, sovelluslogiikka.getAanenSijainti());
+    }
+
+    @Test
+    public void aanenSijainninAsetusTasmaa() {
+        sovelluslogiikka.setAanenSijainti(15);
+        assertEquals(15, sovelluslogiikka.getAanenSijainti());
+    }
 }
