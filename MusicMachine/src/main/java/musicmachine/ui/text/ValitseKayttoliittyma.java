@@ -23,7 +23,7 @@ public class ValitseKayttoliittyma {
      * Käynnistää käyttäjän valinnan mukaan joko tekstipohjaisen tai graafisen
      * käyttöliittymän
      *
-     * @throws java.io.IOException
+     * @throws java.io.IOException poikkeus tiedoston ongelmien varalta
      */
     public void kaynnista() throws IOException {
 

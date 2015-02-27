@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2015</copyright>
     <item>
       <title>File: 7,
-             Errors: 100,
+             Errors: 96,
              Warnings: 0,
              Infos: 0
       </title>
@@ -60,20 +60,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#musicmachine.logic.Musiikkitiedosto.java">musicmachine/logic/Musiikkitiedosto.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#musicmachine.logic.Lukija.java">musicmachine/logic/Lukija.java</a>
                 </td>
                 <td>
@@ -88,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#musicmachine.Main.java">musicmachine/Main.java</a>
+                  <a href="${project.url}/checkstyle.html#musicmachine.MusicMachine.java">musicmachine/MusicMachine.java</a>
                 </td>
                 <td>
                   0
@@ -116,6 +102,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#musicmachine.logic.Aanitiedosto.java">musicmachine/logic/Aanitiedosto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#musicmachine.ui.graphic.GraafinenKayttoliittyma.java">musicmachine/ui/graphic/GraafinenKayttoliittyma.java</a>
                 </td>
                 <td>
@@ -125,7 +125,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  97
+                  93
                 </td>
               </tr>
                           <tr>

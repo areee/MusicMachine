@@ -10,8 +10,8 @@ public class MusicMachine {
     /**
      * Käynnistää ValitseKayttoliittyma-luokan kaynnista-metodin
      *
-     * @param args
-     * @throws Exception
+     * @param args mahdolliset argumentit taulukoituna
+     * @throws Exception heittää mahdollisesti poikkeuksen
      */
     public static void main(String[] args) throws Exception {
 

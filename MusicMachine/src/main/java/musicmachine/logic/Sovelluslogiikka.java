@@ -23,9 +23,11 @@ public class Sovelluslogiikka {
      * Metodi asettaa äänitiedoston toistovalmiiksi
      *
      * @param merkkijono käyttäjän antama syöte
-     * @throws java.io.IOException
-     * @throws javax.sound.sampled.LineUnavailableException
-     * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws java.io.IOException poikkeus tiedoston ongelmien varalta
+     * @throws javax.sound.sampled.LineUnavailableException poikkeus tiedoston
+     * puuttumisen varalta
+     * @throws javax.sound.sampled.UnsupportedAudioFileException poikkeus
+     * tiedoston tuettomuuden varalta
      */
     public void valitseTiedosto(String merkkijono) throws IOException,
             LineUnavailableException, UnsupportedAudioFileException {
@@ -48,8 +50,9 @@ public class Sovelluslogiikka {
     /**
      * Metodi laittaa äänitiedoston soimaan
      *
-     * @throws javax.sound.sampled.LineUnavailableException
-     * @throws java.io.IOException
+     * @throws javax.sound.sampled.LineUnavailableException poikkeus tiedoston
+     * puuttumisen varalta
+     * @throws java.io.IOException poikkeus tiedoston ongelmien varalta
      */
     public void toista() throws LineUnavailableException, IOException {
         klippi.start();
@@ -65,7 +68,7 @@ public class Sovelluslogiikka {
     /**
      * Metodi lopettaa äänitiedoston toistamisen
      *
-     * @throws java.io.IOException
+     * @throws java.io.IOException poikkeus tiedoston ongelmien varalta
      */
     public void lopeta() throws IOException {
         klippi.close();
@@ -83,8 +86,8 @@ public class Sovelluslogiikka {
     /**
      * Metodi palauttaa keston minuutteina ja sekunteina
      *
-     * @param kestoSekunteina
-     * @return äänitiedoston kesto minuutteina ja sekunteina
+     * @param kestoSekunteina äänitiedoston kesto sekunteina
+     * @return palautettavaArvo äänitiedoston kesto minuutteina ja sekunteina
      */
     public String kestoMinuutteinaJaSekunteina(int kestoSekunteina) {
         String palautettavaArvo = "";
@@ -134,7 +137,7 @@ public class Sovelluslogiikka {
     /**
      * Metodi asettaa äänitiedostolle uuden sijainnin
      *
-     * @param aanenSijainti
+     * @param aanenSijainti nykyinen äänen sijainti
      */
     public void setAanenSijainti(int aanenSijainti) {
         this.aanenSijainti = aanenSijainti;
@@ -153,7 +156,7 @@ public class Sovelluslogiikka {
      * Metodi palauttaa äänitiedoston toistokohdan sekunteina
      *
      * @return tiedoston toistokohta sekunteina (ei toimi vielä...)
-     * @throws IOException
+     * @throws IOException poikkeus tiedoston ongelmien varalta
      */
     public int tiedostonToistokohtaSekunteina() throws IOException {
         return (int) klippi.getMicrosecondPosition() / 1000000;
@@ -180,7 +183,7 @@ public class Sovelluslogiikka {
     /**
      * Metodi asettaa äänitiedoston
      *
-     * @param aanitiedosto
+     * @param aanitiedosto nykyinen äänitiedosto
      */
     public void setAanitiedosto(Aanitiedosto aanitiedosto) {
         this.aanitiedosto = aanitiedosto;
@@ -189,7 +192,7 @@ public class Sovelluslogiikka {
     /**
      * Metodi asettaa äänitiedoston toistokohdan halutuksi
      *
-     * @param sijainti
+     * @param sijainti nykyinen sijainti
      */
     public void asetaToistokohta(int sijainti) {
         if (sijainti < 0 || sijainti > aanitiedostonKesto) {
@@ -211,7 +214,7 @@ public class Sovelluslogiikka {
     /**
      * Metodi muuttaa tiedostoAsetettu-muuttujan boolean-arvoa
      *
-     * @param tiedostoAsetettu
+     * @param tiedostoAsetettu onko tiedosto asetettuna
      */
     public void setTiedostoAsetettu(boolean tiedostoAsetettu) {
         this.tiedostoAsetettu = tiedostoAsetettu;
@@ -229,7 +232,7 @@ public class Sovelluslogiikka {
     /**
      * Metodi muuttaa tiedostoValittu-muuttujan boolean-arvoa
      *
-     * @param tiedostoValittu
+     * @param tiedostoValittu onko tiedosto valittuna
      */
     public void setTiedostoValittu(boolean tiedostoValittu) {
         this.tiedostoValittu = tiedostoValittu;
@@ -247,7 +250,7 @@ public class Sovelluslogiikka {
     /**
      * Metodi muuttaa tiedostoaToistetaan-muuttujan boolean-arvoa
      *
-     * @param tiedostoaToistetaan
+     * @param tiedostoaToistetaan toistetaanko tiedostoa
      */
     public void setTiedostoaToistetaan(boolean tiedostoaToistetaan) {
         this.tiedostoaToistetaan = tiedostoaToistetaan;
@@ -265,7 +268,7 @@ public class Sovelluslogiikka {
     /**
      * Metodi muuttaa luuppausPaalla-muuttujan boolean-arvoa
      *
-     * @param luuppausPaalla
+     * @param luuppausPaalla onko luuppaus päällä
      */
     public void setLuuppausPaalla(boolean luuppausPaalla) {
         this.luuppausPaalla = luuppausPaalla;

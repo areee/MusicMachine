@@ -1,9 +1,10 @@
 # Testausdokumentti
-Seuraavissa käyttötapauksissa ongelmia esiintyi Ubuntua käyttäessä. Omalla Macillani näitä ongelmia ei testattessa esiintynyt.
+
+En kyennyt testaamaan automaattisesti kaikkia äänitiedoston toistoon liittyviä sovelluslogiikan metodeja. Näin ollen laadin oheen joitakin toistoon liittyviä manuaalisia testejä.
+
+Seuraavissa käyttötapauksissa ongelmia, eli bugeja esiintyi yliopiston Ubuntua käyttäessäni. Omalla Macillani näitä ongelmia ei testattessa esiintynyt.
 
 ## Toista tiedostoa normaalisti
-- Testattu yliopiston Ubuntulla.
-
 1. Käynnistetään ohjelma.
 2. Valitaan käyttöliittymäksi graafinen käyttöliittymä.
 3. Lisätään musiikkitiedosto plus-painikkeesta.
@@ -17,9 +18,7 @@ Seuraavissa käyttötapauksissa ongelmia esiintyi Ubuntua käyttäessä. Omalla 
 
 
 ## Valitse tiedoston toistokohta toistokohdan säätimellä
-- Testattu yliopiston Ubuntulla.
-
-1. Toistetaan [edellisen testin](#toista-tiedostoa-normaalisti) vaiheet 1-4.
+1. Toistetaan [Toista tiedostoa normaalisti](#toista-tiedostoa-normaalisti)-kohdan vaiheet 1-4.
 2. Klikkaillaan toistokohdan säädintä toistokohdan oikealta puolelta.
 3. Soivassa äänitiedostossa on kuultavissa pientä katkeilua, mutta toistokohta ei vaihdu klikattuun kohtaan.
 4. Klikkaillaan toistokohdan säädintä toistokohdan vasemmalta puolelta.
@@ -70,15 +69,73 @@ For more information about the errors and possible solutions, please read the fo
 ```
 
 ## Kelaaminen
-- Testattu yliopiston Ubuntulla.
-
-1. Toistetaan [edellisen testin](#valitse-tiedoston-toistokohta-toistokohdan-säätimellä) vaiheet 1-4.
+1. Toistetaan [Toista tiedostoa normaalisti](#toista-tiedostoa-normaalisti)-kohdan vaiheet 1-4.
 2. Klikkaillaan vimmatusti eteenpäin kelaus -painiketta.
 3. Soiva äänitiedosto katkeilee, muttei juurikaan kelaudu.
 4. Klikkaillaan vimmatusti taaksepäin kelaus -painiketta.
-5. Sama kuin kohdassa 3.
+5. Käy samoin kuin kohdassa 3.
 
-## Kelaaminen 
-- Testattu omalla Macilla.
+---
+Seuraavat testit olen testannut ainoastaan omalla Macillani.
 
+## Kelaaminen pitäen kelaus-painike pohjassa
+1. Toistetaan [Toista tiedostoa normaalisti](#toista-tiedostoa-normaalisti)-kohdan vaiheet 1-4.
+2. Klikataan eteenpäinkelaus-painiketta jättäen hiiren ykköspainike pohjaan.
+3. Muutaman sekunnin päästä vapautetaan hiiren painike.
+4. Soivassa äänitiedostossa on kuultavissa osassa testikokeiluista pieni toiston eteenpäin kelautuminen, mutta hiiren painalluksen aikana kelausta ei tapahdu (koodiin on toteutettu tähän toiminnallisuus).
+5. Klikataan taaksepäinkelaus-painiketta jättäen hiiren ykköspainike pohjaan.
+6. Muutaman sekunnin päästä vapautetaan hiiren painike.
+7. Käy samoin kuin kohdassa 4.
 
+## Valinnan poisto soittolistan äänitiedostoista
+1. Toistetaan [Toista tiedostoa normaalisti](#toista-tiedostoa-normaalisti)-kohdan vaiheet 1-3.
+2. Poistetaan valinta soittolistalta valitusta äänitiedostosta (Macilla cmd-näppäin pohjassa klikkaus).
+3. Konsoliin ilmestyy bugista ilmoittava teksti:
+
+```
+Exception in thread "AWT-EventQueue-0" java.lang.ArrayIndexOutOfBoundsException: -1
+	at java.util.Vector.elementData(Vector.java:734)
+	at java.util.Vector.elementAt(Vector.java:477)
+	at javax.swing.DefaultListModel.get(DefaultListModel.java:447)
+	at musicmachine.ui.graphic.GraafinenKayttoliittyma.asetaTiedostoToistovalmiiksi(GraafinenKayttoliittyma.java:363)
+	at musicmachine.ui.graphic.GraafinenKayttoliittyma.toistaPainikeActionPerformed(GraafinenKayttoliittyma.java:346)
+	at musicmachine.ui.graphic.GraafinenKayttoliittyma.access$100(GraafinenKayttoliittyma.java:21)
+	at musicmachine.ui.graphic.GraafinenKayttoliittyma$2.actionPerformed(GraafinenKayttoliittyma.java:99)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2346)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:289)
+	at java.awt.Component.processMouseEvent(Component.java:6525)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3321)
+	at java.awt.Component.processEvent(Component.java:6290)
+	at java.awt.Container.processEvent(Container.java:2234)
+	at java.awt.Component.dispatchEventImpl(Component.java:4881)
+	at java.awt.Container.dispatchEventImpl(Container.java:2292)
+	at java.awt.Component.dispatchEvent(Component.java:4703)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4898)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4533)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4462)
+	at java.awt.Container.dispatchEventImpl(Container.java:2278)
+	at java.awt.Window.dispatchEventImpl(Window.java:2739)
+	at java.awt.Component.dispatchEvent(Component.java:4703)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:746)
+	at java.awt.EventQueue.access$400(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:697)
+	at java.awt.EventQueue$3.run(EventQueue.java:691)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:75)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:719)
+	at java.awt.EventQueue$4.run(EventQueue.java:717)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:75)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:716)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+```

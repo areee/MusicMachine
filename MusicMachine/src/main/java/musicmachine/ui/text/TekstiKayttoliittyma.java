@@ -26,7 +26,7 @@ public class TekstiKayttoliittyma {
     /**
      * Käynnistää tekstipohjaisen käyttöliittymän
      *
-     * @throws java.io.IOException
+     * @throws java.io.IOException poikkeus tiedoston ongelmien varalta
      */
     public void kaynnista() throws IOException {
 
@@ -113,7 +113,8 @@ public class TekstiKayttoliittyma {
     /**
      * Metodi, joka tulostaa päävalikon
      *
-     * @param montakoValikonKohtaa
+     * @param montakoValikonKohtaa voidaan asettaa valikon alakohtien lukumäärän
+     * perusteella
      * @return palautettavaTeksti
      */
     public String valikko(int montakoValikonKohtaa) {
@@ -237,6 +238,6 @@ public class TekstiKayttoliittyma {
     public String tiedostonTiedot() {
         return "Nimi: " + sovelluslogiikka.tiedostonimi()
                 + "\nTiedostopolku: " + sovelluslogiikka.tiedostopolku()
-                + "\nKesto: " + sovelluslogiikka.kestoSekunteina() + " sekuntia\n";
+                + "\nKesto: " + sovelluslogiikka.kestoMinuutteinaJaSekunteina(sovelluslogiikka.getAanitiedostonKesto()) + "\n";
     }
 }

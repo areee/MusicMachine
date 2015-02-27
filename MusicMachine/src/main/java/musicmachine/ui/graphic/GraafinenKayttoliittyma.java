@@ -74,7 +74,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tiedostonNykyinenToistokohta = new javax.swing.JLabel("--:--");
 
         lisaaAanitiedostoValitsija.setApproveButtonText("Lisää");
-        lisaaAanitiedostoValitsija.setCurrentDirectory(new File(System.getProperty("user.dir")+"/audio"));
+        lisaaAanitiedostoValitsija.setCurrentDirectory(new File(System.getProperty("user.dir") + "/audio"));
         lisaaAanitiedostoValitsija.setDialogTitle("Lisää äänitiedosto...");
 
         avaaSoittolistaValitsija.setApproveButtonText("Avaa");
@@ -570,7 +570,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     /**
      * Metodi asettaa etenemissäätimen haluttuun kohtaan
      *
-     * @param kohta
+     * @param kohta haluttu kohta, johon halutaan siirtyä
      */
     public void asetaEtenemissaadinHaluttuunKohtaan(int kohta) {
         etenemissaadin.setValue(kohta);
@@ -602,7 +602,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     /**
      * Metodi pienentää soittolistan kappaleindeksiä yhdellä.
      *
-     * @param koko
+     * @param koko soittolistan nykyinen koko
      * @return indeksin arvo
      */
     public int pienennaIndeksiaYhdella(int koko) {
@@ -662,7 +662,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     /**
      * GraafinenKayttoliittyma-luokkaa voidaan käyttää tarvittaessa pääluokkana
      *
-     * @param args
+     * @param args mahdolliset argumentit taulukoituna
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
