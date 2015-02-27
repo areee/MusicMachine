@@ -39,7 +39,7 @@ public class TekstiKayttoliittyma {
             switch (komento) {
                 case "1":
                     while (true) {
-                        System.out.println("\n" + valitseMusiikkitiedosto());
+                        System.out.println("\n" + valitseAanitiedosto());
                         System.out.print(lukija);
                         komento = this.lukija.annaKomento();
 
@@ -65,7 +65,7 @@ public class TekstiKayttoliittyma {
                 case "2":
                     if (tiedostoAsetettu) {
                         try {
-                            System.out.println(toistaMusiikkia() + "\n");
+                            System.out.println(toistaAanitiedostoa() + "\n");
                             sovelluslogiikka.toista();
                         } catch (LineUnavailableException ex) {
                             tiedostonToistoEpaonnistui();
@@ -77,7 +77,7 @@ public class TekstiKayttoliittyma {
                     break;
                 case "3":
                     if (tiedostoAsetettu) {
-                        System.out.println(asetaMusiikkiTauolle());
+                        System.out.println(asetaAanitiedostoTauolle());
                         sovelluslogiikka.tauko();
                     } else {
                         tiedostonToistoEpaonnistui();
@@ -136,7 +136,7 @@ public class TekstiKayttoliittyma {
      */
     public String komennot(int mones) {
         if (mones == 1) {
-            return "Valitse toistettava musiikkitiedosto";
+            return "Valitse toistettava äänitiedosto";
         } else if (mones == 2) {
             return "Toista";
         } else if (mones == 3) {
@@ -160,18 +160,18 @@ public class TekstiKayttoliittyma {
     }
 
     /**
-     * Metodi musiikkitieodoston valintailmoitukselle
+     * Metodi äänitieodoston valintailmoitukselle
      *
      * @return komennot(1) + "\n(valitse \"?\", jos haluat ohjeen):"
      */
-    public String valitseMusiikkitiedosto() {
+    public String valitseAanitiedosto() {
         return komennot(1) + "\n(syötä \"?\" tai [Enter], jos haluat ohjeen):";
     }
 
     /**
-     * Metodi musiikkitieodoston valintaohjeelle
+     * Metodi äänitiedoston valintaohjeelle
      *
-     * @return ohje musiikkitiedoston valitsemiseen
+     * @return ohje äänitiedoston valitsemiseen
      */
     public String ohje() {
         return "\nLinuxia tai Macia käyttäessäsi anna tiedostopolku muodossa\n"
@@ -185,10 +185,10 @@ public class TekstiKayttoliittyma {
     /**
      * Metodi virheviestille
      *
-     * @return "Virhe! Et ole valinnut musiikkitiedostoa toistettavaksi."
+     * @return "Virhe! Et ole valinnut äänitiedostoa toistettavaksi."
      */
     public String tiedostoaEiVoidaToistaa() {
-        return "Virhe! Et ole valinnut musiikkitiedostoa toistettavaksi.";
+        return "Virhe! Et ole valinnut äänitiedostoa toistettavaksi.";
     }
 
     /**
@@ -196,7 +196,7 @@ public class TekstiKayttoliittyma {
      *
      * @return "Toistetaan..."
      */
-    public String toistaMusiikkia() {
+    public String toistaAanitiedostoa() {
         return "Toistetaan...";
     }
 
@@ -205,7 +205,7 @@ public class TekstiKayttoliittyma {
      *
      * @return "Tauko\n"
      */
-    public String asetaMusiikkiTauolle() {
+    public String asetaAanitiedostoTauolle() {
         return "Tauko\n";
     }
 
@@ -230,7 +230,7 @@ public class TekstiKayttoliittyma {
     }
 
     /**
-     * Metodi musiikkitiedoston tietojen tulostamiseen
+     * Metodi äänitiedoston tietojen tulostamiseen
      *
      * @return nimi, tiedostopolku, kesto
      */

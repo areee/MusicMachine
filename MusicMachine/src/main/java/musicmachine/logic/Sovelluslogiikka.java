@@ -4,12 +4,11 @@ import java.io.*;
 import javax.sound.sampled.*;
 
 /**
- * Luokka hoitaa MusicMachinen musiikkitiedostojen toistot, lisäämiset ja
- * poistot
+ * Luokka hoitaa MusicMachinen äänitiedostojen toistot, lisäämiset ja poistot
  */
 public class Sovelluslogiikka {
 
-    private Musiikkitiedosto musiikkitiedosto;
+    private Aanitiedosto aanitiedosto;
     private Clip klippi;
     private AudioInputStream audioInputStream;
     private boolean tiedostoAsetettu = false;
@@ -31,9 +30,8 @@ public class Sovelluslogiikka {
     public void valitseTiedosto(String merkkijono) throws IOException,
             LineUnavailableException, UnsupportedAudioFileException {
 
-        musiikkitiedosto = new Musiikkitiedosto(merkkijono);
-        audioInputStream = AudioSystem.getAudioInputStream(
-                musiikkitiedosto.getTiedosto());
+        aanitiedosto = new Aanitiedosto(merkkijono);
+        audioInputStream = AudioSystem.getAudioInputStream(aanitiedosto.getTiedosto());
         try {
             AudioFormat format = audioInputStream.getFormat();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
@@ -79,7 +77,7 @@ public class Sovelluslogiikka {
      * @return äänitiedoston tiedostopolku
      */
     public String tiedostopolku() {
-        return this.musiikkitiedosto.getTiedosto().getAbsolutePath();
+        return this.aanitiedosto.getTiedosto().getAbsolutePath();
     }
 
     /**
@@ -167,29 +165,29 @@ public class Sovelluslogiikka {
      * @return tiedostonimi
      */
     public String tiedostonimi() {
-        return musiikkitiedosto.getTiedosto().getName();
+        return aanitiedosto.getTiedosto().getName();
     }
 
     /**
      * Metodi palauttaa äänitiedoston
      *
-     * @return musiikkitiedosto
+     * @return aanitiedosto
      */
-    public Musiikkitiedosto getMusiikkitiedosto() {
-        return musiikkitiedosto;
+    public Aanitiedosto getAanitiedosto() {
+        return aanitiedosto;
     }
 
     /**
      * Metodi asettaa äänitiedoston
      *
-     * @param musiikkitiedosto
+     * @param aanitiedosto
      */
-    public void setMusiikkitiedosto(Musiikkitiedosto musiikkitiedosto) {
-        this.musiikkitiedosto = musiikkitiedosto;
+    public void setAanitiedosto(Aanitiedosto aanitiedosto) {
+        this.aanitiedosto = aanitiedosto;
     }
 
     /**
-     * Metodi asettaa musiikkikappaleen toistokohdan halutuksi
+     * Metodi asettaa äänitiedoston toistokohdan halutuksi
      *
      * @param sijainti
      */

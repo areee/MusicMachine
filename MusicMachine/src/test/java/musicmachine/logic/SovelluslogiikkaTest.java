@@ -53,7 +53,7 @@ public class SovelluslogiikkaTest {
 
     @Test
     public void tiedostopolkuTasmaaMusiikkitiedostolla() throws IOException {
-        Musiikkitiedosto musiikkitiedosto = sovelluslogiikka.getMusiikkitiedosto();
+        Aanitiedosto musiikkitiedosto = sovelluslogiikka.getAanitiedosto();
         assertEquals(System.getProperty("user.dir") + "/" + tiedostopolku,
                 musiikkitiedosto.getTiedosto().getAbsolutePath());
     }
@@ -76,7 +76,7 @@ public class SovelluslogiikkaTest {
     public void tiedostopolkuTasmaaKunTiedostoVaihdettu() throws IOException,
             LineUnavailableException, UnsupportedAudioFileException {
         sovelluslogiikka.valitseTiedosto(uusiTiedostopolku);
-        Musiikkitiedosto musiikkitiedosto = sovelluslogiikka.getMusiikkitiedosto();
+        Aanitiedosto musiikkitiedosto = sovelluslogiikka.getAanitiedosto();
         assertEquals(System.getProperty("user.dir") + "/" + uusiTiedostopolku,
                 musiikkitiedosto.getTiedosto().getAbsolutePath());
     }

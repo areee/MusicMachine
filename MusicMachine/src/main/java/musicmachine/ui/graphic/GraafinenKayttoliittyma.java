@@ -51,10 +51,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lisaaMusatiedostoValitsija = new javax.swing.JFileChooser();
+        lisaaAanitiedostoValitsija = new javax.swing.JFileChooser();
         avaaSoittolistaValitsija = new javax.swing.JFileChooser();
         tallennaSoittolistaValitsija = new javax.swing.JFileChooser();
-        asetaToistorajat = new javax.swing.JFrame();
         toistaPainike = new javax.swing.JButton();
         pysaytaPainike = new javax.swing.JButton();
         etenemissaadin = new javax.swing.JSlider();
@@ -62,9 +61,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tilaTeksti = new javax.swing.JLabel();
         rullausPaneeli = new javax.swing.JScrollPane();
         soittolista = new javax.swing.JList();
-        valitseTiedostoPainike = new javax.swing.JButton();
+        valitseAanitiedostoPainike = new javax.swing.JButton();
         soittolistaTeksti = new javax.swing.JLabel();
-        poistaTiedostoPainike = new javax.swing.JButton();
+        poistaAanitiedostoPainike = new javax.swing.JButton();
         kelaaEteenpainPainike = new javax.swing.JButton();
         kelaaTaaksepainPainike = new javax.swing.JButton();
         tallennaSoittolistaPainike = new javax.swing.JButton();
@@ -74,9 +73,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tiedostonKokonaiskesto = new javax.swing.JLabel("--:--");
         tiedostonNykyinenToistokohta = new javax.swing.JLabel("--:--");
 
-        lisaaMusatiedostoValitsija.setApproveButtonText("Lisää");
-        lisaaMusatiedostoValitsija.setCurrentDirectory(new File(System.getProperty("user.dir")+"/audio"));
-        lisaaMusatiedostoValitsija.setDialogTitle("Lisää musiikkitiedosto...");
+        lisaaAanitiedostoValitsija.setApproveButtonText("Lisää");
+        lisaaAanitiedostoValitsija.setCurrentDirectory(new File(System.getProperty("user.dir")+"/audio"));
+        lisaaAanitiedostoValitsija.setDialogTitle("Lisää äänitiedosto...");
 
         avaaSoittolistaValitsija.setApproveButtonText("Avaa");
         avaaSoittolistaValitsija.setCurrentDirectory(new File(System.getProperty("user.dir")));
@@ -89,19 +88,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         tallennaSoittolistaValitsija.setDialogTitle("Tallenna soittolista...");
         tallennaSoittolistaValitsija.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
         tallennaSoittolistaValitsija.getAccessibleContext().setAccessibleName("Tallenna soittolista tekstitiedostona");
-
-        asetaToistorajat.setTitle("Aseta kappaleelle toistorajat...");
-
-        javax.swing.GroupLayout asetaToistorajatLayout = new javax.swing.GroupLayout(asetaToistorajat.getContentPane());
-        asetaToistorajat.getContentPane().setLayout(asetaToistorajatLayout);
-        asetaToistorajatLayout.setHorizontalGroup(
-            asetaToistorajatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        asetaToistorajatLayout.setVerticalGroup(
-            asetaToistorajatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MusicMachine");
@@ -140,22 +126,22 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
         soittolista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         rullausPaneeli.setViewportView(soittolista);
 
-        valitseTiedostoPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Add-painike.png"))); // NOI18N
-        valitseTiedostoPainike.setToolTipText("Lisää musiikkitiedosto...");
-        valitseTiedostoPainike.addActionListener(new java.awt.event.ActionListener() {
+        valitseAanitiedostoPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Add-painike.png"))); // NOI18N
+        valitseAanitiedostoPainike.setToolTipText("Lisää äänitiedosto...");
+        valitseAanitiedostoPainike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valitseTiedostoPainikeActionPerformed(evt);
+                valitseAanitiedostoPainikeActionPerformed(evt);
             }
         });
 
         soittolistaTeksti.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         soittolistaTeksti.setText("Soittolista:");
 
-        poistaTiedostoPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Delete-painike.png"))); // NOI18N
-        poistaTiedostoPainike.setToolTipText("Poista musiikkitiedosto");
-        poistaTiedostoPainike.addActionListener(new java.awt.event.ActionListener() {
+        poistaAanitiedostoPainike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Delete-painike.png"))); // NOI18N
+        poistaAanitiedostoPainike.setToolTipText("Poista äänitiedosto");
+        poistaAanitiedostoPainike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                poistaTiedostoPainikeActionPerformed(evt);
+                poistaAanitiedostoPainikeActionPerformed(evt);
             }
         });
 
@@ -232,9 +218,9 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tilaTeksti))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(valitseTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(valitseAanitiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(poistaTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(poistaAanitiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tallennaSoittolistaPainike)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -276,8 +262,8 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(valitseTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
-                                .addComponent(poistaTiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(valitseAanitiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 29, Short.MAX_VALUE)
+                                .addComponent(poistaAanitiedostoPainike, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(tallennaSoittolistaPainike)
                                 .addComponent(avaaSoittolistaPainike)
@@ -302,7 +288,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
-        getAccessibleContext().setAccessibleDescription("Toista musiikkia");
+        getAccessibleContext().setAccessibleDescription("Toista äänitiedostoja helposti");
 
         pack();
         setLocationRelativeTo(null);
@@ -418,18 +404,18 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }
 
     // Valitse tiedosto ja lisää se soittolistaan:
-    private void valitseTiedostoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valitseTiedostoPainikeActionPerformed
-        lisaaMusatiedostoValitsija.setFileFilter(asetaMusatiedostonFiltteri());
-        int valinta = lisaaMusatiedostoValitsija.showOpenDialog(this);
+    private void valitseAanitiedostoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valitseAanitiedostoPainikeActionPerformed
+        lisaaAanitiedostoValitsija.setFileFilter(asetaAanitiedostonFiltteri());
+        int valinta = lisaaAanitiedostoValitsija.showOpenDialog(this);
         if (valinta == JFileChooser.APPROVE_OPTION) {
             lisaaTiedostoSoittolistalle();
         } else {
             tilaTeksti.setText("TIEDOSTON VALINTA KESKEYTETTY");
         }
-    }//GEN-LAST:event_valitseTiedostoPainikeActionPerformed
+    }//GEN-LAST:event_valitseAanitiedostoPainikeActionPerformed
 
     private void lisaaTiedostoSoittolistalle() {
-        File tiedosto = lisaaMusatiedostoValitsija.getSelectedFile();
+        File tiedosto = lisaaAanitiedostoValitsija.getSelectedFile();
         listamalli.addElement(tiedosto.getAbsolutePath());
         asetaViimeisinTiedostoValituksi();
     }
@@ -449,15 +435,15 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
      * Metodi palauttaa filtterinä ohjelman tukemat äänitiedostomuodot. Tuetut
      * tiedostomuodot ovat WAV, MIDI ja AIFF.
      *
-     * @return new FileNameExtensionFilter("Musiikkitiedostot (*.wav, *.mid,
+     * @return new FileNameExtensionFilter("Äänitiedostot (*.wav, *.mid,
      * *.aif)", "wav", "mid", "aif")
      */
-    public FileNameExtensionFilter asetaMusatiedostonFiltteri() {
+    public FileNameExtensionFilter asetaAanitiedostonFiltteri() {
         return new FileNameExtensionFilter(
-                "Musiikkitiedostot (*.wav, *.mid, *.aif)", "wav", "mid", "aif");
+                "Äänitiedostot (*.wav, *.mid, *.aif)", "wav", "mid", "aif");
     }
 
-    private void poistaTiedostoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poistaTiedostoPainikeActionPerformed
+    private void poistaAanitiedostoPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poistaAanitiedostoPainikeActionPerformed
         if (listamalli.isEmpty()) {
             tilaTeksti.setText(epaonnistui + " SOITTOLISTA ON TYHJÄ");
         } else {
@@ -470,7 +456,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
                 valitseViimeisinTiedosto(indeksi);
             }
         }
-    }//GEN-LAST:event_poistaTiedostoPainikeActionPerformed
+    }//GEN-LAST:event_poistaAanitiedostoPainikeActionPerformed
 
     private void kelaaEteenpainPainikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelaaEteenpainPainikeActionPerformed
         kelaaEteenpain();
@@ -639,7 +625,7 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }
 
     /**
-     * Metodi siirtää etenemissäädintä musiikin soidessa
+     * Metodi siirtää etenemissäädintä äänitiedoston soidessa
      *
      */
     void ajastimenToimet() {
@@ -708,15 +694,14 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFrame asetaToistorajat;
     private javax.swing.JButton avaaSoittolistaPainike;
     private javax.swing.JFileChooser avaaSoittolistaValitsija;
     private javax.swing.JSlider etenemissaadin;
     private javax.swing.JButton kelaaEteenpainPainike;
     private javax.swing.JButton kelaaTaaksepainPainike;
-    private javax.swing.JFileChooser lisaaMusatiedostoValitsija;
+    private javax.swing.JFileChooser lisaaAanitiedostoValitsija;
     private javax.swing.JCheckBox luuppiValintalaatikko;
-    private javax.swing.JButton poistaTiedostoPainike;
+    private javax.swing.JButton poistaAanitiedostoPainike;
     private javax.swing.JButton pysaytaPainike;
     private javax.swing.JScrollPane rullausPaneeli;
     private javax.swing.JList soittolista;
@@ -729,6 +714,6 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     private javax.swing.JLabel tilanOhjeteksti;
     private javax.swing.JButton toistaPainike;
     private javax.swing.JButton tyhjennaSoittolista;
-    private javax.swing.JButton valitseTiedostoPainike;
+    private javax.swing.JButton valitseAanitiedostoPainike;
     // End of variables declaration//GEN-END:variables
 }

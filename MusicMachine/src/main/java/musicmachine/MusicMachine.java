@@ -5,7 +5,7 @@ import musicmachine.ui.text.ValitseKayttoliittyma;
 /**
  * Ohjelman pääluokka, josta ValitseKayttoliittyma-luokka käynnistyy
  */
-public class Main {
+public class MusicMachine {
 
     /**
      * Käynnistää ValitseKayttoliittyma-luokan kaynnista-metodin

@@ -1,4 +1,5 @@
 # Testausdokumentti
+Seuraavissa käyttötapauksissa ongelmia esiintyi Ubuntua käyttäessä. Omalla Macillani näitä ongelmia ei testattessa esiintynyt.
 
 ## Toista tiedostoa normaalisti (Ubuntu/Linux)
 1. Käynnistetään ohjelma.
@@ -8,10 +9,10 @@
 5. Kuunnellaan äänitiedosto loppuun asti.
 6. Ohjelman ylälaidassa näkyvä "Toistetaan..." -teksti ei vaihdu, vaikka ohjelman toisto on päättyt. Samoin toista-painikkeessa on edelleen pause-kuvake, vaikka ohjelman toisto on päättynyt.
 7. Klikataan pysäytä-painiketta.
-8. Konsoliin ilmestyy virheviesti "Exception in thread "AWT-EventQueue-0" java.lang.IllegalStateException: Line not open – –".
+8. Konsoliin ilmestyy virheviesti ```Exception in thread "AWT-EventQueue-0" java.lang.IllegalStateException: Line not open```.
 9. Toista-painike ei vaihdu takaisin play-kuvakkeeksi, vaikka näin pitäisi tapahtua.
 
-- Vastaavaa ongelmaa ei esiinny Macilla.
+
 
 ## Valitse tiedoston toistokohta toistokohdan säätimellä (Ubuntu/Linux)
 1. Toistetaan edellisen testin vaiheet 1-4.
@@ -64,12 +65,12 @@ For more information about the errors and possible solutions, please read the fo
 [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
 ```
 
-- Tässäkin tapauksessa vastaavaa ongelmaa ei esiinny Macilla.
-
 ## Kelaaminen (Ubuntu/Linux)
 1. Toistetaan edellisen testin vaiheet 1-4.
 2. Klikkaillaan vimmatusti eteenpäin kelaus -painiketta.
 3. Soiva äänitiedosto katkeilee, muttei juurikaan kelaudu.
 4. Klikkaillaan vimmatusti taaksepäin kelaus -painiketta.
 5. Sama kuin kohdassa 3.
+
+- Sama ongelma esiintyi myös Macilla, tosin koodia hienosäätämällä tuosta ongelmasta pääsi jossain määrin jo eroon.
 

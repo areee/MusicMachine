@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * Luokka määrittelee sovelluslogiikan tarvitseman musiikkitiedoston
  */
-public class Musiikkitiedosto {
+public class Aanitiedosto {
 
     private File tiedosto;
     private int kesto;
@@ -15,7 +15,7 @@ public class Musiikkitiedosto {
      *
      * @param tiedostopolku musiikkitiedoston tiedostopolku
      */
-    public Musiikkitiedosto(String tiedostopolku) {
+    public Aanitiedosto(String tiedostopolku) {
         this.tiedosto = new File(tiedostopolku);
         this.kesto = 0;
     }

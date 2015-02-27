@@ -5,7 +5,6 @@ Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata sitä.
 
 ## Käyttäjät:
 - kaikki musiikin kuuntelijat
-- musiikin miksaajat
 
 ## Toiminnot:
 - soittolistojen luominen
@@ -15,7 +14,6 @@ Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata sitä.
 - musiikin pistäminen tauolle
 	- musiikki jatkuu siitä, mihin jäätiin, kun painetaan toista-painiketta
 - musiikin kelaaminen
-- musiikkikappaleen pituuden muokkaaminen
 
 # Rakenne
 
