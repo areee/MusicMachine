@@ -3,6 +3,7 @@ Seuraavissa käyttötapauksissa ongelmia esiintyi Ubuntua käyttäessä. Omalla 
 
 ## Toista tiedostoa normaalisti
 - Testattu yliopiston Ubuntulla.
+
 1. Käynnistetään ohjelma.
 2. Valitaan käyttöliittymäksi graafinen käyttöliittymä.
 3. Lisätään musiikkitiedosto plus-painikkeesta.
@@ -17,6 +18,7 @@ Seuraavissa käyttötapauksissa ongelmia esiintyi Ubuntua käyttäessä. Omalla 
 
 ## Valitse tiedoston toistokohta toistokohdan säätimellä
 - Testattu yliopiston Ubuntulla.
+
 1. Toistetaan [edellisen testin](#toista-tiedostoa-normaalisti) vaiheet 1-4.
 2. Klikkaillaan toistokohdan säädintä toistokohdan oikealta puolelta.
 3. Soivassa äänitiedostossa on kuultavissa pientä katkeilua, mutta toistokohta ei vaihdu klikattuun kohtaan.
@@ -69,11 +71,14 @@ For more information about the errors and possible solutions, please read the fo
 
 ## Kelaaminen
 - Testattu yliopiston Ubuntulla.
+
 1. Toistetaan [edellisen testin](#valitse-tiedoston-toistokohta-toistokohdan-säätimellä) vaiheet 1-4.
 2. Klikkaillaan vimmatusti eteenpäin kelaus -painiketta.
 3. Soiva äänitiedosto katkeilee, muttei juurikaan kelaudu.
 4. Klikkaillaan vimmatusti taaksepäin kelaus -painiketta.
 5. Sama kuin kohdassa 3.
 
-## Kelaaminen
+## Kelaaminen 
 - Testattu omalla Macilla.
+
+
