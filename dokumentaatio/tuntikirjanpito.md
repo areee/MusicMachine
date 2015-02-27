@@ -210,6 +210,7 @@
 	- päivitetty JavaDoc- sekä checkstyle- ja pit-raportit
 
 ## Torstai 25.2.2015
-- Käytetty aika: h 10 min (+ klo 9:50-9:58)
+- Käytetty aika: h 32 min
 - Ajankäytön kohde:
 	- lisätty sovelluslogiikkaa testaavia testejä
+	- päivitetty pit-raportti
