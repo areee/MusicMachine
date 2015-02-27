@@ -208,3 +208,8 @@
 	- hienosäädetty kelausta
 	- päivitetty testaus- ja aiheenKuvausJaRakenne -dokumentteja
 	- päivitetty JavaDoc- sekä checkstyle- ja pit-raportit
+
+## Torstai 25.2.2015
+- Käytetty aika: h 10 min
+- Ajankäytön kohde:
+	- lisätty sovelluslogiikkaa testaavia testejä

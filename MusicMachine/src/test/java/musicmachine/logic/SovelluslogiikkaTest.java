@@ -142,4 +142,9 @@ public class SovelluslogiikkaTest {
         assertEquals("02:25", sovelluslogiikka.kestoMinuutteinaJaSekunteina(
                 sovelluslogiikka.kestoSekunteina()));
     }
+
+    @Test
+    public void aanitiedostonKestoTasmaa() {
+        assertEquals(145000, sovelluslogiikka.getAanitiedostonKesto());
+    }
 }
