@@ -7,7 +7,7 @@
 ## Graafisen käyttöliittymän käyttö
 
 ### Lisää yksi äänitiedosto / useita äänitiedostoja soittolistalle
-1. Klikkaa "Lisää äänitiedosto"-painiketta ([+]-painike)
+1. Klikkaa "Lisää äänitiedosto"-painiketta ([+]-painike).
 2. Etsi avautuvasta valintaikkunasta toistettava äänitiedosto (ohjelma tukee WAV-, MIDI- ja AIFF-tiedostoja). Klikkaa haluamasi äänitiedosto valituksi ja klikkaa "Lisää". Valittu äänitiedosto ilmestyy soittolistalaatikkoon.
 3. Voit halutessasi lisätä soittolistalle useita äänitiedostoja toistamalla vaiheet 1 ja 2.
 
@@ -19,14 +19,14 @@
 1. Toiston ollessa käynnissä tai tauolla klikkaa "Pysäytä"-painiketta. Äänitiedoston toisto päättyy.
 
 ### Siirrä toisto haluttuun toistokohtaan
-1. Laita äänitiedosto soimaan (ks. edellinen kohta).
+1. Laita äänitiedosto soimaan (ks. [edellinen kohta](#pysäytä-äänitiedosto)).
 2. Äänitiedoston toiston aikana tai sen ollessa tauko-tilassa klikkaa liukusäätimestä haluamaasi kohtaa (tai tartu kiinni liukusäätimen toistokohdasta ja vedä se haluamaasi kohtaan). Äänitiedoston toisto siirtyy valitsemaasi kohtaan.
 
 ### Aseta äänitiedosto tauko-tilaan
-1. Laita äänitiedosto soimaan (ks. "Toista äänitiedostoa" -kohta).
-2. Toiston aikana klikkaa "Tauko"-painiketta (kaksi pystyviivaa -kuvake). Äänitiedosto siirtyy tauko-tilaan. Tauko-tilassa voit halutessasi siirtää toiston haluamaasi toistokohtaan (ks. "Siirrä toisto haluttuun toistokohtaan" -kohta).
-3. Poistu tauko-tilasta joko pysäyttämällä kokonaan toisto (ks. "Pysäytä äänitiedosto" -kohta) tai klikkaamalla "Toista"-painiketta, jolloin äänitiedoston toisto jatkuu liukusäätimen toistokohdasta.
+1. Laita äänitiedosto soimaan (ks. [Toista äänitiedostoa](#toista-äänitiedostoa)).
+2. Toiston aikana klikkaa "Tauko"-painiketta (kaksi pystyviivaa -kuvake). Äänitiedosto siirtyy tauko-tilaan. Tauko-tilassa voit halutessasi siirtää toiston haluamaasi toistokohtaan (ks. [Siirrä toisto haluttuun toistokohtaan](#siirrä-toisto-haluttuun-toistokohtaan)).
+3. Poistu tauko-tilasta joko pysäyttämällä kokonaan toisto (ks. [Pysäytä äänitiedosto](#pysäytä-äänitiedosto)) tai klikkaamalla "Toista"-painiketta, jolloin äänitiedoston toisto jatkuu liukusäätimen toistokohdasta.
 
 ### Kelaa äänitiedostoa
-1. Laita äänitiedosto soimaan (ks. "Toista äänitiedostoa" -kohta).
+1. Laita äänitiedosto soimaan ([Toista äänitiedostoa](#toista-äänitiedostoa)).
 2. 

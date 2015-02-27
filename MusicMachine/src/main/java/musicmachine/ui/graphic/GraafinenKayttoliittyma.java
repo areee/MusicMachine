@@ -556,11 +556,15 @@ public class GraafinenKayttoliittyma extends javax.swing.JFrame {
     }//GEN-LAST:event_etenemissaadinStateChanged
 
     private void kelaaEteenpainPainikeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kelaaEteenpainPainikeMousePressed
-        kelaaEteenpain();
+        while (kelaaEteenpainPainike.isSelected()) {
+            kelaaEteenpain();
+        }
     }//GEN-LAST:event_kelaaEteenpainPainikeMousePressed
 
     private void kelaaTaaksepainPainikeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kelaaTaaksepainPainikeMousePressed
-        kelaaTaaksepain();
+        while (kelaaTaaksepainPainike.isSelected()) {
+            kelaaTaaksepain();
+        }
     }//GEN-LAST:event_kelaaTaaksepainPainikeMousePressed
 
     /**
