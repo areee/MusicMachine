@@ -221,4 +221,4 @@
 ## Lauantai 28.2.2015
 - Käytetty aika: 30 min
 - Ajankäytön kohde:
-	- korjattu lopulliseen deadlineen tulleet pahimmat mokat (main- ja äänitiedostoluokkien osalta vanhentuneet luokkakaavio ja 1. sekvenssikaavio, virheellinen linkki käyttöohjeissa, tuntikirjanpito unohtunut laittaa ajan tasalle)
+	- korjattu lopulliseen deadlineen tulleet pahimmat mokat (main- ja äänitiedostoluokkien osalta vanhentuneet aiheenKuvausJaRakenne-dokumentti, luokkakaavio ja 1. sekvenssikaavio, virheellinen linkki käyttöohjeissa, tuntikirjanpito unohtunut laittaa ajan tasalle)

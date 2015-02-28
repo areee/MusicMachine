@@ -19,10 +19,10 @@ Aion toteuttaa ohjelman, joka osaa toistaa musiikkia ja jolla voi miksata sitä.
 
 Ohjelma rakentuu useista luokista, jotka ovat yksisuuntaisesti vuorovaikutuksessa keskenään.
 
-1. Ohjelma käynnistyy, kun pääluokka Main suoritetaan. Main-luokka kutsuu ValitseKayttoliittyma-luokan kaynnista()-metodia, joka käynnistää tekstikäyttöliittymän.
+1. Ohjelma käynnistyy, kun pääluokka MusicMachine suoritetaan. MusicMachine-luokka kutsuu ValitseKayttoliittyma-luokan kaynnista()-metodia, joka käynnistää tekstikäyttöliittymän.
 
 2. ValitseKayttoliittyman kaynnista()-metodi kutsuu Lukija-luokkaa, joka palauttaa käyttäjän antaman komennon. Sen mukaan kutsutaan joko GraafinenKayttoliittyma-luokan setVisible(true)-metodia tai TekstiKayttoliittyma-luokan kaynnista()-metodia.
 
 3. GraafinenKayttoliittyma-luokka vastaa graafisen käyttöliittymän ulkonäöstä. Kaikki muu ohjelman suoritus (ohjelman logiikka) suoritetaan Sovelluslogiikka-luokassa, jota GraafinenKayttoliittyma-luokka kutsuu aina tarvittaessa. Sovelluslogiikka-luokasta kutsutut arvot palautetaan sieltä arvoina takaisin GraafinenKayttoliittyma-luokkaan, jossa graafiset elementit hyödyntävät Sovelluslogiikka-luokasta saamiaan tietoja. GraafinenKayttoliittyma pystyy myös päivittämään Sovelluslogiikka-luokan arvoja. Sama pätee TekstiKayttoliittyma-luokkaan.
 
-4. Kuten edellä jo kävi ilmi, Sovelluslogiikka-luokka vastaa ohjelman logiikasta. Sovelluslogiikka-luokka aina tiedostoa valitessa uuden Musiikkitiedosto-luokan, jota Sovelluslogiikka kutsuu aina tarvittaessa. Musiikkitiedosto-luokan sisältämien arvojen kyselyn lisäksi Sovelluslogiikka pystyy tarvittaessa kutsumaan Musiikkitiedoston ja asettamaan tilalle uuden Musiikkitiedosto-luokan.
+4. Kuten edellä jo kävi ilmi, Sovelluslogiikka-luokka vastaa ohjelman logiikasta. Sovelluslogiikka-luokka luo aina tiedostoa valitessa uuden Aanitiedosto-luokan, jota Sovelluslogiikka kutsuu aina tarvittaessa. Aanitiedosto-luokan sisältämien arvojen kyselyn lisäksi Sovelluslogiikka pystyy tarvittaessa kutsumaan Aanitiedosto-luokkaa ja asettamaan tilalle uuden Aanitiedosto-luokan.
