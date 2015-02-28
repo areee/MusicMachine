@@ -19,7 +19,7 @@
 1. Toiston ollessa käynnissä tai tauolla klikkaa "Pysäytä"-painiketta. Äänitiedoston toisto päättyy.
 
 ### Siirrä toisto haluttuun toistokohtaan
-1. Laita äänitiedosto soimaan (ks. [edellinen kohta](#pysäytä-äänitiedosto)).
+1. Laita äänitiedosto soimaan (ks. [Toista äänitiedostoa](#toista-äänitiedostoa)).
 2. Äänitiedoston toiston aikana tai sen ollessa tauko-tilassa klikkaa liukusäätimestä haluamaasi kohtaa (tai tartu kiinni liukusäätimen toistokohdasta ja vedä se haluamaasi kohtaan). Äänitiedoston toisto siirtyy valitsemaasi kohtaan.
 
 ### Aseta äänitiedosto tauko-tilaan

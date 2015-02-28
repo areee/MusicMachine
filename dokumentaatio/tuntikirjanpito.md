@@ -194,7 +194,7 @@
 	- aloitettu sovelluslogiikan + graafisen käyttöliittymän nykyisen toistokohdan päivittymisen lisääminen (sekä säätimen että aikatekstin osalta)
 
 
-## Torstai 25.2.2015
+## Torstai 26.2.2015
 - Käytetty aika: 6 h 38 min
 - Ajankäytön kohde:
 	- nykyisen toistokohdan päivittymistä säädetty
@@ -209,12 +209,16 @@
 	- päivitetty testaus- ja aiheenKuvausJaRakenne -dokumentteja
 	- päivitetty JavaDoc- sekä checkstyle- ja pit-raportit
 
-## Torstai 25.2.2015
-- Käytetty aika: 1 h 40 min (+ klo 21:17->)
+## Perjantai 27.2.2015
+- Käytetty aika: 4 h 24 min
 - Ajankäytön kohde:
 	- lisätty sovelluslogiikkaa testaavia testejä
 	- päivitetty pit-raportti
 	- luotu jar-tiedosto
 	- päivitetty käyttöohjeita, aiheen kuvausta ja rakennetta sekä testausdokumenttia
 	- päivitetty koodia: kaikki musa- tai musiikki-sanat korvattu ääni-sanalla
-	- 
+
+## Lauantai 28.2.2015
+- Käytetty aika: 30 min
+- Ajankäytön kohde:
+	- korjattu lopulliseen deadlineen tulleet pahimmat mokat (main- ja äänitiedostoluokkien osalta vanhentuneet luokkakaavio ja 1. sekvenssikaavio, virheellinen linkki käyttöohjeissa, tuntikirjanpito unohtunut laittaa ajan tasalle)
